@@ -4,14 +4,13 @@ import ProductCard from '../../card/ProductCard';
 import Slider from 'react-slick';
 import { productSettings } from '../../../utility/sliderSettings/productSettings';
 import Image from 'next/image';
-import ad1 from '../../../../public/assets/ad1.gif'
 
-const FestivalComponent = () => {
+const FestivalComponent = ({ products, fesTitle, fesColor, fesImage }) => {
     return (
-        <div className='bg-white rounded-xl shadow'>
+        <div className='bg-white rounded-xl shadow mb-6'>
             <div className='flex items-center justify-between pr-5'>
                 <div className='flex items-center p-5 gap-8'>
-                    <h1 className='text-2xl font-medium text-primary'>Global</h1>
+                    <h1 className='text-2xl font-medium text-primary uppercase'>{fesTitle}</h1>
                     <span className='bg-primary text-white flex items-center gap-2 p-1 px-2 rounded-md shadow text-lg'>
                         <h1>12d:</h1>
                         <h1>11h:</h1>
@@ -21,9 +20,9 @@ const FestivalComponent = () => {
                 </div>
                 <button className='border border-primary hover:bg-primary hover:text-white text-primary rounded-full px-4 py-1 font-medium ease-in-out duration-500'>Show All</button>
             </div>
-            <Image quality={100} className='w-full h-fit' src={ad1} alt="" />
+            <Image quality={100} className='w-full h-fit' src={fesImage} alt="" />
 
-            <div className='bg-yellow-400 p-5 rounded-b-xl'>
+            <div className={`${fesColor && `bg-[${fesColor}]`} p-5 rounded-b-xl`}>
                 <Slider {...productSettings}>
                     {
                         Array(5).fill().map((_, idx) =>

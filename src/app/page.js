@@ -1,4 +1,4 @@
-import FestivalComponent from "@/components/home/festivalComponent/FestivalComponent";
+import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
 
@@ -9,7 +9,7 @@ export default function Home() {
         <div className="mx-4 md:mx-0">
           <TopCategories />
           <BannerCategories />
-          <FestivalComponent/>
+          <AdsFestivalIndex />
         </div>
       </div>
     </div>
