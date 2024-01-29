@@ -22,7 +22,7 @@ const FestivalComponent = ({ products, fesTitle, fesColor, fesImage }) => {
             </div>
             <Image quality={100} className='w-full h-fit' src={fesImage} alt="" />
 
-            <div className={`${fesColor && `bg-[${fesColor}]`} p-5 rounded-b-xl`}>
+            <div className={`p-5 rounded-b-xl`} style={{ backgroundColor: fesColor }}>
                 <Slider {...productSettings}>
                     {
                         Array(5).fill().map((_, idx) =>

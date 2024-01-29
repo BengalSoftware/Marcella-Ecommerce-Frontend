@@ -9,48 +9,48 @@ import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <div class='bg-[#222222]'>
-            <div class='container mx-auto'>
-                <div class='flex justify-between gap-20 py-12 mx-5 md:mx-0'>
-                    <div class='w-[35%] flex md:block flex-col justify-center items-center'>
-                        <span class='uppercase text-white flex items-center font-[500] gap-2'>
+        <div className='bg-[#222222]'>
+            <div className='container mx-auto'>
+                <div className='flex justify-between gap-20 py-12 mx-5 md:mx-0'>
+                    <div className='w-[35%] flex md:block flex-col justify-center items-center'>
+                        <span className='uppercase text-white flex items-center font-[500] gap-2'>
                             <Link href="/">
-                                <h1 class="text-4xl md:text-5xl font-semibold uppercase text-secondary">Marcella</h1>
+                                <h1 className="text-4xl md:text-5xl font-semibold uppercase text-secondary">Marcella</h1>
                             </Link>
                         </span>
-                        <p class='text-white my-5 text-center md:text-start'>Presently, the company efficiently conveys and
+                        <p className='text-white my-5 text-center md:text-start'>Presently, the company efficiently conveys and
                             disseminates food products across the entire Kingdom market utilizing an extensive fleet of
                             well-equipped vehicles and a proficient sales team. </p>
 
-                        <span class="flex text-white items-center gap-4 mt-2">
+                        <span className="flex text-white items-center gap-4 mt-2">
                             <FaRegEnvelopeOpen />
                             <p>example@gmail.com</p>
                         </span>
-                        <span class="flex text-white items-center gap-4 mt-2">
+                        <span className="flex text-white items-center gap-4 mt-2">
                             <FaPhoneAlt />
                             <p>01800-000000</p>
                         </span>
                     </div>
 
-                    <div class='w-[35%] md:flex justify-center text-center md:text-start'>
-                        <div class='w-full md:w-1/2'>
-                            <h2 class='text-white text-xl font-medium'>Information</h2>
-                            <ul class='text-white mt-5'>
-                                <li><Link class='hover:text-secondary' href=''>Terms & Condition</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>FAQ</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Refund Policy</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Seller Promises</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Help center</Link></li>
+                    <div className='w-[35%] md:flex justify-center text-center md:text-start'>
+                        <div className='w-full md:w-1/2'>
+                            <h2 className='text-white text-xl font-medium'>Information</h2>
+                            <ul className='text-white mt-5'>
+                                <li><Link className='hover:text-secondary' href=''>Terms & Condition</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>FAQ</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Refund Policy</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Seller Promises</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Help center</Link></li>
                             </ul>
                         </div>
-                        <div class='w-full md:w-1/2 mt-5 md:mt-0'>
-                            <h2 class='text-white text-xl font-medium'>Services</h2>
-                            <ul class='text-white mt-5'>
-                                <li><Link class='hover:text-secondary' href=''>Payment Method</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Contact Us</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>About Us</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Shipping Policy</Link></li>
-                                <li><Link class='hover:text-secondary' href=''>Account</Link></li>
+                        <div className='w-full md:w-1/2 mt-5 md:mt-0'>
+                            <h2 className='text-white text-xl font-medium'>Services</h2>
+                            <ul className='text-white mt-5'>
+                                <li><Link className='hover:text-secondary' href=''>Payment Method</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Contact Us</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>About Us</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Shipping Policy</Link></li>
+                                <li><Link className='hover:text-secondary' href=''>Account</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -66,10 +66,10 @@ const Footer = () => {
                         <Image quality={100} placeholder='blur' className='mt-8' src={paymentsLogo} alt="payments" />
                     </div>
                 </div>
-                <div class='py-5 border-t border-t-white md:flex items-center justify-between'>
-                    <p class='text-white text-center text-sm'>{`© ${new Date().getFullYear()} Copyright Marcella All Rights Reserved.`}</p>
-                    <p class='text-white text-sm text-center md:text-end'>Developed By: <Link target='_blank'
-                        href="https://www.bengalsoftware.com/" class='text-secondary hover:text-white'>Bengal
+                <div className='py-5 border-t border-t-white md:flex items-center justify-between'>
+                    <p className='text-white text-center text-sm'>{`© ${new Date().getFullYear()} Copyright Marcella All Rights Reserved.`}</p>
+                    <p className='text-white text-sm text-center md:text-end'>Developed By: <Link target='_blank'
+                        href="https://www.bengalsoftware.com/" className='text-secondary hover:text-white'>Bengal
                         Software</Link></p>
                 </div>
             </div>
