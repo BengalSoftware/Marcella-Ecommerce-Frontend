@@ -7,13 +7,44 @@
   background: linear-gradient(90deg, rgba(111, 186, 101, 1) 0%, rgba(9, 169, 133, 1) 100%);
 }
 
-button.slick-arrow.slick-next{
+button.slick-arrow.slick-next {
   right: 0px;
-  background-color: white;
-  color: #000;
+  z-index: 100;
 }
-button.slick-arrow.slick-prev{
-  left: 0px;
-  background-color: white;
-  color: #000;
+
+button.slick-arrow.slick-prev {
+  left: -5px;
+  z-index: 100;
+}
+
+button.slick-arrow.slick-next::before {
+  font-size: 40px;
+  color: #fff;
+  font-family: 'slick';
+  background-color: black;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  box-shadow: 0 0 20px #000;
+  opacity: 100;
+}
+
+button.slick-arrow.slick-prev::before {
+  font-size: 40px;
+  color: #fff;
+  font-family: 'slick';
+  background-color: black;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  box-shadow: 0 0 20px #000;
+  opacity: 100;
 }

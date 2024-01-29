@@ -1,8 +1,10 @@
+'use client'
 import React from 'react';
 import ProductCard from '../../card/ProductCard';
 import Slider from 'react-slick';
 import { productSettings } from '../../../utility/sliderSettings/productSettings';
 import Image from 'next/image';
+import ad1 from '../../../../public/assets/ad1.gif'
 
 const FestivalComponent = () => {
     return (
@@ -19,7 +21,7 @@ const FestivalComponent = () => {
                 </div>
                 <button className='border border-primary hover:bg-primary hover:text-white text-primary rounded-full px-4 py-1 font-medium ease-in-out duration-500'>Show All</button>
             </div>
-            <Image quality={100} placeholder='blur' className='w-full h-fit' src="https://production-qcoom-user.s3-ap-southeast-1.amazonaws.com/static_image/2023-10-17T15:49:31.190_Banner-0.gif" alt="" />
+            <Image quality={100} className='w-full h-fit' src={ad1} alt="" />
 
             <div className='bg-yellow-400 p-5 rounded-b-xl'>
                 <Slider {...productSettings}>
