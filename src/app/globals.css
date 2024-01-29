@@ -18,33 +18,29 @@ button.slick-arrow.slick-prev {
 }
 
 button.slick-arrow.slick-next::before {
-  font-size: 40px;
-  color: #fff;
-  font-family: 'slick';
-  background-color: black;
-  text-align: center;
+  content: url('../../public/assets/arrow-right-s-line.png');
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   height: 28px;
   width: 28px;
-  box-shadow: 0 0 20px #000;
+  padding-top: 2px;
+  box-shadow: 0 0 5px #000;
   opacity: 100;
 }
 
 button.slick-arrow.slick-prev::before {
-  font-size: 40px;
-  color: #fff;
-  font-family: 'slick';
-  background-color: black;
-  text-align: center;
+  content: url('../../public/assets/arrow-left-s-line.png');
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   height: 28px;
   width: 28px;
-  box-shadow: 0 0 20px #000;
+  padding-top: 2px;
+  box-shadow: 0 0 5px #000;
   opacity: 100;
 }
