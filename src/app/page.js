@@ -1,3 +1,4 @@
+import AllProducts from "@/components/home/allProducts/AllProducts";
 import ComputingAndGaming from "@/components/home/computingAndGaming/ComputingAndGaming";
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
@@ -23,7 +24,8 @@ export default function Home() {
           <WomensFashion />
           <MobileAndGadget />
           <HomeAppliance />
-          <ComputingAndGaming/>
+          <ComputingAndGaming />
+          <AllProducts />
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import img from '../../../public/assets/product.webp'
 
 const ProductCard = ({ imgs }) => {
     return (
-        <div className='bg-white rounded-lg cursor-pointer relative'>
+        <div className='bg-white rounded-lg cursor-pointer relative shadow'>
             <p className='bg-g-primary absolute text-white top-0 left-0 rounded-tl-lg rounded-br-lg text-sm px-4 py-2 z-50'>Flat 10 TK off</p>
             <div className='overflow-hidden rounded-t-lg'>
                 <Image quality={100} placeholder='blur' className='rounded-t-lg hover:scale-110 ease-in-out duration-700' src={imgs ? imgs : img} alt="" />
