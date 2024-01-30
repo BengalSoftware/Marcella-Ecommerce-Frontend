@@ -3,16 +3,26 @@ import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import Link from 'next/link';
+import { FiUser } from "react-icons/fi";
 
 const Header = () => {
     return (
         <div className='bg-g-primary'>
             <div className="container mx-auto py-4">
-                <div className='flex items-center justify-end gap-5 text-white mb-4 text-sm'>
-                    <Link href='/' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
-                    <Link href='' className='border-r pr-4 border-green-700'>Contact</Link>
-                    <Link href='' >Create Account</Link>
+                {/* top header start */}
+                <div className='lg:flex items-center justify-between hidden'>
+                    <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
+                        <Link href='/' className='text-white text-sm border-r border-green-700 pr-4'>Customer Service  </Link>
+                        <Link href='' className='border-r pr-4 border-green-700'>Our Address</Link>
+                        <p>Call Us On +8801810-077844</p>
+                    </div>
+                    <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
+                        <Link href='/' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
+                        <Link href='' className='border-r pr-4 border-green-700'>Contact</Link>
+                        <Link href='' className='flex items-center gap-2' ><FiUser /> Account</Link>
+                    </div>
                 </div>
+                {/* top header end */}
                 <div className='flex items-center justify-between'>
                     <div className='w-1/4'>
                         <h1 className='text-5xl font-semibold text-white'>MARCELA</h1>
