@@ -1,3 +1,4 @@
+import ComputingAndGaming from "@/components/home/computingAndGaming/ComputingAndGaming";
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
@@ -22,6 +23,7 @@ export default function Home() {
           <WomensFashion />
           <MobileAndGadget />
           <HomeAppliance />
+          <ComputingAndGaming/>
         </div>
       </div>
     </div>
