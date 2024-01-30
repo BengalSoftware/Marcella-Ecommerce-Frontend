@@ -12,7 +12,7 @@ module.exports = {
     extend: {
       colors: {
         'primary': '#08a987',
-        'g-primary': 'linear-gradient(90deg, rgba(111, 186, 101, 1) 0%, rgba(9, 169, 133, 1) 100%);'
+        'dark': '#444444'
       }
     },
     container: {
