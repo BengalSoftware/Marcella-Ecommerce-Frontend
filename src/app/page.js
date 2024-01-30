@@ -4,6 +4,7 @@ import BannerCategories from "@/components/home/heroSection";
 import MensFashion from "@/components/home/mensFashion/MensFashion";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
 import TopBrands from "@/components/home/topBrands/TopBrands";
+import WomensFashion from "@/components/home/womensFashion/WomensFashion";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           <TopBrands />
           <PopularProducts />
           <MensFashion />
+          <WomensFashion />
         </div>
       </div>
     </div>
