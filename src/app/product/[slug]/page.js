@@ -3,6 +3,7 @@ import React from 'react';
 import img from '../../../../public/assets/product.webp'
 import ProductDescription from '@/components/productDetails/ProductDescription';
 import ProductDeliveryInfo from '@/components/productDetails/ProductDeliveryInfo';
+import RelatedProducts from '@/components/productDetails/RelatedProducts';
 
 const ProductDetailsPage = () => {
     return (
@@ -19,6 +20,7 @@ const ProductDetailsPage = () => {
                         <ProductDeliveryInfo />
                     </div>
                 </div>
+                <RelatedProducts />
             </div>
         </div>
     );
