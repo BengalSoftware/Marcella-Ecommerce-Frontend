@@ -5,6 +5,7 @@ import ProductDescription from '@/components/productDetails/ProductDescription';
 import ProductDeliveryInfo from '@/components/productDetails/ProductDeliveryInfo';
 import RelatedProducts from '@/components/productDetails/RelatedProducts';
 import BreadCrumb from '@/components/breadCrumb/BreadCrumb';
+import DetailsNavTab from '@/components/productDetails/DetailsNavTab';
 
 const ProductDetailsPage = () => {
     return (
@@ -22,6 +23,7 @@ const ProductDetailsPage = () => {
                         <ProductDeliveryInfo />
                     </div>
                 </div>
+                <DetailsNavTab />
                 <RelatedProducts />
             </div>
         </div>
