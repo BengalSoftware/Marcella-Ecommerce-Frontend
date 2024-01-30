@@ -1,6 +1,7 @@
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
+import TopBrands from "@/components/home/topBrands/TopBrands";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
           <TopCategories />
           <BannerCategories />
           <AdsFestivalIndex />
+          <TopBrands />
         </div>
       </div>
     </div>
