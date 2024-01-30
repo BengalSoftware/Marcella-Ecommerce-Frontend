@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
 import { MdDiscount } from "react-icons/md";
+import Rating from '../rating/Rating';
 
 const ProductDescription = () => {
     return (
@@ -15,13 +15,7 @@ const ProductDescription = () => {
                 <p className='bg-primary text-white text-xs w-fit rounded-full px-2 py-0.5 flex items-center gap-1'><MdDiscount /> -BDT 230</p>
             </div>
             <div className='flex items-center justify-between mt-3'>
-                <span className='flex items-center text-yellow-400 gap-1'>
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                </span>
+                <Rating rate={3.5} />
                 <p className='text-xs'>0 reviews</p>
             </div>
 
