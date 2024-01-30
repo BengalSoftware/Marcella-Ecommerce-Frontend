@@ -1,6 +1,7 @@
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
+import MensFashion from "@/components/home/mensFashion/MensFashion";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
 import TopBrands from "@/components/home/topBrands/TopBrands";
 
@@ -14,6 +15,7 @@ export default function Home() {
           <AdsFestivalIndex />
           <TopBrands />
           <PopularProducts />
+          <MensFashion />
         </div>
       </div>
     </div>
