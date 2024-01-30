@@ -1,6 +1,7 @@
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
+import HomeAppliance from "@/components/home/homeAppliance/HomeAppliance";
 import MensFashion from "@/components/home/mensFashion/MensFashion";
 import MobileAndGadget from "@/components/home/mobileAndGadget/MobileAndGadget";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
@@ -20,6 +21,7 @@ export default function Home() {
           <MensFashion />
           <WomensFashion />
           <MobileAndGadget />
+          <HomeAppliance />
         </div>
       </div>
     </div>
