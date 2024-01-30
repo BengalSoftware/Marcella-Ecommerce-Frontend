@@ -1,5 +1,4 @@
 export const productSettings = {
-    // dots: true,
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
@@ -10,16 +9,15 @@ export const productSettings = {
     responsive: [
         {
             breakpoint: 1024,
-            productSettings: {
+            settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
-                dots: true
             }
         },
         {
             breakpoint: 600,
-            productSettings: {
+            settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
                 initialSlide: 2
@@ -27,7 +25,7 @@ export const productSettings = {
         },
         {
             breakpoint: 480,
-            productSettings: {
+            settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1
             }
