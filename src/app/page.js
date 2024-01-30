@@ -2,6 +2,7 @@ import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
 import MensFashion from "@/components/home/mensFashion/MensFashion";
+import MobileAndGadget from "@/components/home/mobileAndGadget/MobileAndGadget";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
 import TopBrands from "@/components/home/topBrands/TopBrands";
 import WomensFashion from "@/components/home/womensFashion/WomensFashion";
@@ -18,6 +19,7 @@ export default function Home() {
           <PopularProducts />
           <MensFashion />
           <WomensFashion />
+          <MobileAndGadget />
         </div>
       </div>
     </div>
