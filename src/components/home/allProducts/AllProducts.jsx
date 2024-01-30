@@ -16,6 +16,9 @@ const AllProducts = () => {
                     )
                 }
             </div>
+            <div className='mt-10 flex items-center justify-center'>
+                <button className='bg-g-primary rounded-md px-6 py-3 md:px-10 lg:px-12 xl:px-16 text-white hover:opacity-90'>Load More</button>
+            </div>
         </div>
     );
 };

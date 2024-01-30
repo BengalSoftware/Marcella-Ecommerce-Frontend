@@ -5,11 +5,11 @@ import Banner from './Banner';
 
 const BannerCategories = () => {
     return (
-        <div className='grid grid-cols-5 my-5'>
-            <div className='col-span-1'>
+        <div className='lg:grid grid-cols-5 my-5'>
+            <div className='lg:col-span-1 hidden lg:block'>
                 <Categories />
             </div>
-            <div className='col-span-4'>
+            <div className='lg:col-span-4'>
                 <Banner />
             </div>
         </div>
