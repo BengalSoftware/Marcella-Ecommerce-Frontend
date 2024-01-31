@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
 export function middleware(request) {
-    const isSeller = false;
-    const isUser = false;
+    const isSeller = true;
+    const isUser = true;
 
-    if (isSeller) {
+    const currentPath = request.nextUrl.pathname;
+
+    if (isSeller && (currentPath === '/seller')) {
         return NextResponse.redirect(new URL('/seller-signup', request.url));
-    } else if (isUser) {
-        return NextResponse.redirect(new URL('/signup', request.url));
+    } else if (isUser && (currentPath === '/account')) {
+        return NextResponse.redirect(new URL('/login', request.url));
     }
     return NextResponse.next();
 

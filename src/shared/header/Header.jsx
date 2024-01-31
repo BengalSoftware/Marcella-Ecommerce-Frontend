@@ -22,9 +22,9 @@ const Header = () => {
                             <p>Call Us On +8801810-077844</p>
                         </div>
                         <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
-                            <Link href='/' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
-                            <Link href='' className='border-r pr-4 border-green-700'>Contact</Link>
-                            <Link href='' className='flex items-center gap-2' ><FiUser /> Account</Link>
+                            <Link href='/seller' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
+                            <Link href='/contact' className='border-r pr-4 border-green-700'>Contact</Link>
+                            <Link href='/account' className='flex items-center gap-2' ><FiUser /> Account</Link>
                         </div>
                     </div>
                     {/* top header end */}
