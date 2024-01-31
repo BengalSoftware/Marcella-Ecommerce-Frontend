@@ -1,9 +1,10 @@
+import Dashboard from '@/components/seller/dashboard/Dashboard';
 import React from 'react';
 
 const SellerPage = () => {
     return (
         <div>
-            <h1>Seller dashboard</h1>
+            <Dashboard />
         </div>
     );
 };
