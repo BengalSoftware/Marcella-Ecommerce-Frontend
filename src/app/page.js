@@ -13,7 +13,7 @@ import WomensFashion from "@/components/home/womensFashion/WomensFashion";
 export default function Home() {
   return (
     <div className="bg-[#f5f5f5]">
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto py-1 md:py5 xl:py-10">
         <div className="mx-4 md:mx-0">
           <TopCategories />
           <BannerCategories />
