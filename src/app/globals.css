@@ -44,3 +44,9 @@ button.slick-arrow.slick-prev::before {
   box-shadow: 0 0 5px #000;
   opacity: 100;
 }
+
+/* and drawer  */
+:where(.css-dev-only-do-not-override-1b0bdye).ant-drawer .ant-drawer-body{
+  padding-left: 0px;
+  padding-right: 0px;
+}

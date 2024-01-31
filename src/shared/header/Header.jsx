@@ -1,13 +1,15 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import Link from 'next/link';
 import { CgMenuGridO } from "react-icons/cg";
 import { FiUser } from "react-icons/fi";
+import MobileNav from '../mobileNav/MobileNav';
 
 const Header = () => {
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     return (
         <div className='bg-g-primary'>
             <div className="container mx-auto py-4">
@@ -56,7 +58,7 @@ const Header = () => {
                     {/* search for mobile  */}
 
                     <div className='flex items-center justify-between gap-3 mt-4 lg:hidden'>
-                        <button className='text-4xl text-white'>
+                        <button onClick={() => setMobileNavOpen(!mobileNavOpen)} className='text-4xl text-white'>
                             <CgMenuGridO />
                         </button>
                         <div className='flex items-center justify-center w-full'>
@@ -66,6 +68,10 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
+                    <MobileNav
+                        open={mobileNavOpen}
+                        setOpen={setMobileNavOpen}
+                    />
                 </div>
             </div>
         </div>
