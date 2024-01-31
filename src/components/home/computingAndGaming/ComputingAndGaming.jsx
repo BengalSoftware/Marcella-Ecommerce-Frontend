@@ -13,7 +13,7 @@ const ComputingAndGaming = () => {
                 <Slider {...productSettings}>
                     {
                         Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2'>
+                            <div key={idx} className='px-1 md:px-2'>
                                 <ProductCard imgs={img} />
                             </div>
                         )
