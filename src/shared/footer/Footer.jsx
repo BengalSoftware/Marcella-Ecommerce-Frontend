@@ -11,8 +11,8 @@ const Footer = () => {
     return (
         <div className='bg-[#222222]'>
             <div className='container mx-auto'>
-                <div className='flex justify-between gap-20 py-12 mx-5 md:mx-0'>
-                    <div className='w-[35%] flex md:block flex-col justify-center items-center'>
+                <div className='md:flex justify-between gap-20 py-12 mx-5 md:mx-0'>
+                    <div className='md:w-[35%] flex md:block flex-col justify-center items-center'>
                         <span className='uppercase text-white flex items-center font-[500] gap-2'>
                             <Link href="/">
                                 <h1 className="text-4xl md:text-5xl font-semibold uppercase text-secondary">Marcella</h1>
@@ -32,7 +32,7 @@ const Footer = () => {
                         </span>
                     </div>
 
-                    <div className='w-[35%] md:flex justify-center text-center md:text-start'>
+                    <div className='md:w-[35%] flex justify-center text-start my-16 md:my-0'>
                         <div className='w-full md:w-1/2'>
                             <h2 className='text-white text-xl font-medium'>Information</h2>
                             <ul className='text-white mt-5'>
@@ -43,7 +43,7 @@ const Footer = () => {
                                 <li><Link className='hover:text-secondary' href=''>Help center</Link></li>
                             </ul>
                         </div>
-                        <div className='w-full md:w-1/2 mt-5 md:mt-0'>
+                        <div className='w-full md:w-1/2 ml-10 md:ml-0'>
                             <h2 className='text-white text-xl font-medium'>Services</h2>
                             <ul className='text-white mt-5'>
                                 <li><Link className='hover:text-secondary' href=''>Payment Method</Link></li>
@@ -55,8 +55,8 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className='w-[30%]'>
-                        <h1 className='text-white mt-12'>Download our mobile app</h1>
+                    <div className='md:w-[30%]'>
+                        <h1 className='text-white text-center md:text-start mt-12'>Download our mobile app</h1>
 
                         <div className='flex items-center gap-4 mt-8'>
                             <Image quality={100} placeholder='blur' src={playStore} alt="playstore" />
