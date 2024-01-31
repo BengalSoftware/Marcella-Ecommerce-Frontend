@@ -6,7 +6,6 @@ import ProductDeliveryInfo from '@/components/productDetails/ProductDeliveryInfo
 import RelatedProducts from '@/components/productDetails/RelatedProducts';
 import BreadCrumb from '@/components/breadCrumb/BreadCrumb';
 import DetailsNavTab from '@/components/productDetails/DetailsNavTab';
-import Drawer from '@/components/drawer/Drawer';
 
 const ProductDetailsPage = () => {
     return (
@@ -26,7 +25,6 @@ const ProductDetailsPage = () => {
                 </div>
                 <DetailsNavTab />
                 <RelatedProducts />
-                <Drawer />
             </div>
         </div>
     );
