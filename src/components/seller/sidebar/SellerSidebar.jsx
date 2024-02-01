@@ -22,7 +22,7 @@ const SellerSidebar = () => {
                 <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><IoHomeOutline /> Dashboard</Link></li>
                 <li><Link href='/seller/product' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineShoppingCart /> Products</Link></li>
                 <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Order</Link></li>
-                <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
+                <li><Link href='/seller/coupon' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
                 <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
             </ul>
         </div>
