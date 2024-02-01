@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductDescriptionForm from './ProductDescriptionForm';
+import UploadImage from './UploadImage';
 
 const AddProductForm = () => {
     return (
@@ -67,6 +68,7 @@ const AddProductForm = () => {
                     </div>
                 </div>
                 <ProductDescriptionForm />
+                <UploadImage />
                 <div className='flex justify-end mt-5'>
                     <button className='bg-primary hover:bg-dark px-6 py-2 text-white rounded-md'>Submit</button>
                 </div>

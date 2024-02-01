@@ -6,29 +6,29 @@ import { MdDelete } from "react-icons/md";
 
 const ProductTable = () => {
     return (
-        <div class="overflow-x-auto mt-10 bg-white shadow rounded-lg">
+        <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
             <h1 className='p-4'>All Products</h1>
-            <table class="table-auto min-w-full bg-white border border-gray-300">
+            <table className="table-auto min-w-full bg-white border border-gray-300">
                 <thead>
                     <tr>
-                        <th class="border px-4 py-2 text-sm text-center">ID</th>
-                        <th class="border px-4 py-2 text-sm text-center">Name</th>
-                        <th class="border px-4 py-2 text-sm text-center">Status</th>
-                        <th class="border px-4 py-2 text-sm text-center">Qty</th>
-                        <th class="border px-4 py-2 text-sm text-center">Price</th>
-                        <th class="border px-4 py-2 text-sm text-center">Actions</th>
+                        <th className="border px-4 py-2 text-sm text-center">ID</th>
+                        <th className="border px-4 py-2 text-sm text-center">Name</th>
+                        <th className="border px-4 py-2 text-sm text-center">Status</th>
+                        <th className="border px-4 py-2 text-sm text-center">Qty</th>
+                        <th className="border px-4 py-2 text-sm text-center">Price</th>
+                        <th className="border px-4 py-2 text-sm text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         Array(8).fill().map((_, idx) =>
                             <tr key={idx}>
-                                <td class="border px-4 py-2 text-sm text-center">{idx + 1}</td>
-                                <td class="border px-4 py-2 text-sm text-center"><p className='line-clamp-1'>Nova Electric Kettly</p></td>
-                                <td class="border px-4 py-2 text-sm text-center">In Stock</td>
-                                <td class="border px-4 py-2 text-sm text-center">100</td>
-                                <td class="border px-4 py-2 text-sm text-center">1200</td>
-                                <td class="border px-4 py-2 text-sm text-center">
+                                <td className="border px-4 py-2 text-sm text-center">{idx + 1}</td>
+                                <td className="border px-4 py-2 text-sm text-center"><p className='line-clamp-1'>Nova Electric Kettly</p></td>
+                                <td className="border px-4 py-2 text-sm text-center">In Stock</td>
+                                <td className="border px-4 py-2 text-sm text-center">100</td>
+                                <td className="border px-4 py-2 text-sm text-center">1200</td>
+                                <td className="border px-4 py-2 text-sm text-center">
                                     <div className='flex items-center justify-center'>
                                         <Link href='/' className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>
                                         <Link href='/' className='bg-green-500 hover:bg-green-600 text-white text-xl p-1'><IoEye /></Link>
