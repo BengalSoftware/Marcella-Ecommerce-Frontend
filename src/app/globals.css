@@ -50,3 +50,12 @@ button.slick-arrow.slick-prev::before {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+/* quill  */
+.ql-toolbar.ql-snow + .ql-container.ql-snow{
+  height: 10rem;
+}
+
+.seller-scrollbar::-webkit-scrollbar {
+  display: none;
+}

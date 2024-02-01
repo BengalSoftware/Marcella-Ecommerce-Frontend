@@ -10,7 +10,7 @@ const SellerLayout = ({ children }) => {
                         <div className='md:col-span-1'>
                             <SellerSidebar />
                         </div>
-                        <div className='md:col-span-4'>
+                        <div className='md:col-span-4 overflow-y-scroll h-[80vh] seller-scrollbar'>
                             {children}
                         </div>
                     </div>
