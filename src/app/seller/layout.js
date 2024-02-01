@@ -1,3 +1,4 @@
+'use client'
 import SellerSidebar from '@/components/seller/sidebar/SellerSidebar';
 import React from 'react';
 
