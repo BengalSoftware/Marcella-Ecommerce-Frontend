@@ -15,7 +15,7 @@ const ProductDetailsPage = () => {
                     <div className='lg:col-span-2'>
                         <ProductImage />
                     </div>
-                    <div className='lg:col-span-3'>
+                    <div className='lg:col-span-3 pl-10'>
                         <ProductDescription />
                     </div>
                     <div className='lg:col-span-2 pl-16'>

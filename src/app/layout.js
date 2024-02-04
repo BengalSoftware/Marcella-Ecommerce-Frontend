@@ -2,8 +2,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/shared/header/Header";
 import Footer from "@/shared/footer/Footer";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
