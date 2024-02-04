@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import ReviewRatingIndex from './reviews';
 
 const DetailsNavTab = () => {
     const [navValue, setNavValue] = useState('description');
@@ -17,7 +18,10 @@ const DetailsNavTab = () => {
                 navValue === 'description' && <div className='mt-5'><p>Description</p></div>
             }
             {
-                navValue === 'reviews' && <div className='mt-5'><p>Reviews</p></div>
+                navValue === 'reviews' &&
+                <div className='mt-5'>
+                    <ReviewRatingIndex />
+                </div>
             }
             {
                 navValue === 'terms' && <div className='mt-5'><p>Terms & Condition</p></div>
