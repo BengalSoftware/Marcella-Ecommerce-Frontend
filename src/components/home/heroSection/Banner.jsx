@@ -11,13 +11,13 @@ const Banner = () => {
         <div>
             <Slider {...banneSettings}>
                 <div>
-                    <Image quality={100} placeholder='blur' className='h-fit xl:h-[28rem] w-full' src={banner1} alt="" />
+                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner1} alt="" />
                 </div>
                 <div>
-                    <Image quality={100} placeholder='blur' className='h-fit xl:h-[28rem] w-full' src={banner2} alt="" />
+                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner2} alt="" />
                 </div>
                 <div>
-                    <Image quality={100} placeholder='blur' className='h-fit xl:h-[28rem] w-full' src={banner3} alt="" />
+                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner3} alt="" />
                 </div>
             </Slider>
         </div>

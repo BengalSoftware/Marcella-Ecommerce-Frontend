@@ -29,9 +29,9 @@ const Header = () => {
                     </div>
                     {/* top header end */}
                     <div className='flex items-center justify-between'>
-                        <div className='w-1/4'>
+                        <Link href='/' className='w-1/4'>
                             <h1 className='text-3xl lg:text-5xl font-semibold text-white'>MARCELLA</h1>
-                        </div>
+                        </Link>
                         <div className='w-2/4 hidden lg:flex items-center justify-center'>
                             <div className='bg-white w-full flex items-center rounded-full px-4'>
                                 <input className='w-full py-3 pr-3 outline-none rounded-full' placeholder='Search for products..' type="text" name="" id="" />

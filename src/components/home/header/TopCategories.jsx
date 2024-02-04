@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const TopCategories = () => {
     return (
-        <div className='bg-white shadow rounded-md md:grid grid-cols-8 gap-8 p-4 hidden'>
+        <div className='bg-white shadow rounded-md md:grid grid-cols-8 gap-8 p-4 hidden mb-5'>
             {
                 Array(8).fill().map((_, idx) =>
                     <div key={idx} className='flex flex-col items-center justify-center'>
