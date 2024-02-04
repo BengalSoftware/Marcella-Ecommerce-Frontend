@@ -1,25 +1,24 @@
-import Image from 'next/image';
 import React from 'react';
-import img from '../../../../public/assets/product.webp'
 import ProductDescription from '@/components/productDetails/ProductDescription';
 import ProductDeliveryInfo from '@/components/productDetails/ProductDeliveryInfo';
 import RelatedProducts from '@/components/productDetails/RelatedProducts';
 import BreadCrumb from '@/components/breadCrumb/BreadCrumb';
 import DetailsNavTab from '@/components/productDetails/DetailsNavTab';
+import ProductImage from '@/components/productDetails/ProductImage';
 
 const ProductDetailsPage = () => {
     return (
         <div className='container mx-auto mb-10 mt-5'>
             <div className='mx-4 md:mx-0'>
                 <BreadCrumb />
-                <div className='grid grid-cols-1 lg:grid-cols-5'>
+                <div className='grid grid-cols-1 lg:grid-cols-7 gap-5'>
                     <div className='lg:col-span-2'>
-                        <Image quality={100} placeholder='blur' src={img} alt='detail' />
+                        <ProductImage />
                     </div>
-                    <div className='lg:col-span-2 pr-20'>
+                    <div className='lg:col-span-3'>
                         <ProductDescription />
                     </div>
-                    <div className='lg:col-span-1'>
+                    <div className='lg:col-span-2 pl-16'>
                         <ProductDeliveryInfo />
                     </div>
                 </div>
