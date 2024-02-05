@@ -7,6 +7,7 @@ import { CiMoneyBill } from "react-icons/ci";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsPersonGear } from "react-icons/bs";
 import { TfiAnnouncement } from "react-icons/tfi";
+import { VscReport } from "react-icons/vsc";
 
 const SellerSidebar = () => {
     return (
@@ -21,9 +22,10 @@ const SellerSidebar = () => {
             <ul className='p-5'>
                 <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><IoHomeOutline /> Dashboard</Link></li>
                 <li><Link href='/seller/product' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineShoppingCart /> Products</Link></li>
-                <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Order</Link></li>
+                <li><Link href='/seller/order' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Orders</Link></li>
+                <li><Link href='/seller/report' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><VscReport /> Reports</Link></li>
                 <li><Link href='/seller/coupon' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
-                <li><Link href='/seller' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
+                <li><Link href='/seller/settings' className='hover:bg-[#f5f5f5] border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
             </ul>
         </div>
     );
