@@ -13,7 +13,7 @@ const FilterSidebar = () => {
                     {
                         Array(12).fill().map((_, idx) =>
                             <li key={idx}>
-                                <Link href='/' className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-[#f5f5f5] border-t'>Men's and Fashion</Link>
+                                <Link href='/' className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-secondary border-t'>Men's and Fashion</Link>
                             </li>
                         )
                     }
@@ -28,7 +28,7 @@ const FilterSidebar = () => {
                     {
                         Array(5).fill().map((_, idx) =>
                             <li key={idx}>
-                                <Link href='/' className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-[#f5f5f5] border-t'>Gucci</Link>
+                                <Link href='/' className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-secondary border-t'>Gucci</Link>
                             </li>
                         )
                     }

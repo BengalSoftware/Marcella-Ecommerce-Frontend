@@ -7,7 +7,7 @@ import React from 'react';
 
 const ProductsPage = () => {
     return (
-        <div className="bg-[#f5f5f5]">
+        <div className="bg-secondary">
             <div className="container mx-auto py-1 md:py-5">
                 <div className="mx-4 md:mx-0">
                     <BreadCrumb />

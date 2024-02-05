@@ -4,7 +4,7 @@ import React from 'react';
 
 const SellerLayout = ({ children }) => {
     return (
-        <div className='bg-[#f5f5f5] h-[85vh]'>
+        <div className='bg-secondary h-[85vh]'>
             <div className='container mx-auto py-5'>
                 <div className='mx-4 md:mx-0'>
                     <div className='grid grid-cols-5 gap-5'>
