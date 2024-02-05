@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 export function middleware(request) {
     const isSeller = false;
-    const isUser = true;
+    const isUser = false;
 
     const currentPath = request.nextUrl.pathname;
 
