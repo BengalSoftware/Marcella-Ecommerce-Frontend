@@ -36,22 +36,20 @@ const CartDrawer = () => {
                 }
                 footer={
                     <div className='flex items-center justify-between gap-2 my-10'>
-                        <Link href='/checkout' className='bg-primary w-full py-2 text-white text-center hover:text-white rounded-md hover:bg-dark'>Checkout</Link>
-                        <Link href='/' className='bg-dark w-full py-2 text-white rounded-md text-center hover:text-white hover:bg-primary'>Continue Shopping</Link>
+                        <Link onClick={onClose} href='/checkout' className='bg-primary w-full py-2 text-white text-center hover:text-white rounded-md hover:bg-dark'>Checkout</Link>
+                        <Link onClick={onClose} href='/' className='bg-dark w-full py-2 text-white rounded-md text-center hover:text-white hover:bg-primary'>Continue Shopping</Link>
                     </div>
                 }
             >
                 <div className='mx-4'>
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
-                    <CheckoutCard />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
+                    <CheckoutCard statusCard={true} />
                 </div>
             </Drawer>
         </div>
