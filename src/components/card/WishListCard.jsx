@@ -8,7 +8,7 @@ const WishListCard = () => {
         <div className='bg-white rounded-md shadow flex items-center p-1 relative'>
             <Image className='h-32 w-32' src={img} quality={100} placeholder='blur' alt='product' />
             <div>
-                <p className='line-clamp-2'>Nova Automatic Cordless Stainless Steel Electric Kettle 1.8 Liter Ae-1818</p>
+                <p className='line-clamp-2 text-sm'>Nova Automatic Cordless Stainless Steel Electric Kettle 1.8 Liter Ae-1818</p>
                 <button className='text-primary uppercase text-sm mt-4'>Add To Cart</button>
             </div>
             <button className='text-2xl absolute bottom-4 right-4 text-red-500 hover:text-red-600'><MdDelete /></button>

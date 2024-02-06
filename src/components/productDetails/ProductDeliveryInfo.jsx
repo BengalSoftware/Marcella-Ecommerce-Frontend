@@ -60,7 +60,7 @@ const ProductDeliveryInfo = () => {
                     </div>
                 </div>
                 <div className='text-center mt-2'>
-                    <Link href='/' className='text-primary'>Visit Store</Link>
+                    <Link href='/shop/bengal-shop' className='text-primary'>Visit Store</Link>
                 </div>
             </div>
         </div>
