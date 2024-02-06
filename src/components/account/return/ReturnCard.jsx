@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import img from '../../../../public/assets/product.webp'
 
-const OrderCard = () => {
+const ReturnCard = () => {
     return (
         <div className='border rounded-md mt-4 p-2'>
             <div className='flex items-center justify-between border-dashed border-b border-b-dark pb-2'>
@@ -17,7 +17,7 @@ const OrderCard = () => {
             </div>
 
 
-            {/* single order card  */}
+            {/* single cancel card  */}
             <div className='border rounded-md grid grid-cols-6 lg:grid-cols-10 gap-4 items-center p-4 my-4'>
                 <div className='col-span-2 lg:col-span-2'>
                     <Image quality={100} placeholder='blur' className='h-20 w-20 rounded-md' src={img} alt="" />
@@ -57,4 +57,4 @@ const OrderCard = () => {
     );
 };
 
-export default OrderCard;
+export default ReturnCard;
