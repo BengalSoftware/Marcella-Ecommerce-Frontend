@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { CgMenuGridO } from "react-icons/cg";
 import { FiUser } from "react-icons/fi";
 import MobileNav from '../mobileNav/MobileNav';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -47,10 +48,11 @@ const Header = () => {
                                     <p>Cart</p>
                                     <p className='font-medium'>1800</p>
                                 </span>
-                                <button className='bg-white rounded-full p-1.5 relative'>
+                                {/* <button className='bg-white rounded-full p-1.5 relative'>
                                     <RiShoppingBag3Line className='text-xl font-light' />
                                     <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>10</p>
-                                </button>
+                                </button> */}
+                                <CartDrawer />
                             </div>
                         </div>
                     </div>
