@@ -9,7 +9,7 @@ const Categories = () => {
                 {
                     Array(12).fill().map((_, idx) =>
                         <li key={idx} className='group'>
-                            <Link href='/' className='flex items-center justify-between pl-4 py-1.5 text-xs xl:text-sm text-dark hover:bg-gray-100'> <span className='line-clamp-1'>Womens & Girls Fashion</span> <IoIosArrowForward className='text-primary mr-4' /></Link>
+                            <Link href='/products' className='flex items-center justify-between pl-4 py-1.5 text-xs xl:text-sm text-dark hover:bg-gray-100'> <span className='line-clamp-1'>Womens & Girls Fashion</span> <IoIosArrowForward className='text-primary mr-4' /></Link>
                             {/* sub menu  */}
                             <ul className='absolute left-full bg-white w-full top-0 hidden group-hover:block py-2 h-full z-50'>
                                 <li>
