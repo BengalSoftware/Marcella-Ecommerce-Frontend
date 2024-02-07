@@ -2,6 +2,7 @@
 import { Drawer } from 'antd';
 import React, { useState } from 'react';
 import FilterSidebar from './FilterSidebar';
+import { HiXMark } from 'react-icons/hi2';
 
 const MobileFilterSidebar = () => {
     const [open, setOpen] = useState(false);
@@ -12,10 +13,17 @@ const MobileFilterSidebar = () => {
                 <p className='text-gray-800 font-[300] uppercase text-sm'>Filter & Sort</p>
             </button>
             <Drawer
-                title="Categories"
+                title="Filter & Sort"
                 placement={'left'}
                 onClose={() => setOpen(false)}
                 open={open}
+                closeIcon={null}
+                extra={
+                    <button onClick={() => setOpen(false)} className='text-2xl border border-white hover:border-dark'>
+                        <HiXMark />
+                    </button>
+                }
+                style={{ width: '80%' }}
             >
                 <FilterSidebar />
             </Drawer>

@@ -1,5 +1,6 @@
 import { Drawer, Menu } from 'antd';
 import React, { useState } from 'react';
+import { HiXMark } from 'react-icons/hi2';
 function getItem(label, key, children, type) {
     return {
         key,
@@ -56,6 +57,13 @@ const MobileNav = ({ open, setOpen }) => {
                 onClose={handleClose}
                 open={open}
                 className='hidden'
+                closeIcon={null}
+                extra={
+                    <button onClick={handleClose} className='text-2xl border border-white hover:border-dark'>
+                        <HiXMark />
+                    </button>
+                }
+                style={{ width: '80%' }}
             >
                 <Menu
                     mode="inline"

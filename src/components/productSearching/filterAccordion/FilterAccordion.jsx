@@ -11,7 +11,7 @@ const FilterAccordion = ({ children, title }) => {
     };
 
     return (
-        <div className='my-2'>
+        <div className='my-2 mx-3 md:mx-0'>
             <button
                 type='button'
                 className={`bg-white shadow-md rounded-t-lg font-[400] text-start flex items-center justify-between p-3 cursor-pointer group w-full text-gray-800 border-0 ${isOpen ? 'rounded-b-none' : 'rounded-b-lg'}`}
