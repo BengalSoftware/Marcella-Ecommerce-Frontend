@@ -15,7 +15,7 @@ const ProductDeliveryInfo = () => {
                 <FaLocationDot />
                 <p>No Address Found</p>
             </div>
-            <div className='text-dark flex items-center text-sm mt-10 gap-2'>
+            <div className='text-dark flex items-center text-sm mt-5 lg:mt-10 gap-2'>
                 <GrDeliver />
                 <p>Delivery Charge</p>
             </div>
@@ -27,7 +27,7 @@ const ProductDeliveryInfo = () => {
                 <p className='text-sm text-dark'>Outside Dhaka</p>
                 <p className='text-primary font-[auto]'>100 ৳</p>
             </div>
-            <div className='text-dark flex items-center text-sm mt-10 gap-2'>
+            <div className='text-dark flex items-center text-sm mt-5 lg:mt-10 gap-2'>
                 <GiReceiveMoney />
                 <p>Cash on delivery available</p>
             </div>

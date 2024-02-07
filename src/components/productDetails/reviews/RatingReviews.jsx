@@ -7,7 +7,7 @@ const RatingReviews = () => {
     return (
         <div className='bg-white rounded-md'>
             <p className='text-sm bg-gray-100 p-2 rounded-md'>Rating & Reviews</p>
-            <div className='flex gap-x-40 px-2 py-4'>
+            <div className='lg:flex gap-x-40 px-2 py-4'>
                 <div>
                     <div className='flex items-center gap-4 mb-4'>
                         <h1 className='text-3xl'>4.3</h1>
@@ -17,7 +17,7 @@ const RatingReviews = () => {
                     <p className='text-xs xl:text-sm text-dark mt-2'>2354 ratings</p>
                 </div>
 
-                <div>
+                <div className='mt-5 lg:mt-4'>
                     <div className="mb-2 flex items-center gap-x-10">
                         <Rating rate={5} />
                         <RatingProgress rating={800}/>
