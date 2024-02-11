@@ -4,6 +4,7 @@ import { MdDiscount } from "react-icons/md";
 import Rating from '../rating/Rating';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import toast from 'react-hot-toast';
+import WishlistButtonAndShare from './WishlistButtonAndShare';
 
 
 const ProductDescription = () => {
@@ -30,8 +31,13 @@ const ProductDescription = () => {
     return (
         <div>
             <h1 className='text-lg lg:text-xl font-medium text-dark'>Nova Automatic Cordless Stainless Steel Electric Kettle 1.8 Liter Ae-1818</h1>
-            <p className='mt-3 lg:mt-5 text-sm lg:text-base'>Brand: No Brands</p>
-            <p className='mt-3 lg:mt-5 text-sm lg:text-base'>Category: Home Appliance</p>
+            <div className='flex items-center justify-between'>
+                <div>
+                    <p className='mt-2 text-sm lg:text-base'>Brand: No Brands</p>
+                    <p className='mt-2 text-sm lg:text-base'>Category: Home Appliance</p>
+                </div>
+                <WishlistButtonAndShare />
+            </div>
             <div className='flex items-end justify-between mt-5'>
                 <span>
                     <p className='line-through'>BDT 450</p>
