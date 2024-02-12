@@ -1,16 +1,15 @@
-import { useGetAllCategoryQuery } from '@/redux/categories/categoriesApi';
+import { getAllCategory } from '@/lib/categories/categoriesApi';
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowForward } from "react-icons/io";
 
-const Categories = () => {
-    const { data: categories } = useGetAllCategoryQuery();
-    console.log(categories?.result)
+const Categories = async () => {
+    const data = await getAllCategory();
     return (
         <div className='bg-white rounded-md'>
             <ul className='relative py-2'>
                 {
-                    categories?.result?.map(category => category?.children?.length > 0 ?
+                    data?.result?.map(category => category?.children?.length > 0 ?
                         <li
                             key={category?._id}
                             className='group'>
@@ -22,6 +21,7 @@ const Categories = () => {
                                     category?.children?.map(subCat => subCat?.children?.length > 0 ?
                                         <li key={subCat?._id} className='group/sub'>
                                             <Link href='/' className='flex items-center justify-between pl-4 py-1.5 text-xs xl:text-sm text-dark hover:bg-gray-100'> <span className='line-clamp-1'>{subCat?.title}</span> <IoIosArrowForward className='text-primary mr-4' /></Link>
+                                            {/* sub menu child  */}
                                             <ul className='absolute left-full bg-white w-full top-0 hidden group-hover/sub:block py-2 h-full'>
                                                 {
                                                     subCat?.children?.map(subCatChild =>
