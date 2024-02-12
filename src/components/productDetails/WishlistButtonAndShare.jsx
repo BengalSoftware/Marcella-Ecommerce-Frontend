@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { FaRegHeart } from 'react-icons/fa6';
@@ -9,12 +10,12 @@ import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, Wha
 const WishlistButtonAndShare = () => {
     const [wish, setWish] = useState(false);
     const [socialShare, setSocailShare] = useState(false);
+    const pathname = usePathname();
 
     const handleWishlist = () => {
         setWish(true)
     }
 
-    const shareUrl = 'https://example.com';
     const title = 'Example Title'
     return (
         <div className='relative'>
@@ -34,13 +35,13 @@ const WishlistButtonAndShare = () => {
                 <div className='relative'>
                     <IoMdArrowDropup className='text-4xl absolute bottom-full right-0 text-primary' />
                     <div className='flex items-center gap-4'>
-                        <FacebookShareButton url={shareUrl} quote={title}>
+                        <FacebookShareButton url={`https://marcella-ten.vercel.app${pathname}`} title={title}>
                             <FacebookIcon size={32} round={true} />
                         </FacebookShareButton>
-                        <TwitterShareButton url={shareUrl} title={title}>
+                        <TwitterShareButton url={`https://marcella-ten.vercel.app${pathname}`} title={title}>
                             <TwitterIcon size={32} round={true} />
                         </TwitterShareButton>
-                        <WhatsappShareButton url={shareUrl} title={title}>
+                        <WhatsappShareButton url={`https://marcella-ten.vercel.app${pathname}`} title={title}>
                             <WhatsappIcon size={32} round={true} />
                         </WhatsappShareButton>
                     </div>
