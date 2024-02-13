@@ -1,26 +1,56 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { banneSettings } from '../../../utility/sliderSettings/bannerSettings';
-import banner1 from '../../../../public/assets/banner1.webp'
-import banner2 from '../../../../public/assets/banner2.webp'
-import banner3 from '../../../../public/assets/banner3.webp'
 import Image from 'next/image';
+import { getDesktopBanner } from '@/lib/bannerApi/bannerApi';
+import DesktopBannerLoader from '@/components/loader/DesktopBannerLoader';
 
 const Banner = () => {
+    const [bannerData, setBannerData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const data = await getDesktopBanner();
+                setBannerData(data);
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+
     return (
-        <div>
-            <Slider {...banneSettings}>
-                <div>
-                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner1} alt="" />
-                </div>
-                <div>
-                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner2} alt="" />
-                </div>
-                <div>
-                    <Image quality={100} placeholder='blur' className='h-fit md:h-[22rem] xl:h-[25rem] w-full' src={banner3} alt="" />
-                </div>
-            </Slider>
-        </div>
+        <>
+            {
+                isLoading ? <DesktopBannerLoader /> :
+                    <div>
+                        <Slider {...banneSettings}>
+                            {
+                                bannerData?.data?.map(ban =>
+                                    <div key={ban?._id}>
+                                        <Image
+                                            width={1200}
+                                            height={420}
+                                            src={ban?.image}
+                                            alt={ban?.name}
+                                            quality={100}
+                                            className='h-fit md:h-[22rem] xl:h-[25rem] w-full'
+                                        />
+                                    </div>
+                                )
+                            }
+                        </Slider>
+                    </div>
+            }
+        </>
     );
 };
 
