@@ -1,18 +1,22 @@
-import { festivalData } from '@/fakeData/fakeData';
+import ad3 from '../../../../public/assets/ad2.gif'
 import React from 'react';
 import FestivalComponent from './FestivalComponent';
+import { getFlashSaleOffer } from '@/lib/flashSale/flashSaleApi';
 
-const AdsFestivalIndex = () => {
+const AdsFestivalIndex = async () => {
+    const flashSaleData = await getFlashSaleOffer();
     return (
         <div>
             {
-                festivalData?.map((product, idx) =>
+                flashSaleData?.result?.map(flashSale => flashSale?.status === 'active' &&
                     <FestivalComponent
-                        key={idx}
-                        fesColor={product?.color}
-                        fesImage={product?.image}
-                        fesTitle={product?.festivalName}
-                        products={product?.products}
+                        key={flashSale?._id}
+                        fesColor={flashSale?.color || '#ffcc00'}
+                        fesImage={flashSale?.image || ad3}
+                        fesTitle={flashSale?.name}
+                        offerDate={flashSale?.timeStamps}
+                        endDate={flashSale?.endDate}
+                        offerType={flashSale?.offerType}
                     />
                 )
             }
