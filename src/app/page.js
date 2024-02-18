@@ -20,7 +20,6 @@ export default function Home() {
           <TopCategories />
           <AdsFestivalIndex />
           <TopBrands />
-          <FlashSaleLoader />
           <PopularProducts />
           <MensFashion />
           <WomensFashion />
