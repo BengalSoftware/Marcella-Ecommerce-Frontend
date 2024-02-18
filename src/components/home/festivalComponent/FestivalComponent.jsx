@@ -42,7 +42,9 @@ const FestivalComponent = ({ offerType, fesTitle, fesColor, fesImage, offerDate,
         const fetchData = async () => {
             try {
                 const res = await getFlashSaleProduct(offerType?.[0]);
-                setproducts(res);
+                if (res) {
+                    setproducts(res);
+                }
             } catch (error) {
                 console.error(error);
             }

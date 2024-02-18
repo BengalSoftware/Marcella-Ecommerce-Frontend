@@ -4,7 +4,7 @@ import ProductSlider from '@/utility/productSlider/ProductSlider';
 import { getProductByProductType } from '@/lib/productApi/productApi';
 
 const ComputingAndGaming = async () => {
-    const data = await getProductByProductType('home-appliance');
+    const data = await getProductByProductType('computing-and-gaming');
 
     return (
         <div className='mt-10'>

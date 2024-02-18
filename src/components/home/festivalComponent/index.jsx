@@ -5,13 +5,14 @@ import { getFlashSaleOffer } from '@/lib/flashSale/flashSaleApi';
 
 const AdsFestivalIndex = async () => {
     const flashSaleData = await getFlashSaleOffer();
+    console.log(flashSaleData)
     return (
         <div>
             {
                 flashSaleData?.result?.map(flashSale => flashSale?.status === 'active' &&
                     <FestivalComponent
                         key={flashSale?._id}
-                        fesColor={flashSale?.color || '#ffcc00'}
+                        fesColor={flashSale?.color}
                         fesImage={flashSale?.image || ad3}
                         fesTitle={flashSale?.name}
                         offerDate={flashSale?.timeStamps}
