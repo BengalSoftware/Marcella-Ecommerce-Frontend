@@ -45,8 +45,25 @@ const getSingleProduct = async (slug) => {
 };
 
 
+// get related product 
+const getRelatedProduct = async (slug) => {
+    const res = await fetch(`${baseUrl}/product/related-products/${slug}`,
+        {
+            cache: 'force-cache'
+        })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+
+
 export {
     getAllProduct,
     getProductByProductType,
-    getSingleProduct
+    getSingleProduct,
+    getRelatedProduct
 }

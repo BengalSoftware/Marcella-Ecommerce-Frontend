@@ -28,7 +28,7 @@ const ProductDetailsPage = async ({ params }) => {
                     </div>
                 </div>
                 <DetailsNavTab />
-                <RelatedProducts />
+                <RelatedProducts slug={slug} />
             </div>
         </div>
     );
