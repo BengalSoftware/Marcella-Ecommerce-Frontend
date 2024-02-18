@@ -3,10 +3,10 @@ import React from 'react';
 import Link from 'next/link';
 
 const ProductCard = ({ imgs, product }) => {
-    const { name, images, price, offerPrice } = product || {};
-    
+    const { name, images, price, offerPrice, slug } = product || {};
+
     return (
-        <Link href={`/product/Nova Automatic Cordless Stainless Steel Electric Kettle 1.8 Liter Ae-1818`}>
+        <Link href={`/product/${slug}`}>
             <div className='bg-white rounded-lg cursor-pointer relative shadow'>
                 {
                     price === offerPrice ? '' : <p className='bg-g-primary absolute text-white top-0 left-0 rounded-tl-lg rounded-br-lg text-xs md:text-sm px-4 py-2 z-50'>Flat {price - offerPrice} TK off</p>

@@ -5,21 +5,27 @@ import RelatedProducts from '@/components/productDetails/RelatedProducts';
 import BreadCrumb from '@/components/breadCrumb/BreadCrumb';
 import DetailsNavTab from '@/components/productDetails/DetailsNavTab';
 import ProductImage from '@/components/productDetails/ProductImage';
+import { getSingleProduct } from '@/lib/productApi/productApi';
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = async ({ params }) => {
+    const { slug } = params || {};
+    const data = await getSingleProduct(slug);
+    const { images, breadcrumb } = data?.result || {};
+    console.log(data)
+
     return (
         <div className='container mx-auto mb-10 mt-5'>
             <div className='mx-4 xl:mx-0'>
-                <BreadCrumb />
+                <BreadCrumb breadcrumb={breadcrumb} />
                 <div className='grid grid-cols-1 lg:grid-cols-7 gap-5'>
                     <div className='lg:col-span-2'>
-                        <ProductImage />
+                        <ProductImage images={images} />
                     </div>
                     <div className='lg:col-span-3 lg:pl-10'>
-                        <ProductDescription />
+                        <ProductDescription product={data?.result} />
                     </div>
                     <div className='lg:col-span-2 lg:pl-16'>
-                        <ProductDeliveryInfo />
+                        <ProductDeliveryInfo product={data?.result} />
                     </div>
                 </div>
                 <DetailsNavTab />

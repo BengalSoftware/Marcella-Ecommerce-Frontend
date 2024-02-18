@@ -30,7 +30,23 @@ const getProductByProductType = async (productType) => {
 };
 
 
+// get single product 
+const getSingleProduct = async (slug) => {
+    const res = await fetch(`${baseUrl}/product/${slug}`,
+        {
+            cache: 'force-cache'
+        })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+
 export {
     getAllProduct,
-    getProductByProductType
+    getProductByProductType,
+    getSingleProduct
 }
