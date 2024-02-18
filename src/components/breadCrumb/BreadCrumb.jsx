@@ -2,14 +2,13 @@ import Link from 'next/link';
 import React from 'react';
 import { IoHomeSharp } from "react-icons/io5";
 
-const BreadCrumb = ({ breadcrumb }) => {
+const BreadCrumb = ({ breadcrumbs }) => {
     return (
         <div className='flex items-center gap-2 text-xs md:text-sm mb-5'>
             <Link href='/' className='hover:text-primary text-dark'><IoHomeSharp /></Link>
-            {/* <Link href='/' className='hover:text-primary text-dark'> / Products</Link> */}
             {
-                breadcrumb?.map(bread =>
-                    console.log(bread)
+                breadcrumbs?.map(bread =>
+                    <Link key={bread?.slug} href={`/products?category=${bread?.slug}`} className='hover:text-primary text-dark'> / {bread?.title}</Link>
                 )
             }
         </div>

@@ -10,16 +10,15 @@ import { getSingleProduct } from '@/lib/productApi/productApi';
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const data = await getSingleProduct(slug);
-    const { images, breadcrumb } = data?.result || {};
-    console.log(data)
+    const { images } = data?.result || {};
 
     return (
         <div className='container mx-auto mb-10 mt-5'>
             <div className='mx-4 xl:mx-0'>
-                <BreadCrumb breadcrumb={breadcrumb} />
+                <BreadCrumb breadcrumbs={data?.breadcrumb} />
                 <div className='grid grid-cols-1 lg:grid-cols-7 gap-5'>
                     <div className='lg:col-span-2'>
-                        <ProductImage images={images} />
+                        <ProductImage dImages={images} />
                     </div>
                     <div className='lg:col-span-3 lg:pl-10'>
                         <ProductDescription product={data?.result} />
