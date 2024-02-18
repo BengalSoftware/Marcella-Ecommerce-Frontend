@@ -9,6 +9,7 @@ import MobileAndGadget from "@/components/home/mobileAndGadget/MobileAndGadget";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
 import TopBrands from "@/components/home/topBrands/TopBrands";
 import WomensFashion from "@/components/home/womensFashion/WomensFashion";
+import FlashSaleLoader from "@/components/loader/FlashSaleLoader";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <TopCategories />
           <AdsFestivalIndex />
           <TopBrands />
+          <FlashSaleLoader />
           <PopularProducts />
           <MensFashion />
           <WomensFashion />
