@@ -1,24 +1,26 @@
-'use client'
 import ProductCard from '@/components/card/ProductCard';
-import { productSettings } from '@/utility/sliderSettings/productSettings';
 import React from 'react';
-import Slider from 'react-slick';
-import img from '../../../../public/assets/women.jpg'
+import ProductSlider from '@/utility/productSlider/ProductSlider';
+import { getProductByProductType } from '@/lib/productApi/productApi';
 
-const WomensFashion = () => {
+const WomensFashion = async () => {
+    const data = await getProductByProductType('Womens-fashion');
+    
     return (
         <div className='mt-10'>
             <h1 className='font-medium text-2xl'>Women's Fashion</h1>
             <div className='mt-6'>
-                <Slider {...productSettings}>
+                <ProductSlider>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-1 md:px-2'>
-                                <ProductCard imgs={img} />
+                        data?.result?.map(product =>
+                            <div key={product?._id} className='px-1 md:px-2'>
+                                <ProductCard
+                                    product={product}
+                                />
                             </div>
                         )
                     }
-                </Slider>
+                </ProductSlider>
             </div>
         </div>
     );
