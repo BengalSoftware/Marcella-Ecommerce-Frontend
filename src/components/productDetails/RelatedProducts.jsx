@@ -13,9 +13,9 @@ const RelatedProducts = async ({ slug }) => {
                 data?.result?.length > 0 ?
                     <div className='mt-6 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-2 lg:gap-5'>
                         {
-                            data?.result?.map((_, idx) =>
-                                <div key={idx}>
-                                    <ProductCard imgs={img} />
+                            data?.result?.map(product =>
+                                <div key={product?._id}>
+                                    <ProductCard product={product} />
                                 </div>
                             )
                         }
