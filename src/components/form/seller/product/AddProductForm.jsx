@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ProductDescriptionForm from './ProductDescriptionForm';
 import UploadImage from './UploadImage';
 import { addProductMutation } from '@/lib/productApi/productApi';
+import CategoryForm from './CategoryForm';
 
 const AddProductForm = () => {
     const [updateProduct, setUpdateProduct] = useState([]);
@@ -36,7 +37,7 @@ const AddProductForm = () => {
         if (updateProduct?.description) formData.append('description', updateProduct?.description)
         if (updateProduct?.termsCondition) formData.append('specification', updateProduct?.termsCondition)
         if (updateProduct?.images) formData.append('images', updateProduct?.images)
-        
+
         await addProductMutation(formData);
 
     }
@@ -75,30 +76,7 @@ const AddProductForm = () => {
                             <button onClick={handleGenerateSlug} type='button' className='text-sm text-white rounded-r-md bg-primary py-2.5 px-1 hover:bg-dark'>Generate</button>
                         </div>
                     </div>
-                    <div>
-                        <label className='text-dark text-sm'>Categories <span className='text-red-500'>*</span></label>
-                        <select onChange={handleChange} required name="categories" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className='text-dark text-sm'>Subategories</label>
-                        <select onChange={handleChange} name="subcategories" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className='text-dark text-sm'>Subategories child</label>
-                        <select onChange={handleChange} name="subcategoryChildren" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
+
                     <div>
                         <label className='text-dark text-sm'>Brand</label>
                         <select onChange={handleChange} name="manufacturer" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
@@ -106,6 +84,12 @@ const AddProductForm = () => {
                             <option value="mwn">Mens fashion</option>
                             <option value="">Womens fashion</option>
                         </select>
+                    </div>
+                    <div className='col-span-3'>
+                        <CategoryForm
+                            handleChange={handleChange}
+                            updateProduct={updateProduct}
+                        />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Product Type <span className='text-red-500'>*</span></label>
