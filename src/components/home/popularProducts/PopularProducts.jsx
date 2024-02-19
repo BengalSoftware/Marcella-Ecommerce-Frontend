@@ -1,23 +1,26 @@
-'use client'
 import ProductCard from '@/components/card/ProductCard';
-import { productSettings } from '@/utility/sliderSettings/productSettings';
+import { getAllProduct } from '@/lib/productApi/productApi';
+import ProductSlider from '@/utility/productSlider/ProductSlider';
 import React from 'react';
-import Slider from 'react-slick';
 
-const PopularProducts = () => {
+const PopularProducts = async () => {
+    const data = await getAllProduct();
+    
     return (
         <div className='mt-10'>
             <h1 className='font-medium text-2xl'>Popular Products</h1>
             <div className='mt-6'>
-                <Slider {...productSettings}>
+                <ProductSlider>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-1 md:px-2'>
-                                <ProductCard />
+                        data?.result?.data?.map(product => (parseFloat(product?.averageRating?.$numberDecimal) >= 3.5) &&
+                            <div key={product?._id} className='px-1 md:px-2'>
+                                <ProductCard
+                                    product={product}
+                                />
                             </div>
                         )
                     }
-                </Slider>
+                </ProductSlider>
             </div>
         </div>
     );
