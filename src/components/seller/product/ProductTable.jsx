@@ -1,13 +1,15 @@
 'use client'
+import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getSellerProduct } from '@/lib/productApi/productApi';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiSolidPencil } from "react-icons/bi";
 import { IoEye } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 
 const ProductTable = () => {
     const [products, setProducts] = useState(null);
+    const { sellerPSuccess } = useContext(StateContext);
     let id = '65c48f38d665588c5bd0816c'
 
     useEffect(() => {
@@ -23,8 +25,11 @@ const ProductTable = () => {
         }
 
         fetchData();
+        if (sellerPSuccess) {
+            fetchData();
+        }
     }, [])
-    
+
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
             <h1 className='p-4'>All Products</h1>
@@ -51,7 +56,7 @@ const ProductTable = () => {
                                 <td className="border px-4 py-2 text-sm text-center">
                                     <div className='flex items-center justify-center'>
                                         <Link href='/' className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>
-                                        <Link href='/' className='bg-green-500 hover:bg-green-600 text-white text-xl p-1'><IoEye /></Link>
+                                        <Link href={`/product/${product?.slug}`} target='_blank' className='bg-green-500 hover:bg-green-600 text-white text-xl p-1'><IoEye /></Link>
                                         <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
                                             <MdDelete />
                                         </button>

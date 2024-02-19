@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductDescriptionForm from './ProductDescriptionForm';
 import UploadImage from './UploadImage';
 import { addProductMutation } from '@/lib/productApi/productApi';
@@ -8,6 +8,9 @@ import { TagsInput } from 'react-tag-input-component';
 import BrandForm from './BrandForm';
 import SizeForm from './SizeForm';
 import ColorForm from './ColorForm';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const AddProductForm = () => {
     const [updateProduct, setUpdateProduct] = useState([]);
@@ -17,6 +20,8 @@ const AddProductForm = () => {
     const [termsCondition, setTermsCondition] = useState('');
     const [productTags, setProductTags] = useState([]);
     const [images, setUpImages] = useState([]);
+    const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
+    const router = useRouter();
 
     let seller = '65c48f38d665588c5bd0816c'
 
@@ -47,7 +52,10 @@ const AddProductForm = () => {
         if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', JSON.stringify(updateProduct?.subcategoryChildren))
         if (images) formData.append('images', images)
 
-        await addProductMutation(formData);
+        const res = await addProductMutation(formData);
+        if (res) {
+            setSellerPSuccess(true)
+        }
 
     }
 
@@ -69,6 +77,13 @@ const AddProductForm = () => {
         let concatenatedString = nameArray?.join("-");
         setGenerateSlug(concatenatedString)
     }
+
+    useEffect(() => {
+        if (sellerPSuccess) {
+            toast.success('Product Added Successfull');
+            router.push('/seller/product');
+        }
+    }, [sellerPSuccess])
 
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>

@@ -5,6 +5,7 @@ import Footer from "@/shared/footer/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Toaster } from "react-hot-toast";
+import CustomProvider from "@/context/provider/CustomProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
-        <Toaster />
+        <CustomProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </CustomProvider>
       </body>
     </html>
   );
