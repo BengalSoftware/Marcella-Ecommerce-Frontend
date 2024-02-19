@@ -60,6 +60,21 @@ const getRelatedProduct = async (slug) => {
 };
 
 
+// get seller product 
+const getSellerProduct = async (id) => {
+    const res = await fetch(`${baseUrl}/product/seller-products/${id}`,
+        {
+            cache: 'force-cache'
+        })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+
 // add product 
 const addProductMutation = async (formData) => {
     try {
@@ -90,5 +105,6 @@ export {
     getProductByProductType,
     getSingleProduct,
     getRelatedProduct,
-    addProductMutation
+    addProductMutation,
+    getSellerProduct
 }

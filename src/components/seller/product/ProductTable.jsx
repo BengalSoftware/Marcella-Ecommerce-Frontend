@@ -1,10 +1,30 @@
+'use client'
+import { getSellerProduct } from '@/lib/productApi/productApi';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSolidPencil } from "react-icons/bi";
 import { IoEye } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 
 const ProductTable = () => {
+    const [products, setProducts] = useState(null);
+    let id = '65c48f38d665588c5bd0816c'
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getSellerProduct(id);
+                if (data) {
+                    setProducts(data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData();
+    }, [])
+    
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
             <h1 className='p-4'>All Products</h1>
@@ -21,13 +41,13 @@ const ProductTable = () => {
                 </thead>
                 <tbody>
                     {
-                        Array(8).fill().map((_, idx) =>
-                            <tr key={idx}>
+                        products?.result?.map((product, idx) =>
+                            <tr key={product?._id}>
                                 <td className="border px-4 py-2 text-sm text-center">{idx + 1}</td>
-                                <td className="border px-4 py-2 text-sm text-center"><p className='line-clamp-1'>Nova Electric Kettly</p></td>
-                                <td className="border px-4 py-2 text-sm text-center">In Stock</td>
-                                <td className="border px-4 py-2 text-sm text-center">100</td>
-                                <td className="border px-4 py-2 text-sm text-center">1200</td>
+                                <td className="border px-4 py-2 text-sm text-center"><p className='line-clamp-1'>{product?.name}</p></td>
+                                <td className="border px-4 py-2 text-sm text-center">{product?.status}</td>
+                                <td className="border px-4 py-2 text-sm text-center">{product?.quantity}</td>
+                                <td className="border px-4 py-2 text-sm text-center">{product?.offerPrice ? product?.offerPrice : product?.price}</td>
                                 <td className="border px-4 py-2 text-sm text-center">
                                     <div className='flex items-center justify-center'>
                                         <Link href='/' className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>

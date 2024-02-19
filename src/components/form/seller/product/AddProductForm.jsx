@@ -18,6 +18,7 @@ const AddProductForm = () => {
     const [productTags, setProductTags] = useState([]);
     const [images, setUpImages] = useState([]);
 
+    let seller = '65c48f38d665588c5bd0816c'
 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -35,6 +36,7 @@ const AddProductForm = () => {
         if (shortDescription) formData.append('shortDescription', shortDescription)
         if (description) formData.append('description', description)
         if (termsCondition) formData.append('specification', termsCondition)
+        if (seller) formData.append('sellerId', seller)
 
         // form data.append JSON.stringify(data)
         if (updateProduct?.size) formData.append('size', JSON.stringify(updateProduct?.size))
