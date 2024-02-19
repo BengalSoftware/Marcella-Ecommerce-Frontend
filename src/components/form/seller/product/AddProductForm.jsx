@@ -4,6 +4,7 @@ import ProductDescriptionForm from './ProductDescriptionForm';
 import UploadImage from './UploadImage';
 import { addProductMutation } from '@/lib/productApi/productApi';
 import CategoryForm from './CategoryForm';
+import { TagsInput } from 'react-tag-input-component';
 
 const AddProductForm = () => {
     const [updateProduct, setUpdateProduct] = useState([]);
@@ -11,6 +12,7 @@ const AddProductForm = () => {
     const [shortDescription, setShortDescription] = useState('');
     const [description, setDescription] = useState('');
     const [termsCondition, setTermsCondition] = useState('');
+    const [productTags, setProductTags] = useState([]);
     const [images, setUpImages] = useState([]);
 
 
@@ -20,23 +22,25 @@ const AddProductForm = () => {
         if (updateProduct?.name) formData.append('name', updateProduct?.name)
         if (updateProduct?.slug) formData.append('slug', updateProduct?.slug)
         if (updateProduct?.altTag) formData.append('altTag', updateProduct?.altTag)
-        if (updateProduct?.size) formData.append('size', updateProduct?.size)
-        if (updateProduct?.color) formData.append('color', updateProduct?.color)
         if (updateProduct?.model) formData.append('model', updateProduct?.model)
         if (updateProduct?.manufacturer) formData.append('manufacturer', updateProduct?.manufacturer)
         if (updateProduct?.price) formData.append('price', updateProduct?.price)
         if (updateProduct?.offerPrice) formData.append('offerPrice', updateProduct?.offerPrice)
         if (updateProduct?.quantity) formData.append('quantity', updateProduct?.quantity)
         if (updateProduct?.status) formData.append('status', updateProduct?.status)
-        if (updateProduct?.tags) formData.append('tags', updateProduct?.tags)
-        if (updateProduct?.categories) formData.append('categories', updateProduct?.categories)
-        if (updateProduct?.subcategories) formData.append('subcategories', updateProduct?.subcategories)
-        if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', updateProduct?.subcategoryChildren)
         if (updateProduct?.productType) formData.append('productType', updateProduct?.productType)
-        if (updateProduct?.shortDescription) formData.append('shortDescription', updateProduct?.shortDescription)
-        if (updateProduct?.description) formData.append('description', updateProduct?.description)
-        if (updateProduct?.termsCondition) formData.append('specification', updateProduct?.termsCondition)
-        if (updateProduct?.images) formData.append('images', updateProduct?.images)
+        if (shortDescription) formData.append('shortDescription', shortDescription)
+        if (description) formData.append('description', description)
+        if (termsCondition) formData.append('specification', termsCondition)
+
+        // form data.append JSON.stringify(data)
+        if (updateProduct?.size) formData.append('size', JSON.stringify(updateProduct?.size))
+        if (updateProduct?.color) formData.append('color', JSON.stringify(updateProduct?.color))
+        if (productTags) formData.append("tags", JSON.stringify(productTags));
+        if (updateProduct?.categories) formData.append('categories', JSON.stringify(updateProduct?.categories))
+        if (updateProduct?.subcategories) formData.append('subcategories', JSON.stringify(updateProduct?.subcategories))
+        if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', JSON.stringify(updateProduct?.subcategoryChildren))
+        if (images) formData.append('images', images)
 
         await addProductMutation(formData);
 
@@ -93,10 +97,13 @@ const AddProductForm = () => {
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Product Type <span className='text-red-500'>*</span></label>
-                        <select onChange={handleChange} name="manufacturer" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
+                        <select onChange={handleChange} name="productType" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                             <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
+                            <option value="mens-fashion">Mens Fashion</option>
+                            <option value="Womens-fashion">Womens Fashion</option>
+                            <option value="mobile-and-gadgets">Mobile and Gadgets</option>
+                            <option value="home-appliance">Home Appliance</option>
+                            <option value="computing-and-gaming">Computing and Gaming</option>
                         </select>
                     </div>
                     <div>
@@ -133,16 +140,20 @@ const AddProductForm = () => {
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Status</label>
-                        <select onChange={handleChange} name="status" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
+                        <select defaultValue={"IN-STOCK"} onChange={handleChange} name="status" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                             <option value="">Select</option>
-                            <option value="">In Stock</option>
-                            <option value="">Out of stock</option>
+                            <option value="IN-STOCK">In Stock</option>
+                            <option value="OUT-OF-STOCK">Out of stock</option>
                         </select>
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Alt Tag</label>
                         <input onChange={handleChange} name='altTag' type="text" className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Offer Price' />
                     </div>
+                </div>
+                <div>
+                    <label className='text-dark text-sm'>Tags</label>
+                    <TagsInput separators={","} required value={productTags} onChange={setProductTags} name="tags" />
                 </div>
                 <ProductDescriptionForm
                     description={description}

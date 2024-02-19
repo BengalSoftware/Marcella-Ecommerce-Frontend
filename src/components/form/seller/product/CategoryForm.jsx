@@ -18,11 +18,11 @@ const CategoryForm = ({ updateProduct, handleChange }) => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
             <div>
                 <label className='text-dark text-sm'>Categories <span className='text-red-500'>*</span></label>
-                <select onChange={handleChange} required name="categories" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
+                <select onChange={handleChange} name="categories" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                     <option value="">Select</option>
                     {
                         categories?.result?.map(category =>
-                            <option value={category?.title}>{category?.title}</option>
+                            <option value={category?._id}>{category?.title}</option>
                         )
                     }
                 </select>
@@ -32,9 +32,9 @@ const CategoryForm = ({ updateProduct, handleChange }) => {
                 <select onChange={handleChange} name="subcategories" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                     <option value="">Select</option>
                     {
-                        categories?.result?.map(category => ((category?.children?.length > 0) && (updateProduct?.categories == category?.title)) &&
+                        categories?.result?.map(category => ((category?.children?.length > 0) && (updateProduct?.categories === category?._id)) &&
                             category?.children?.map(subCat =>
-                                <option value={subCat?.title}>{subCat?.title}</option>
+                                <option value={subCat?._id}>{subCat?.title}</option>
                             )
                         )
                     }
@@ -45,10 +45,10 @@ const CategoryForm = ({ updateProduct, handleChange }) => {
                 <select onChange={handleChange} name="subcategoryChildren" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                     <option value="">Select</option>
                     {
-                        categories?.result?.map(category => ((category?.children?.length > 0) && (updateProduct?.categories == category?.title)) &&
-                            category?.children?.map(subCat => ((subCat?.children?.length > 0) && (updateProduct?.categories == category?.title)) &&
+                        categories?.result?.map(category => ((category?.children?.length > 0) && (updateProduct?.categories === category?._id)) &&
+                            category?.children?.map(subCat => ((subCat?.children?.length > 0) && (updateProduct?.categories === category?._id)) &&
                                 subCat?.children?.map(child =>
-                                    <option value={child?.title}>{child?.title}</option>
+                                    <option value={child?._id}>{child?.title}</option>
                                 )
                             )
                         )

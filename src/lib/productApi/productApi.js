@@ -66,7 +66,7 @@ const addProductMutation = async (formData) => {
         const res = await fetch(`${baseUrl}/product`, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMzMWUzYTA4ZDI3MDc5MjVlZGEzM2QiLCJlbWFpbCI6ImFkbWluLm1hcmNlbGxhQGdtYWlsLmNvbSIsImlhdCI6MTcwODMyNzk1MSwiZXhwIjoxNzA4MzM1MTUxfQ.lAcWkga8puzYdwtdVhe8my_-pw9qp3l7ovuQA0dcoOE'
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMzMWUzYTA4ZDI3MDc5MjVlZGEzM2QiLCJlbWFpbCI6ImFkbWluLm1hcmNlbGxhQGdtYWlsLmNvbSIsImlhdCI6MTcwODMzNTI2NSwiZXhwIjoxNzA4MzQyNDY1fQ.4rDbuzagEWhVY68WZjePzXey0tAusQBRJ8QzXklJjXc'
             },
             body: formData,
             cache: 'force-cache'
