@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
-const UploadImage = () => {
-    const [upImages, setUpImages] = useState([]);
+const UploadImage = ({ upImages, setUpImages }) => {
     const [imagePreviews, setImagePreviews] = useState([]);
 
     const handleImageChange = (e) => {

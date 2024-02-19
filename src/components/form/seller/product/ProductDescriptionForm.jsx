@@ -1,16 +1,13 @@
 'use client'
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React from 'react';
 import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), {
     ssr: false, // This ensures that React Quill is not included during server-side rendering
 });
 
-const ProductDescriptionForm = () => {
-    const [shortDescription, setShortDescription] = useState('');
-    const [description, setDescription] = useState('');
-    const [termsCondition, setTermsCondition] = useState('');
+const ProductDescriptionForm = ({ shortDescription, setShortDescription, description, setDescription, termsCondition, setTermsCondition }) => {
 
     return (
         <div className='mt-5'>
