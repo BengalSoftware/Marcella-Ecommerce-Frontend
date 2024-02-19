@@ -1,7 +1,7 @@
 import { baseUrl } from "../api/baseUrl";
 
-const getAllCategory = async () => {
-    const res = await fetch(`${baseUrl}/category`,
+const getAllSize = async () => {
+    const res = await fetch(`${baseUrl}/size`,
         {
             cache: 'force-cache'
         })
@@ -16,8 +16,8 @@ const getAllCategory = async () => {
 
 
 // get all brand 
-const getAllBrands = async () => {
-    const res = await fetch(`${baseUrl}/manufacturer`,
+const getAllColor = async () => {
+    const res = await fetch(`${baseUrl}/color`,
         {
             cache: 'force-cache'
         })
@@ -31,6 +31,6 @@ const getAllBrands = async () => {
 
 
 export {
-    getAllCategory,
-    getAllBrands
+    getAllSize,
+    getAllColor
 }

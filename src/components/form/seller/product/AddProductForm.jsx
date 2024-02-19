@@ -5,6 +5,9 @@ import UploadImage from './UploadImage';
 import { addProductMutation } from '@/lib/productApi/productApi';
 import CategoryForm from './CategoryForm';
 import { TagsInput } from 'react-tag-input-component';
+import BrandForm from './BrandForm';
+import SizeForm from './SizeForm';
+import ColorForm from './ColorForm';
 
 const AddProductForm = () => {
     const [updateProduct, setUpdateProduct] = useState([]);
@@ -81,14 +84,9 @@ const AddProductForm = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <label className='text-dark text-sm'>Brand</label>
-                        <select onChange={handleChange} name="manufacturer" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
+                    <BrandForm
+                        handleChange={handleChange}
+                    />
                     <div className='col-span-3'>
                         <CategoryForm
                             handleChange={handleChange}
@@ -114,22 +112,12 @@ const AddProductForm = () => {
                         <label className='text-dark text-sm'>Quantity <span className='text-red-500'>*</span></label>
                         <input onChange={handleChange} type="number" name='quantity' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Quantity' />
                     </div>
-                    <div>
-                        <label className='text-dark text-sm'>Size</label>
-                        <select onChange={handleChange} name="size" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className='text-dark text-sm'>Color</label>
-                        <select onChange={handleChange} name="color" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
-                            <option value="mwn">Mens fashion</option>
-                            <option value="">Womens fashion</option>
-                        </select>
-                    </div>
+                    <SizeForm
+                        handleChange={handleChange}
+                    />
+                    <ColorForm
+                        handleChange={handleChange}
+                    />
                     <div>
                         <label className='text-dark text-sm'>Price <span className='text-red-500'>*</span></label>
                         <input onChange={handleChange} name='price' type="number" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Price' />
