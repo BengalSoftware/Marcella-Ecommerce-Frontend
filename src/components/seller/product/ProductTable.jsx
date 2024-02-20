@@ -9,7 +9,7 @@ import { MdDelete } from "react-icons/md";
 
 const ProductTable = () => {
     const [products, setProducts] = useState(null);
-    const { sellerPSuccess } = useContext(StateContext);
+    const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
     let id = '65c48f38d665588c5bd0816c'
 
     useEffect(() => {
@@ -25,9 +25,10 @@ const ProductTable = () => {
         }
 
         fetchData();
-        if (sellerPSuccess) {
-            fetchData();
-        }
+        // if (sellerPSuccess) {
+        //     fetchData();
+        //     setSellerPSuccess(false)
+        // }
     }, [])
 
     return (
