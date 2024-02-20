@@ -1,7 +1,8 @@
 import { getAllColor } from '@/lib/variationApi/variationAPi';
+import { Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-const ColorForm = ({ handleChange }) => {
+const ColorForm = ({ setSelectedColorOptin }) => {
     const [color, setColor] = useState(null);
 
     useEffect(() => {
@@ -15,17 +16,34 @@ const ColorForm = ({ handleChange }) => {
     }, [])
 
 
+    const handleChange = (selectedValues) => {
+        const selectedOptions = selectedValues.map(value => {
+            const option = color.data.find(col => col.name === value);
+            return { _id: option._id, name: option.name };
+        });
+        setSelectedColorOptin(selectedOptions);
+    };
+
+    let options = [];
+    color?.data?.map(col => {
+        options.push({
+            label: col?.name,
+            value: col?.name,
+        });
+    })
+
     return (
         <div>
             <label className='text-dark text-sm'>Color</label>
-            <select onChange={handleChange} name="color" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                <option value="">Select</option>
-                {
-                    color?.data?.map(cl =>
-                        <option value={cl?.name}>{cl?.name}</option>
-                    )
-                }
-            </select>
+            <Select
+                mode="multiple"
+                allowClear
+                style={{ padding: '6px' }}
+                className='mt-2 py-2 w-full'
+                placeholder="Please select"
+                onChange={handleChange}
+                options={options}
+            />
         </div>
     );
 };

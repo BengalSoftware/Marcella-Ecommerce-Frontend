@@ -19,6 +19,8 @@ const AddProductForm = () => {
     const [description, setDescription] = useState('');
     const [termsCondition, setTermsCondition] = useState('');
     const [productTags, setProductTags] = useState([]);
+    const [selectedSizeOption, setSelectedSizeOptin] = useState([]);
+    const [selectedColorOption, setSelectedColorOptin] = useState([]);
     const [images, setUpImages] = useState([]);
     const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
     const router = useRouter();
@@ -47,10 +49,10 @@ const AddProductForm = () => {
         if (seller) formData.append('sellerId', seller)
 
         // form data.append JSON.stringify(data)
-        if (updateProduct?.size) formData.append('size', JSON.stringify(updateProduct?.size))
-        if (updateProduct?.color) formData.append('color', JSON.stringify(updateProduct?.color))
+        if (selectedSizeOption) formData.append('size', JSON.stringify(selectedSizeOption))
+        if (selectedColorOption) formData.append('color', JSON.stringify(selectedColorOption))
         if (productTags) formData.append("tags", JSON.stringify(productTags));
-        if (images) formData.append('images', images)
+        if (images) formData.append('images', images?.[0])
 
         const res = await addProductMutation(formData);
         if (res) {
@@ -58,12 +60,12 @@ const AddProductForm = () => {
         }
 
     }
-console.log(updateProduct?.categories)
-    const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
 
-        const newProduct = { ...updateProduct, shortDescription, description, termsCondition, images };
+    const handleChange = (e) => {
+        const name = e.target?.name;
+        const value = e.target?.value;
+
+        const newProduct = { ...updateProduct, shortDescription, description, termsCondition, selectedSizeOption, selectedColorOption, images };
         newProduct[name] = value;
         setUpdateProduct(newProduct);
     }
@@ -84,7 +86,7 @@ console.log(updateProduct?.categories)
             router.push('/seller/product');
         }
     }, [sellerPSuccess])
-
+    console.log(images?.[0])
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>
@@ -130,10 +132,10 @@ console.log(updateProduct?.categories)
                         <input onChange={handleChange} type="number" name='quantity' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Quantity' />
                     </div>
                     <SizeForm
-                        handleChange={handleChange}
+                        setSelectedSizeOptin={setSelectedSizeOptin}
                     />
                     <ColorForm
-                        handleChange={handleChange}
+                        setSelectedColorOptin={setSelectedColorOptin}
                     />
                     <div>
                         <label className='text-dark text-sm'>Price <span className='text-red-500'>*</span></label>

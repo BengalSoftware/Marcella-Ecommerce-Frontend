@@ -22,7 +22,7 @@ const BrandForm = ({ handleChange }) => {
                 <option value="">Select</option>
                 {
                     brands?.result?.map(brand =>
-                        <option value={brand?.name}>{brand?.name}</option>
+                        <option value={brand?._id}>{brand?.name}</option>
                     )
                 }
             </select>

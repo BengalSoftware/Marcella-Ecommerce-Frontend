@@ -1,8 +1,9 @@
 'use client'
 import { getAllSize } from '@/lib/variationApi/variationAPi';
+import { Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-const SizeForm = ({ handleChange }) => {
+const SizeForm = ({ setSelectedSizeOptin }) => {
     const [size, setSize] = useState(null);
 
     useEffect(() => {
@@ -15,19 +16,34 @@ const SizeForm = ({ handleChange }) => {
         fetchData();
     }, [])
 
-    
+    const handleChange = (selectedValues) => {
+        const selectedOptions = selectedValues.map(value => {
+            const option = size.data.find(sz => sz.name === value);
+            return { _id: option._id, name: option.name };
+        });
+        setSelectedSizeOptin(selectedOptions);
+    };
+
+    let options = [];
+    size?.data?.map(sz => {
+        options.push({
+            label: sz?.name,
+            value: sz?.name,
+        });
+    })
+
     return (
         <div>
             <label className='text-dark text-sm'>Size</label>
-            <select onChange={handleChange} name="size" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                <option value="">Select</option>
-                {
-                    size?.data?.map(sz =>
-
-                        <option key={sz?._id} value={sz?.name}>{sz?.name}</option>
-                    )
-                }
-            </select>
+            <Select
+                mode="multiple"
+                allowClear
+                style={{ padding: '6px' }}
+                className='mt-2 py-2 w-full'
+                placeholder="Please select"
+                onChange={handleChange}
+                options={options}
+            />
         </div>
     );
 };
