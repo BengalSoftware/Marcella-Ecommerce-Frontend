@@ -2,7 +2,7 @@
 import { getAllBrands } from '@/lib/categories/categoriesApi';
 import React, { useEffect, useState } from 'react';
 
-const BrandForm = ({ handleChange }) => {
+const BrandForm = ({ handleChange, manufacturer }) => {
     const [brands, setBrands] = useState(null);
 
     useEffect(() => {
@@ -15,11 +15,11 @@ const BrandForm = ({ handleChange }) => {
         fetchData();
     }, [])
 
+
     return (
         <div>
             <label className='text-dark text-sm'>Brand</label>
-            <select onChange={handleChange} name="manufacturer" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                <option value="">Select</option>
+            <select value={manufacturer?.name} onChange={handleChange} name="manufacturer" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                 {
                     brands?.result?.map(brand =>
                         <option value={brand?._id}>{brand?.name}</option>

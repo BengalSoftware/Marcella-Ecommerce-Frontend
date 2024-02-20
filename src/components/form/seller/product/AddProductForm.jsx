@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ProductDescriptionForm from './ProductDescriptionForm';
 import UploadImage from './UploadImage';
-import { addProductMutation } from '@/lib/productApi/productApi';
+import { addProductMutation, getSingleProductDetails } from '@/lib/productApi/productApi';
 import CategoryForm from './CategoryForm';
 import { TagsInput } from 'react-tag-input-component';
 import BrandForm from './BrandForm';
@@ -12,7 +12,8 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
-const AddProductForm = () => {
+const AddProductForm = ({ id }) => {
+    const [products, setProducts] = useState(null);
     const [updateProduct, setUpdateProduct] = useState([]);
     const [generateSlug, setGenerateSlug] = useState('');
     const [shortDescription, setShortDescription] = useState('');
@@ -24,6 +25,9 @@ const AddProductForm = () => {
     const [images, setUpImages] = useState([]);
     const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
     const router = useRouter();
+
+
+    const { name, slug, altTag, manufacturer, offerPrice, price, productType, quantity, status, subcategories, subcategoryChildren, model, tags, size, color } = products?.result || {};
 
     let seller = '65c48f38d665588c5bd0816c'
 
@@ -86,36 +90,58 @@ const AddProductForm = () => {
             router.push('/seller/product');
         }
     }, [sellerPSuccess])
-    console.log(images?.[0])
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getSingleProductDetails(id)
+                if (res) {
+                    setProducts(res)
+                }
+            } catch (error) {
+
+            }
+        };
+        if (id) {
+            fetchData();
+        }
+    }, [id])
+
+    console.log(products?.result)
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                     <div>
                         <label className='text-dark text-sm'>Product Name <span className='text-red-500'>*</span></label>
-                        <input onChange={handleChange} type="text" name='name' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Product Name' />
+                        <input onChange={handleChange} defaultValue={name} type="text" name='name' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Product Name' />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Slug <span className='text-red-500'>*</span></label>
                         <div className='flex items-center border border-gray-300 mt-2 rounded-md'>
-                            <input onChange={handleChange} defaultValue={generateSlug} type="text" name='slug' required className='outline-none rounded-l-md p-2 w-full placeholder:text-sm placeholder:font-light' placeholder='Slug' />
+                            <input onChange={handleChange} defaultValue={slug ? slug : generateSlug} type="text" name='slug' required className='outline-none rounded-l-md p-2 w-full placeholder:text-sm placeholder:font-light' placeholder='Slug' />
                             <button onClick={handleGenerateSlug} type='button' className='text-sm text-white rounded-r-md bg-primary py-2.5 px-1 hover:bg-dark'>Generate</button>
                         </div>
                     </div>
 
                     <BrandForm
                         handleChange={handleChange}
+                        manufacturer={manufacturer}
                     />
                     <div className='col-span-3'>
                         <CategoryForm
                             handleChange={handleChange}
                             updateProduct={updateProduct}
+                            subcategories={subcategories}
+                            subcategoryChildren={subcategoryChildren}
                         />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Product Type <span className='text-red-500'>*</span></label>
-                        <select onChange={handleChange} name="productType" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            <option value="">Select</option>
+                        <select onChange={handleChange} defaultValue={productType} name="productType" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
+                            
                             <option value="mens-fashion">Mens Fashion</option>
                             <option value="Womens-fashion">Womens Fashion</option>
                             <option value="mobile-and-gadgets">Mobile and Gadgets</option>
@@ -125,29 +151,31 @@ const AddProductForm = () => {
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Model </label>
-                        <input onChange={handleChange} type="text" name='model' className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Model' />
+                        <input onChange={handleChange} defaultValue={model} type="text" name='model' className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Model' />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Quantity <span className='text-red-500'>*</span></label>
-                        <input onChange={handleChange} type="number" name='quantity' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Quantity' />
+                        <input onChange={handleChange} defaultValue={quantity} type="number" name='quantity' required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Quantity' />
                     </div>
                     <SizeForm
                         setSelectedSizeOptin={setSelectedSizeOptin}
+                        sizeData={size}
                     />
                     <ColorForm
                         setSelectedColorOptin={setSelectedColorOptin}
+                        colorData={color}
                     />
                     <div>
                         <label className='text-dark text-sm'>Price <span className='text-red-500'>*</span></label>
-                        <input onChange={handleChange} name='price' type="number" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Price' />
+                        <input onChange={handleChange} defaultValue={price} name='price' type="number" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Price' />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Offer Price</label>
-                        <input onChange={handleChange} name='offerPrice' type="number" className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Offer Price' />
+                        <input onChange={handleChange} defaultValue={offerPrice} name='offerPrice' type="number" className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Offer Price' />
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Status</label>
-                        <select defaultValue={"IN-STOCK"} onChange={handleChange} name="status" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
+                        <select defaultValue={status} onChange={handleChange} name="status" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                             <option value="">Select</option>
                             <option value="IN-STOCK">In Stock</option>
                             <option value="OUT-OF-STOCK">Out of stock</option>
@@ -155,7 +183,7 @@ const AddProductForm = () => {
                     </div>
                     <div>
                         <label className='text-dark text-sm'>Alt Tag</label>
-                        <input onChange={handleChange} name='altTag' type="text" className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Offer Price' />
+                        <input onChange={handleChange} defaultValue={altTag} name='altTag' type="text" className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Offer Price' />
                     </div>
                 </div>
                 <div>
@@ -176,7 +204,7 @@ const AddProductForm = () => {
                     setUpImages={setUpImages}
                 />
                 <div className='flex justify-end mt-5'>
-                    <button className='bg-primary hover:bg-dark px-6 py-2 text-white rounded-md'>Submit</button>
+                    <button className='bg-primary hover:bg-dark px-6 py-2 text-white rounded-md'>{id ? 'Update' : 'Submit'}</button>
                 </div>
             </form>
         </div>

@@ -55,7 +55,7 @@ const ProductTable = () => {
                                 <td className="border px-4 py-2 text-sm text-center">{product?.offerPrice ? product?.offerPrice : product?.price}</td>
                                 <td className="border px-4 py-2 text-sm text-center">
                                     <div className='flex items-center justify-center'>
-                                        <Link href='/' className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>
+                                        <Link href={`/seller/edit-product/${product?._id}`} className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>
                                         <Link href={`/product/${product?.slug}`} target='_blank' className='bg-green-500 hover:bg-green-600 text-white text-xl p-1'><IoEye /></Link>
                                         <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
                                             <MdDelete />

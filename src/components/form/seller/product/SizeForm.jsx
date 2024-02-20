@@ -3,7 +3,7 @@ import { getAllSize } from '@/lib/variationApi/variationAPi';
 import { Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-const SizeForm = ({ setSelectedSizeOptin }) => {
+const SizeForm = ({ setSelectedSizeOptin, sizeData }) => {
     const [size, setSize] = useState(null);
 
     useEffect(() => {
@@ -40,6 +40,7 @@ const SizeForm = ({ setSelectedSizeOptin }) => {
                 allowClear
                 style={{ padding: '6px' }}
                 className='mt-2 py-2 w-full'
+                defaultValue={sizeData}
                 placeholder="Please select"
                 onChange={handleChange}
                 options={options}

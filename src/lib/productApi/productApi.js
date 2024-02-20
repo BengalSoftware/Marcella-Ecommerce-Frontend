@@ -1,4 +1,4 @@
-import { baseUrl } from "../api/baseUrl";
+import { baseUrl, token } from "../api/baseUrl";
 
 // get all product 
 const getAllProduct = async () => {
@@ -34,6 +34,23 @@ const getProductByProductType = async (productType) => {
 const getSingleProduct = async (slug) => {
     const res = await fetch(`${baseUrl}/product/${slug}`,
         {
+            cache: 'force-cache'
+        })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+// get single product 
+const getSingleProductDetails = async (id) => {
+    const res = await fetch(`${baseUrl}/product/admin/${id}`,
+        {
+            headers: {
+                'Authorization': token
+            },
             cache: 'force-cache'
         })
 
@@ -99,6 +116,30 @@ const addProductMutation = async (formData) => {
 };
 
 
+// add product 
+const updateProductMutation = async (id, data) => {
+    try {
+        const res = await fetch(`${baseUrl}/product/${id}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMzMWUzYTA4ZDI3MDc5MjVlZGEzM2QiLCJlbWFpbCI6ImFkbWluLm1hcmNlbGxhQGdtYWlsLmNvbSIsImlhdCI6MTcwODQxMjc3MywiZXhwIjoxNzA4NDE5OTczfQ.u3MdKX-EqtxwvR-2oj5LdNPqLMbkFOdBJ_tW7d90qAQ'
+            },
+            body: data,
+            cache: 'force-cache'
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error('Error adding product:', error);
+        throw error;
+    }
+};
+
+
 
 export {
     getAllProduct,
@@ -106,5 +147,7 @@ export {
     getSingleProduct,
     getRelatedProduct,
     addProductMutation,
-    getSellerProduct
+    getSellerProduct,
+    updateProductMutation,
+    getSingleProductDetails
 }
