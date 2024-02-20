@@ -41,15 +41,15 @@ const AddProductForm = () => {
         if (shortDescription) formData.append('shortDescription', shortDescription)
         if (description) formData.append('description', description)
         if (termsCondition) formData.append('specification', termsCondition)
+        if (updateProduct?.categories) formData.append('categories', updateProduct?.categories)
+        if (updateProduct?.subcategories) formData.append('subcategories', updateProduct?.subcategories)
+        if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', updateProduct?.subcategoryChildren)
         if (seller) formData.append('sellerId', seller)
 
         // form data.append JSON.stringify(data)
         if (updateProduct?.size) formData.append('size', JSON.stringify(updateProduct?.size))
         if (updateProduct?.color) formData.append('color', JSON.stringify(updateProduct?.color))
         if (productTags) formData.append("tags", JSON.stringify(productTags));
-        if (updateProduct?.categories) formData.append('categories', JSON.stringify(updateProduct?.categories))
-        if (updateProduct?.subcategories) formData.append('subcategories', JSON.stringify(updateProduct?.subcategories))
-        if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', JSON.stringify(updateProduct?.subcategoryChildren))
         if (images) formData.append('images', images)
 
         const res = await addProductMutation(formData);
@@ -58,7 +58,7 @@ const AddProductForm = () => {
         }
 
     }
-
+console.log(updateProduct?.categories)
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
