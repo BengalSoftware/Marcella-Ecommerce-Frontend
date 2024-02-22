@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import Link from 'next/link';
@@ -7,9 +7,11 @@ import { CgMenuGridO } from "react-icons/cg";
 import { FiUser } from "react-icons/fi";
 import MobileNav from '../mobileNav/MobileNav';
 import CartDrawer from '@/components/cart/CartDrawer';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    const { user, seller, handleLogout } = useContext(AuthContext);
     return (
         <div className='bg-g-primary'>
             <div className="container mx-auto py-4">
@@ -25,6 +27,11 @@ const Header = () => {
                             <Link href='/seller' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
                             <Link href='/contact' className='border-r pr-4 border-green-700'>Contact</Link>
                             <Link href='/account' className='flex items-center gap-2' ><FiUser /> Account</Link>
+                            {
+                                user?.data?.user?.email || seller?.data?.user?.email ?
+                                    <button onClick={handleLogout} className='flex items-center gap-2' >Logout</button> :
+                                    ''
+                            }
                         </div>
                     </div>
                     {/* top header end */}

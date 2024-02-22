@@ -9,6 +9,12 @@ const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [uIsLoading, setUisLoading] = useState(true);
 
+    const handleLogout = () => {
+        localStorage.removeItem('uauth')
+        localStorage.removeItem('sauth')
+    }
+
+
     // seller
     useEffect(() => {
         const getSeller = JSON.parse(localStorage.getItem('sauth'));
@@ -37,7 +43,8 @@ const AuthProvider = ({ children }) => {
         seller,
         user,
         isLoading,
-        uIsLoading
+        uIsLoading,
+        handleLogout,
     }
 
 
