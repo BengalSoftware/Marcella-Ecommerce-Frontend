@@ -24,7 +24,37 @@ const sellerSignupMutation = async (data) => {
 
         return responseData;
     } catch (error) {
-        console.error('Error adding product:', error);
+        console.error(error);
+        throw error;
+    }
+};
+
+
+// user signup
+const userSignupMutation = async (data) => {
+    try {
+        const res = await fetch(`${baseUrl}/auth/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+            cache: 'force-cache'
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        const responseData = await res.json();
+
+        if (responseData) {
+            localStorage.setItem('uauth', JSON.stringify(responseData));
+        }
+
+        return responseData;
+    } catch (error) {
+        console.error(error);
         throw error;
     }
 };
@@ -55,7 +85,7 @@ const userLoggedIn = async (data) => {
 
         return responseData;
     } catch (error) {
-        console.error('Error adding product:', error);
+        console.error(error);
         throw error;
     }
 };
@@ -63,5 +93,6 @@ const userLoggedIn = async (data) => {
 
 export {
     sellerSignupMutation,
+    userSignupMutation,
     userLoggedIn
 }

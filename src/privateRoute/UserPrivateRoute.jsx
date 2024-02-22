@@ -3,11 +3,11 @@ import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect } from 'react';
 
-const PrivateRoute = ({ children }) => {
-    const { isLoading, seller } = useContext(AuthContext);
+const UserPrivateRoute = ({ children }) => {
+    const { uIsLoading, user } = useContext(AuthContext);
     const router = useRouter();
 
-    if (isLoading) {
+    if (uIsLoading) {
         return (
             <div className='flex items-center justify-center h-screen w-full'>
                 <h1>Loading...</h1>
@@ -16,11 +16,11 @@ const PrivateRoute = ({ children }) => {
     }
 
     useEffect(() => {
-        if (!seller?.data?.user?.email) {
-            router.push('/seller-signup')
+        if (!user?.data?.user?.email) {
+            router.push('/login')
         }
-    }, [seller?.data?.user?.email])
-
+    }, [user?.data?.user?.email])
+    console.log(user?.data?.user?.email)
 
     return (
         <div>
@@ -29,4 +29,4 @@ const PrivateRoute = ({ children }) => {
     )
 };
 
-export default PrivateRoute;
+export default UserPrivateRoute;

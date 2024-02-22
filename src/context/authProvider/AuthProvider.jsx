@@ -5,7 +5,9 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [seller, setSeller] = useState(null);
+    const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [uIsLoading, setUisLoading] = useState(true);
 
     // seller
     useEffect(() => {
@@ -19,9 +21,23 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
+    // user
+    useEffect(() => {
+        const getUser = JSON.parse(localStorage.getItem('uauth'));
+        if (getUser) {
+            setUser(getUser);
+            setUisLoading(false)
+        } else {
+            setUisLoading(false)
+        }
+    }, [])
+
+
     const authInfo = {
         seller,
+        user,
         isLoading,
+        uIsLoading
     }
 
 
