@@ -1,4 +1,5 @@
 import { baseUrl } from "../api/baseUrl";
+import Cookies from 'js-cookie';
 
 // seller signup
 const sellerSignupMutation = async (data) => {
@@ -16,13 +17,25 @@ const sellerSignupMutation = async (data) => {
             throw new Error('Failed to fetch data');
         }
 
-        return res.json();
+        const responseData = await res.json();
+
+        // Set data in cookies
+        Cookies.set('sellerData', JSON.stringify(responseData), { expires: 7 }); // Expires in 7 days
+
+        return responseData;
     } catch (error) {
         console.error('Error adding product:', error);
         throw error;
     }
 };
 
+
+const getSellerFromCookies = () => {
+    const seller = Cookies.get('sellerData');
+    return JSON.parse(seller)
+}
+
 export {
-    sellerSignupMutation
+    sellerSignupMutation,
+    getSellerFromCookies
 }

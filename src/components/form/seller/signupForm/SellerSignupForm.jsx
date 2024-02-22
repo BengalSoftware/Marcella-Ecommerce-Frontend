@@ -1,13 +1,17 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { sellerSignupMutation } from '@/lib/authApi/authApi';
+import PrivateRoute from '@/privateRoute/PrivateRoute';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SellerSignupForm = () => {
     const [sellerLoading, setSellerLoading] = useState(false);
-    const [sellerSuccess, setSellerSuccess] = useState(false);
     const [sellerError, setSellerError] = useState(false);
+    const router = useRouter();
+    const { sellerSuccess, setSellerSuccess } = useContext(AuthContext);
 
     const handleSellerSignup = async (e) => {
         e.preventDefault();
@@ -41,6 +45,7 @@ const SellerSignupForm = () => {
     useEffect(() => {
         if (sellerSuccess) {
             toast.success('Signup Successfull')
+            router.push('/seller')
         }
         if (sellerError) {
             toast.error('Authentication Failed')
@@ -65,6 +70,7 @@ const SellerSignupForm = () => {
                 </div>
                 <p className='mt-4'>Already have an account ? <Link href='/login' className='text-primary hover:underline'>Login</Link></p>
             </form>
+            <PrivateRoute />
         </div>
     );
 };
