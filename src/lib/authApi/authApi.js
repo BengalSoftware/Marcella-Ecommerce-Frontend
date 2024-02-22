@@ -1,5 +1,4 @@
 import { baseUrl } from "../api/baseUrl";
-import Cookies from 'js-cookie';
 
 // seller signup
 const sellerSignupMutation = async (data) => {
@@ -19,8 +18,9 @@ const sellerSignupMutation = async (data) => {
 
         const responseData = await res.json();
 
-        // Set data in cookies
-        Cookies.set('sellerData', JSON.stringify(responseData), { expires: 7 }); // Expires in 7 days
+        if (responseData) {
+            localStorage.setItem('sauth', JSON.stringify(responseData));
+        }
 
         return responseData;
     } catch (error) {
@@ -30,12 +30,6 @@ const sellerSignupMutation = async (data) => {
 };
 
 
-const getSellerFromCookies = () => {
-    const seller = Cookies.get('sellerData');
-    return JSON.parse(seller)
-}
-
 export {
     sellerSignupMutation,
-    getSellerFromCookies
 }

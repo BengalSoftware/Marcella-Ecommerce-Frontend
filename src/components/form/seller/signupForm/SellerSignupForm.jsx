@@ -1,17 +1,15 @@
 'use client'
-import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { sellerSignupMutation } from '@/lib/authApi/authApi';
 import PrivateRoute from '@/privateRoute/PrivateRoute';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SellerSignupForm = () => {
     const [sellerLoading, setSellerLoading] = useState(false);
     const [sellerError, setSellerError] = useState(false);
     const router = useRouter();
-    const { sellerSuccess, setSellerSuccess } = useContext(AuthContext);
 
     const handleSellerSignup = async (e) => {
         e.preventDefault();
@@ -29,9 +27,10 @@ const SellerSignupForm = () => {
                 setSellerLoading(true)
                 const data = await sellerSignupMutation(newInfo);
                 if (data) {
-                    setSellerSuccess(true)
+                    router.push('/seller');
+                    toast.success('Signup Successfull')
                 } else {
-                    setSellerSuccess(false)
+                    setSellerError(true)
                 }
             } catch (error) {
                 setSellerError(true)
@@ -43,15 +42,11 @@ const SellerSignupForm = () => {
 
 
     useEffect(() => {
-        if (sellerSuccess) {
-            toast.success('Signup Successfull')
-            router.push('/seller')
-        }
         if (sellerError) {
             toast.error('Authentication Failed')
             setSellerError(false)
         }
-    }, [sellerSuccess, sellerError])
+    }, [sellerError])
 
 
     return (
@@ -66,7 +61,7 @@ const SellerSignupForm = () => {
                 <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
                     placeholder="Password" name='password' type="password" />
                 <div className="mt-5 flex gap-5">
-                    <button className="w-full py-3 bg-primary text-white rounded-lg hover:bg-dark">Create Account</button>
+                    <button className="w-full py-3 bg-primary text-white rounded-lg hover:bg-dark">{sellerLoading ? 'Creating..' : 'Create Account'}</button>
                 </div>
                 <p className='mt-4'>Already have an account ? <Link href='/login' className='text-primary hover:underline'>Login</Link></p>
             </form>
