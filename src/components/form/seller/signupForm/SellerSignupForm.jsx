@@ -11,7 +11,7 @@ const SellerSignupForm = () => {
     const [sellerError, setSellerError] = useState(false);
     const router = useRouter();
 
-    const handleSellerSignup = async (e) => {
+    const handleSellerSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const emailPhone = e.target.emailPhone.value;
@@ -22,22 +22,25 @@ const SellerSignupForm = () => {
             password
         }
 
-        if (newInfo) {
-            try {
-                setSellerLoading(true)
-                const data = await sellerSignupMutation(newInfo);
-                if (data) {
-                    router.push('/seller');
-                    toast.success('Signup Successfull')
-                } else {
+        const sellerMutation = async () => {
+            if (newInfo) {
+                try {
+                    setSellerLoading(true)
+                    const response = await sellerSignupMutation(newInfo);
+                    if (response?.data) {
+                        router.push('/');
+                        toast.success('Signup Successfull')
+                    } else {
+                        setSellerError(true)
+                    }
+                } catch (error) {
                     setSellerError(true)
+                } finally {
+                    setSellerLoading(false)
                 }
-            } catch (error) {
-                setSellerError(true)
-            } finally {
-                setSellerLoading(false)
             }
         }
+        sellerMutation();
     }
 
 

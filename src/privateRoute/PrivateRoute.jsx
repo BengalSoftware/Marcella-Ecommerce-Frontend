@@ -16,9 +16,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     useEffect(() => {
-        if (seller?.data?.user?.email) {
-            router.push('/seller')
-        }else{
+        if (!seller?.data?.user?.email) {
             router.push('/seller-signup')
         }
     }, [seller?.data?.user?.email])
