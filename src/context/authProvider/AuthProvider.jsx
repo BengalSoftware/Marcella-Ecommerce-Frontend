@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [seller, setSeller] = useState(null);
     const [sellerSuccess, setSellerSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // seller
     useEffect(() => {
@@ -41,7 +42,8 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         seller,
         sellerSuccess,
-        setSellerSuccess
+        setSellerSuccess,
+        isLoading,
     }
 
 
