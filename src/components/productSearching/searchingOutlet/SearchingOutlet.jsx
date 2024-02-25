@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 const SearchingOutlet = () => {
     const [products, setProducts] = useState([]);
     const searchParams = useSearchParams();
+    const router = useRouter();
 
     useEffect(() => {
         const loadData = async () => {
@@ -22,11 +23,19 @@ const SearchingOutlet = () => {
         loadData();
     }, [searchParams]);
 
-    console.log(products)
+
+
+    // search clear 
+    const handleCrearSearch = () => {
+        router.push('/products')
+    }
 
     return (
         <div>
-            <p className='text-sm mb-5 ml-1 mt-2'>{products?.result?.totalProducts} items found for <span className='text-primary'>{`"${searchParams}"`}</span> </p>
+            <div className='flex items-center gap-5'>
+                <p className='text-sm mb-5 ml-1 mt-2'>{products?.result?.totalProducts} items found for <span className='text-primary'>{`"${searchParams}"`}</span> </p>
+                <button onClick={handleCrearSearch} className='text-sm mb-5 ml-1 mt-2 text-red-500 hover:underline'>Clear</button>
+            </div>
             {
                 products?.result?.data?.length > 0 ?
                     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-2'>
