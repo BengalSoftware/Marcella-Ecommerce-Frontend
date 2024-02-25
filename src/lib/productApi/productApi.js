@@ -1,8 +1,8 @@
 import { baseUrl, token } from "../api/baseUrl";
 
 // get all product 
-const getAllProduct = async () => {
-    const res = await fetch(`${baseUrl}/product`,
+const getAllProduct = async (queryUrl) => {
+    const res = await fetch(`${baseUrl}/product/${queryUrl}`,
         {
             cache: 'force-cache'
         })

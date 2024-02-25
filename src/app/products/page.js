@@ -19,10 +19,9 @@ const ProductsPage = () => {
                             <MobileFilterSidebar />
                         </div>
                         <div className='md:col-span-4'>
-                            <p className='text-sm mb-5 ml-1 mt-2'>46 items found for <span className='text-primary'>"electric kettle"</span> </p>
                             <SearchingOutlet />
                             <div className='mt-5 flex items-center justify-end'>
-                                <Pagination defaultCurrent={1} total={50} />
+                                <Pagination defaultCurrent={1} total={10} />
                             </div>
                         </div>
                     </div>
