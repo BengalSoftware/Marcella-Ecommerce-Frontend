@@ -10,8 +10,9 @@ const PrivateRoute = ({ children }) => {
 
     if (isLoading) {
         return (
-            <div className='flex items-center justify-center h-screen w-full'>
-                <Preloader />
+            <div className='flex items-center justify-center w-full'>
+                {/* <Preloader /> */}
+                <p className='text-white'>.</p>
             </div>
         )
     }
