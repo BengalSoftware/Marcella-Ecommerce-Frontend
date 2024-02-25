@@ -1,14 +1,16 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { userLoggedIn } from '@/lib/authApi/authApi';
 import { Alert } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setIsError] = useState(null);
+    const { setUserLoginSuccess, setSellerLoginSuccess } = useContext(AuthContext);
     const router = useRouter();
 
     let response;
@@ -28,10 +30,16 @@ const LoginForm = () => {
                 try {
                     setIsLoading(true);
                     response = await userLoggedIn(getLoginInfo);
-                    if (response?.data) {
-                        router.push('/');
-                        toast.success('Login Successfull')
-                    } else {
+                    if (response?.data?.user?.role === 'seller') {
+                        setSellerLoginSuccess(true);
+                        toast.success('Login Successfull');
+                        router.push('/seller');
+                    } else if (response?.data?.user?.role === 'user') {
+                        setUserLoginSuccess(true);
+                        toast.success('Login Successfull');
+                        router.push('/account');
+                    }
+                    else {
                         setIsError(true)
                     }
                 } catch (error) {

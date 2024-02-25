@@ -32,7 +32,7 @@ const Header = () => {
                             {
                                 (user?.data?.user?.email || userLoginSuccess) ?
                                     <Link href='/account' className='flex items-center gap-2' ><FiUser /> Account</Link> :
-                                    <Link href='/login' className='flex items-center gap-2' ><FiUser /> Account</Link>
+                                    <Link href='/login' className={seller?.data?.user?.email || sellerLoginSuccess ? 'hidden' : 'flex items-center gap-2'} ><FiUser /> Account</Link>
                             }
                             {
                                 (seller?.data?.user?.email || sellerLoginSuccess) ?
