@@ -1,12 +1,27 @@
 'use client'
-import React, { useState } from 'react';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { districts } from '@/data/district';
+import { divisions } from '@/data/division';
+import { upazilas } from '@/data/upazilas';
+import { createAddressMutation } from '@/lib/addressApi/addressApi';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const AddressForm = () => {
     const [newAddress, setNewAddress] = useState();
+    const { user } = useContext(AuthContext);
+    const { setAddressSuccess } = useContext(StateContext);
 
-    const handleSubmitAddress = (e) => {
+    const handleSubmitAddress = async (e) => {
         e.preventDefault();
-        console.log(newAddress)
+        if (user?.data?.user?.email) {
+            const res = await createAddressMutation(user?.data?.user?.email, newAddress);
+            if (res) {
+                toast.success('Address Create Successfull')
+                setAddressSuccess(true)
+            }
+        }
     }
 
     const handleAddressChange = (e) => {
@@ -31,8 +46,11 @@ const AddressForm = () => {
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Division <span className='text-red-600'>*</span></label>
                     <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
-                        <option value="">Select</option>
-                        <option value="">Dhaka</option>
+                        {
+                            divisions?.map(division =>
+                                <option key={division?.id} value={division?.name}>{division?.name}</option>
+                            )
+                        }
                     </select>
                 </div>
                 <div>
@@ -43,8 +61,11 @@ const AddressForm = () => {
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select District <span className='text-red-600'>*</span></label>
                     <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
-                        <option value="">Select</option>
-                        <option value="">Tangail</option>
+                        {
+                            districts?.map(district =>
+                                <option key={district?.id} value={district?.name}>{district?.name}</option>
+                            )
+                        }
                     </select>
                 </div>
                 <div>
@@ -56,8 +77,11 @@ const AddressForm = () => {
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Upazilla <span className='text-red-600'>*</span></label>
                     <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
-                        <option value="">Select</option>
-                        <option value="">Mirzapur</option>
+                        {
+                            upazilas?.map(upzila =>
+                                <option key={upzila?.id} value={upzila?.name}>{upzila?.name}</option>
+                            )
+                        }
                     </select>
                 </div>
                 <div>
