@@ -9,6 +9,7 @@ const AllAddress = () => {
     const [allAddress, setAllAddress] = useState(null);
     const { user, } = useContext(AuthContext);
     const { addressSuccess } = useContext(StateContext);
+    const [selectSuccess, setSelectSuccess] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,13 +25,13 @@ const AllAddress = () => {
 
         fetchData();
 
-        if (addressSuccess) {
+        if (addressSuccess || selectSuccess) {
             fetchData();
         }
-    }, [user?.data?.user?.email, addressSuccess])
+    }, [user?.data?.user?.email, addressSuccess, selectSuccess])
 
 
-    console.log(allAddress)
+
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -40,6 +41,8 @@ const AllAddress = () => {
                         key={add?._id}
                         adrs={add}
                         email={user?.data?.user?.email}
+                        selectSuccess={selectSuccess}
+                        setSelectSuccess={setSelectSuccess}
                     />
                 )
             }

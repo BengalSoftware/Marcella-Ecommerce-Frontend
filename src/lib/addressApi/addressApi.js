@@ -64,9 +64,30 @@ const deleteSingelAddress = async (email, id) => {
 };
 
 
+// active single address
+const activeSingleAddress = async (userId, id) => {
+    const res = await fetch(`${baseUrl}/address/active/${userId}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(id),
+        }
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+
 export {
     createAddressMutation,
     getAllAddressByEmail,
     updateSingleAddress,
-    deleteSingelAddress
+    deleteSingelAddress,
+    activeSingleAddress
 }

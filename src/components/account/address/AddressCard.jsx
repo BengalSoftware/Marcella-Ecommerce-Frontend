@@ -1,20 +1,26 @@
 'use client'
 import AddressForm from '@/components/form/account/AddressForm';
 import { StateContext } from '@/context/stateProvider/StateProvider';
-import { deleteSingelAddress } from '@/lib/addressApi/addressApi';
+import { activeSingleAddress, deleteSingelAddress } from '@/lib/addressApi/addressApi';
 import { Modal } from 'antd';
 import React, { useContext, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
-const AddressCard = ({ adrs, email }) => {
+const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
     const [dLoading, setDLoading] = useState(false)
     const { setAddressSuccess } = useContext(StateContext);
     const { _id, shippingName, selected, shippingPhone, address } = adrs || {};
 
-    const handleActiveAddress = (id) => {
 
+    const handleActiveAddress = async (id) => {
+        try {
+            await activeSingleAddress(email, { id });
+            setSelectSuccess(!selectSuccess);
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const handleDeleteAddress = async (id) => {
