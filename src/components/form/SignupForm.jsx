@@ -1,13 +1,15 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { userSignupMutation } from '@/lib/authApi/authApi';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SignupForm = () => {
     const [userLoading, setUserLoading] = useState(false);
     const [userError, setUserError] = useState(false);
+    const { setUserLoginSuccess } = useContext(AuthContext);
     const router = useRouter();
 
     const handleUserSignup = (e) => {
@@ -27,8 +29,9 @@ const SignupForm = () => {
                     setUserLoading(true)
                     const response = await userSignupMutation(newInfo);
                     if (response?.data) {
-                        router.push('/');
+                        setUserLoginSuccess(true);
                         toast.success('Signup Successfull')
+                        router.push('/account');
                     } else {
                         setUserError(true)
                     }

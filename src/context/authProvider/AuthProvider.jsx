@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [uIsLoading, setUisLoading] = useState(true);
     const [sellerLoginSuccess, setSellerLoginSuccess] = useState(false)
+    const [userLoginSuccess, setUserLoginSuccess] = useState(false)
     const [sellerLogoutSuccess, setSellerLogoutSuccess] = useState(false)
 
     const handleLogout = () => {
@@ -39,14 +40,21 @@ const AuthProvider = ({ children }) => {
 
     // user
     useEffect(() => {
-        const getUser = JSON.parse(localStorage.getItem('uauth'));
-        if (getUser) {
-            setUser(getUser);
-            setUisLoading(false)
-        } else {
-            setUisLoading(false)
+        const fetchData = () => {
+            const getUser = JSON.parse(localStorage.getItem('uauth'));
+            if (getUser) {
+                setUser(getUser);
+                setUisLoading(false)
+            } else {
+                setUisLoading(false)
+            }
         }
-    }, [])
+        fetchData();
+
+        if (userLoginSuccess) {
+            fetchData();
+        }
+    }, [userLoginSuccess])
 
 
     const authInfo = {
@@ -56,6 +64,8 @@ const AuthProvider = ({ children }) => {
         uIsLoading,
         sellerLoginSuccess,
         setSellerLoginSuccess,
+        userLoginSuccess,
+        setUserLoginSuccess,
         handleLogout,
     }
 
