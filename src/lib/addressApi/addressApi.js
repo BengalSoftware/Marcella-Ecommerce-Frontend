@@ -9,7 +9,6 @@ const createAddressMutation = async (email, data) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-            cache: 'force-cache'
         }
     )
 
@@ -35,10 +34,7 @@ const getAllAddressByEmail = async (email) => {
 
 // update single address
 const updateSingleAddress = async (addressId) => {
-    const res = await fetch(`${baseUrl}/address/${addressId}`,
-        {
-            cache: 'force-cache'
-        })
+    const res = await fetch(`${baseUrl}/address/${addressId}`)
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -49,11 +45,16 @@ const updateSingleAddress = async (addressId) => {
 
 
 // delete single address
-const deleteSingelAddress = async (email) => {
+const deleteSingelAddress = async (email, id) => {
     const res = await fetch(`${baseUrl}/address/${email}`,
         {
-            cache: 'force-cache'
-        })
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(id),
+        }
+    )
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')

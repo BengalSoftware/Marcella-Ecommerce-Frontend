@@ -7,7 +7,7 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 
 const AllAddress = () => {
     const [allAddress, setAllAddress] = useState(null);
-    const { user } = useContext(AuthContext);
+    const { user, } = useContext(AuthContext);
     const { addressSuccess } = useContext(StateContext);
 
     useEffect(() => {
@@ -23,10 +23,11 @@ const AllAddress = () => {
         };
 
         fetchData();
+
         if (addressSuccess) {
             fetchData();
         }
-    }, [user?.data?.user?.email])
+    }, [user?.data?.user?.email, addressSuccess])
 
 
     console.log(allAddress)
@@ -38,6 +39,7 @@ const AllAddress = () => {
                     <AddressCard
                         key={add?._id}
                         adrs={add}
+                        email={user?.data?.user?.email}
                     />
                 )
             }

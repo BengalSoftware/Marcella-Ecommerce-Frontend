@@ -1,10 +1,11 @@
 'use client'
 import AddressForm from '@/components/form/account/AddressForm';
+import { StateContext } from '@/context/stateProvider/StateProvider';
 import { Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 const AccountAddressModal = () => {
-    const [modalOpen, setModalOpen] = useState(false);
+    const { modalOpen, setModalOpen } = useContext(StateContext)
 
     return (
         <div>

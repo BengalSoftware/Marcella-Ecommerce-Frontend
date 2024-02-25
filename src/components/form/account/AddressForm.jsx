@@ -10,17 +10,27 @@ import toast from 'react-hot-toast';
 
 const AddressForm = () => {
     const [newAddress, setNewAddress] = useState();
+    const [aLoading, setALoading] = useState(false);
     const { user } = useContext(AuthContext);
-    const { setAddressSuccess } = useContext(StateContext);
+    const { setAddressSuccess, setModalOpen } = useContext(StateContext);
 
     const handleSubmitAddress = async (e) => {
         e.preventDefault();
-        if (user?.data?.user?.email) {
-            const res = await createAddressMutation(user?.data?.user?.email, newAddress);
-            if (res) {
-                toast.success('Address Create Successfull')
-                setAddressSuccess(true)
+
+        try {
+            setALoading(true)
+            if (user?.data?.user?.email) {
+                const res = await createAddressMutation(user?.data?.user?.email, newAddress);
+                if (res) {
+                    toast.success('Address Create Successfull')
+                    setAddressSuccess(true)
+                    setModalOpen(false)
+                }
             }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setALoading(false)
         }
     }
 
@@ -94,7 +104,7 @@ const AddressForm = () => {
             <textarea onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
 
             <div className='flex items-center justify-end'>
-                <button className='px-6 py-2 rounded-md bg-primary hover:bg-dark text-white mt-4'>Submit</button>
+                <button className='px-6 py-2 rounded-md bg-primary hover:bg-dark text-white mt-4'>{aLoading ? 'Loading..' : 'Submit'}</button>
             </div>
         </form>
     );

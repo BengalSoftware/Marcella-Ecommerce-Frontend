@@ -1,20 +1,34 @@
 'use client'
 import AddressForm from '@/components/form/account/AddressForm';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { deleteSingelAddress } from '@/lib/addressApi/addressApi';
 import { Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
-const AddressCard = ({ adrs }) => {
+const AddressCard = ({ adrs, email }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
-    const { _id, shippingName, shippingPhone, address } = adrs || {};
+    const [dLoading, setDLoading] = useState(false)
+    const { setAddressSuccess } = useContext(StateContext);
+    const { _id, shippingName, selected, shippingPhone, address } = adrs || {};
 
     const handleActiveAddress = (id) => {
 
     }
 
-    const handleDeleteAddress = async (Id) => {
-
+    const handleDeleteAddress = async (id) => {
+        try {
+            setDLoading(true)
+            const res = await deleteSingelAddress(email, { id });
+            if (res) {
+                setAddressSuccess(true)
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setDLoading(false)
+        }
     }
 
 
@@ -28,7 +42,7 @@ const AddressCard = ({ adrs }) => {
                 <p className='text-sm font-[500]'>{shippingName}</p>
                 <div className='flex justify-between items-center'>
                     {
-                        'adrs?.selected' ? <span className='flex items-center mr-2'>
+                        selected ? <span className='flex items-center mr-2'>
                             <p className='mr-1 text-green-600 uppercase font-semibold text-sm'>Selected</p>
                             <FaCheckCircle className='text-green-600 text-sm'></FaCheckCircle>
                         </span> :
@@ -53,7 +67,7 @@ const AddressCard = ({ adrs }) => {
                 <p className='text-sm'>House No: {address}</p>
                 {
                     '!adrs?.selected' &&
-                    <button onClick={() => handleDeleteAddress(_id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>Remove</button>
+                    <button onClick={() => handleDeleteAddress(_id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>{dLoading ? 'Removing..' : 'Remove'}</button>
                 }
             </span>
         </div>

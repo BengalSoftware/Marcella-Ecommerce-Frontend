@@ -6,13 +6,16 @@ export const StateContext = createContext();
 const StateProvider = ({ children }) => {
     const [sellerPSuccess, setSellerPSuccess] = useState(false);
     const [addressSuccess, setAddressSuccess] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
 
     const stateInfo = {
         sellerPSuccess,
         setSellerPSuccess,
         addressSuccess,
-        setAddressSuccess
+        setAddressSuccess,
+        modalOpen,
+        setModalOpen
     }
 
     return (
