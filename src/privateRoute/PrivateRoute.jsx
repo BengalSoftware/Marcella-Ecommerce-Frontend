@@ -1,5 +1,6 @@
 'use client'
 import { AuthContext } from '@/context/authProvider/AuthProvider';
+import Preloader from '@/utility/preloader/Preloader';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect } from 'react';
 
@@ -10,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     if (isLoading) {
         return (
             <div className='flex items-center justify-center h-screen w-full'>
-                <h1>Loading...</h1>
+                <Preloader />
             </div>
         )
     }

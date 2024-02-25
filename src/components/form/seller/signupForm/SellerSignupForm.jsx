@@ -1,15 +1,17 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { sellerSignupMutation } from '@/lib/authApi/authApi';
 import PrivateRoute from '@/privateRoute/PrivateRoute';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SellerSignupForm = () => {
     const [sellerLoading, setSellerLoading] = useState(false);
     const [sellerError, setSellerError] = useState(false);
     const router = useRouter();
+    const { setSellerLoginSuccess } = useContext(AuthContext);
 
     const handleSellerSignup = (e) => {
         e.preventDefault();
@@ -28,8 +30,9 @@ const SellerSignupForm = () => {
                     setSellerLoading(true)
                     const response = await sellerSignupMutation(newInfo);
                     if (response?.data) {
-                        router.push('/');
-                        toast.success('Signup Successfull')
+                        setSellerLoginSuccess(true)
+                        toast.success('Signup Successfull');
+                        router.push('/seller');
                     } else {
                         setSellerError(true)
                     }

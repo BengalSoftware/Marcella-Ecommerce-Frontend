@@ -11,7 +11,7 @@ import { AuthContext } from '@/context/authProvider/AuthProvider';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
-    const { user, seller, handleLogout } = useContext(AuthContext);
+    const { user, seller, sellerLoginSuccess, handleLogout } = useContext(AuthContext);
     return (
         <div className='bg-g-primary'>
             <div className="container mx-auto py-4">
@@ -24,11 +24,22 @@ const Header = () => {
                             <p>Call Us On +8801810-077844</p>
                         </div>
                         <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
-                            <Link href='/seller' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link>
-                            <Link href='/contact' className='border-r pr-4 border-green-700'>Contact</Link>
-                            <Link href='/account' className='flex items-center gap-2' ><FiUser /> Account</Link>
                             {
-                                user?.data?.user?.email || seller?.data?.user?.email ?
+                                (user?.data?.user?.email) ?
+                                    <Link href='/seller-signup' className='text-white text-sm border-r border-green-700 pr-4'>Become a seller</Link> : ''
+                            }
+                            <Link href='/contact' className='border-r pr-4 border-green-700'>Contact</Link>
+                            {
+                                (user?.data?.user?.email) ?
+                                    <Link href='/account' className='flex items-center gap-2' ><FiUser /> Account</Link> :
+                                    <Link href='/login' className='flex items-center gap-2' ><FiUser /> Account</Link>
+                            }
+                            {
+                                (seller?.data?.user?.email || sellerLoginSuccess) ?
+                                    <Link href='/seller' className='flex items-center gap-2' ><FiUser /> Dashboard</Link> : ''
+                            }
+                            {
+                                (user?.data?.user?.email || seller?.data?.user?.email || sellerLoginSuccess) ?
                                     <button onClick={handleLogout} className='flex items-center gap-2' >Logout</button> :
                                     ''
                             }
