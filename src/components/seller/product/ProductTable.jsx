@@ -1,6 +1,8 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getSellerProduct } from '@/lib/productApi/productApi';
+import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
 import { BiSolidPencil } from "react-icons/bi";
@@ -10,26 +12,44 @@ import { MdDelete } from "react-icons/md";
 const ProductTable = () => {
     const [products, setProducts] = useState(null);
     const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
-    let id = '65c48f38d665588c5bd0816c'
+    const [singleSeller, setSingleSeller] = useState(null);
+    const { seller } = useContext(AuthContext);
+
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const data = await getSellerProduct(id);
-                if (data) {
-                    setProducts(data)
+            if (singleSeller) {
+                try {
+                    const data = await getSellerProduct(singleSeller);
+                    if (data) {
+                        setProducts(data)
+                    }
+                } catch (error) {
+                    console.error(error)
                 }
-            } catch (error) {
-                console.error(error)
             }
         }
 
         fetchData();
-        // if (sellerPSuccess) {
-        //     fetchData();
-        //     setSellerPSuccess(false)
-        // }
-    }, [])
+    }, [singleSeller])
+
+    // fetch single seller 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (seller?.data?.user?.email) {
+                try {
+                    const res = await getSingleSeller(seller?.data?.user?.email);
+                    if (res?.data) {
+                        setSingleSeller(res?.data?._id);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        };
+        fetchData();
+    }, [seller?.data?.user?.email]);
+
 
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">

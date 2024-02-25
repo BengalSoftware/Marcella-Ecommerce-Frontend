@@ -11,6 +11,8 @@ import ColorForm from './ColorForm';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 
 const AddProductForm = ({ id }) => {
     const [products, setProducts] = useState(null);
@@ -24,12 +26,14 @@ const AddProductForm = ({ id }) => {
     const [selectedColorOption, setSelectedColorOptin] = useState([]);
     const [images, setUpImages] = useState([]);
     const { sellerPSuccess, setSellerPSuccess } = useContext(StateContext);
+    const { seller } = useContext(AuthContext);
     const router = useRouter();
+    const [singleSeller, setSingleSeller] = useState(null);
 
 
     const { name, slug, altTag, manufacturer, offerPrice, price, productType, quantity, status, subcategories, subcategoryChildren, model, tags, size, color } = products?.result || {};
 
-    let seller = '65c48f38d665588c5bd0816c'
+    // let seller = '65c48f38d665588c5bd0816c'
 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -50,7 +54,7 @@ const AddProductForm = ({ id }) => {
         if (updateProduct?.categories) formData.append('categories', updateProduct?.categories)
         if (updateProduct?.subcategories) formData.append('subcategories', updateProduct?.subcategories)
         if (updateProduct?.subcategoryChildren) formData.append('subcategoryChildren', updateProduct?.subcategoryChildren)
-        if (seller) formData.append('sellerId', seller)
+        if (singleSeller) formData.append('sellerId', singleSeller)
 
         // form data.append JSON.stringify(data)
         if (selectedSizeOption) formData.append('size', JSON.stringify(selectedSizeOption))
@@ -109,7 +113,24 @@ const AddProductForm = ({ id }) => {
         }
     }, [id])
 
-    console.log(products?.result)
+
+    // fetch single seller 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (seller?.data?.user?.email) {
+                try {
+                    const res = await getSingleSeller(seller?.data?.user?.email);
+                    if (res?.data) {
+                        setSingleSeller(res?.data?._id);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        };
+        fetchData();
+    }, [seller?.data?.user?.email]);
+
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>
@@ -141,7 +162,7 @@ const AddProductForm = ({ id }) => {
                     <div>
                         <label className='text-dark text-sm'>Product Type <span className='text-red-500'>*</span></label>
                         <select onChange={handleChange} defaultValue={productType} name="productType" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-                            
+
                             <option value="mens-fashion">Mens Fashion</option>
                             <option value="Womens-fashion">Womens Fashion</option>
                             <option value="mobile-and-gadgets">Mobile and Gadgets</option>
