@@ -33,6 +33,7 @@ const SellerSignupForm = () => {
                         setSellerLoginSuccess(true)
                         toast.success('Signup Successfull');
                         router.push('/seller');
+                        localStorage.removeItem('uauth')
                     } else {
                         setSellerError(true)
                     }

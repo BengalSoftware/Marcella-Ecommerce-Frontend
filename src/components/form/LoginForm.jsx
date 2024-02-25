@@ -34,10 +34,12 @@ const LoginForm = () => {
                         setSellerLoginSuccess(true);
                         toast.success('Login Successfull');
                         router.push('/seller');
+                        localStorage.removeItem('uauth')
                     } else if (response?.data?.user?.role === 'user') {
                         setUserLoginSuccess(true);
                         toast.success('Login Successfull');
                         router.push('/account');
+                        localStorage.removeItem('sauth')
                     }
                     else {
                         setIsError(true)

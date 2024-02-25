@@ -32,6 +32,7 @@ const SignupForm = () => {
                         setUserLoginSuccess(true);
                         toast.success('Signup Successfull')
                         router.push('/account');
+                        localStorage.removeItem('sauth')
                     } else {
                         setUserError(true)
                     }
