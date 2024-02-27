@@ -63,7 +63,7 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
     }
 
 
-    console.log(userData?.data?._id)
+
     return (
         <div className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${'adrs?.selected' && 'border-green-600'}`}>
             <div className='flex justify-between items-center'>
@@ -77,7 +77,7 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
                             <button onClick={() => handleActiveAddress(_id)} className='text-gray-500 uppercase font-semibold tracking-widest hover:bg-green-600 hover:text-white text-sm border p-1 rounded-md mr-3'>Select</button>
                     }
                     <div>
-                        <button onClick={() => handleEditAddress('adrs')} className='text-blue-500 text-sm'>Edit</button>
+                        <button onClick={() => handleEditAddress(adrs)} className='text-blue-500 text-sm'>Edit</button>
                         <Modal
                             title="Edit Address"
                             centered
@@ -85,7 +85,7 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
                             onCancel={() => setModalOpen(false)}
                             footer={false}
                         >
-                            <AddressForm />
+                            <AddressForm address={editAddress} />
                         </Modal>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
             <span className='flex justify-between items-center'>
                 <p className='text-sm'>House No: {address}</p>
                 {
-                    '!adrs?.selected' &&
+                    !adrs?.selected &&
                     <button onClick={() => handleDeleteAddress(_id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>{dLoading ? 'Removing..' : 'Remove'}</button>
                 }
             </span>

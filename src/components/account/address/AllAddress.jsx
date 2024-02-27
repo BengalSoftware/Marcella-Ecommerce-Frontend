@@ -8,7 +8,7 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 const AllAddress = () => {
     const [allAddress, setAllAddress] = useState(null);
     const { user, } = useContext(AuthContext);
-    const { addressSuccess } = useContext(StateContext);
+    const { addressSuccess, setAddressSuccess } = useContext(StateContext);
     const [selectSuccess, setSelectSuccess] = useState(false);
 
     useEffect(() => {
@@ -27,6 +27,7 @@ const AllAddress = () => {
 
         if (addressSuccess || selectSuccess) {
             fetchData();
+            setAddressSuccess(false)
         }
     }, [user?.data?.user?.email, addressSuccess, selectSuccess])
 

@@ -33,8 +33,15 @@ const getAllAddressByEmail = async (email) => {
 
 
 // update single address
-const updateSingleAddress = async (addressId) => {
-    const res = await fetch(`${baseUrl}/address/${addressId}`)
+const updateSingleAddress = async (addressId, data) => {
+    const res = await fetch(`${baseUrl}/address/${addressId}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
