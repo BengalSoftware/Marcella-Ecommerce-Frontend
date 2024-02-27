@@ -11,7 +11,7 @@ const SellerLayout = ({ children }) => {
             <div className='container mx-auto py-5'>
                 <PrivateRoute />
                 <div className='mx-4 md:mx-0'>
-                    <div className='grid grid-cols-5 gap-5'>
+                    <div className='md:grid grid-cols-5 gap-5'>
                         <div className='md:col-span-1'>
                             <SellerSidebar />
                         </div>

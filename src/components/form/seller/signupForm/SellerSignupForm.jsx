@@ -58,7 +58,7 @@ const SellerSignupForm = () => {
 
     return (
         <div className='bg-white p-10 rounded-3xl'>
-            <h1 className='text-center font-medium text-3xl'>Create an Account</h1>
+            <h1 className='text-center font-medium text-2xl md:text-3xl mb-5 md:mb-0'>Create an Account</h1>
             <p className='text-center text-gray-400 text-sm lg:text-base mt-2'>Welcome! Millions of Marcella users are waiting to buy your product.</p>
             <form onSubmit={handleSellerSignup}>
                 <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
