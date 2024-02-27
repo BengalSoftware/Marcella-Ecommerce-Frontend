@@ -1,20 +1,28 @@
 'use client'
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { getSingelUser } from '@/lib/accountApi/accountApi';
+import { getActiveSingleAddress } from '@/lib/addressApi/addressApi';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
 
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
+    const [activeAddress, setActiveAddress] = useState(null);
     const { user } = useContext(AuthContext);
+
+    const { shippingName, address } = activeAddress || {}
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await getSingelUser(user?.data?.user?.email);
-                if (res) {
-                    setUserData(res)
+                if (user?.data?.user?.email) {
+                    const [userResponse, addressResponse] = await Promise.all([
+                        getSingelUser(user?.data?.user?.email),
+                        getActiveSingleAddress(user?.data?.user?.email)
+                    ]);
+                    setUserData(userResponse);
+                    setActiveAddress(addressResponse?.data)
                 }
             } catch (error) {
                 console.error(error)
@@ -41,13 +49,13 @@ const UserProfile = () => {
             <div className='md:col-span-2 bg-white shadow p-4 rounded-lg grid grid-cols-1 md:grid-cols-2'>
                 <div className='md:border-r pr-5'>
                     <h1 className='uppercase text-dark text-sm'>DEFAULT DELIVERY ADDRESS</h1>
-                    <h1 className='text-sm mt-5'>Adnan Hossain</h1>
-                    <p className='text-sm'>Sha-87, Satarkul Road, Uttar Badda, Dhaka 1212 Dhaka - Dhaka - North - Badda</p>
+                    <h1 className='text-sm mt-5'>{shippingName}</h1>
+                    <p className='text-sm'>{address}</p>
                 </div>
                 <div className='md:pl-5 mt-5 md:mt-0'>
                     <h1 className='uppercase text-dark text-sm'>DEFAULT DELIVERY ADDRESS</h1>
-                    <h1 className='text-sm mt-5'>Adnan Hossain</h1>
-                    <p className='text-sm'>Sha-87, Satarkul Road, Uttar Badda, Dhaka 1212 Dhaka - Dhaka - North - Badda</p>
+                    <h1 className='text-sm mt-5'>{shippingName}</h1>
+                    <p className='text-sm'>{address}</p>
                 </div>
             </div>
         </div>

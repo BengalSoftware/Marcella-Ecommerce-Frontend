@@ -91,10 +91,22 @@ const activeSingleAddress = async (userId, id) => {
 };
 
 
+// get active single address 
+const getActiveSingleAddress = async (email) => {
+    const res = await fetch(`${baseUrl}/address/active/${email}`)
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
 export {
     createAddressMutation,
     getAllAddressByEmail,
     updateSingleAddress,
     deleteSingelAddress,
-    activeSingleAddress
+    activeSingleAddress,
+    getActiveSingleAddress
 }
