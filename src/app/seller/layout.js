@@ -1,4 +1,5 @@
 'use client'
+import ActivateModal from '@/components/seller/activateModal/ActivateModal';
 import SellerSidebar from '@/components/seller/sidebar/SellerSidebar';
 import PrivateRoute from '@/privateRoute/PrivateRoute';
 import React from 'react';
@@ -6,6 +7,7 @@ import React from 'react';
 const SellerLayout = ({ children }) => {
     return (
         <div className='bg-secondary min-h-[85vh]'>
+            <ActivateModal />
             <div className='container mx-auto py-5'>
                 <PrivateRoute />
                 <div className='mx-4 md:mx-0'>
