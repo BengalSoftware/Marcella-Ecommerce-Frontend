@@ -1,22 +1,49 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Drawer } from 'antd';
 import { RiShoppingBag3Line } from 'react-icons/ri';
 import { HiXMark } from "react-icons/hi2";
 import CheckoutCard from '../card/CheckoutCard';
 import Link from 'next/link';
+import { getCartDataByEmail } from '@/lib/addToCartApi/addToCartApi';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
 
 const CartDrawer = () => {
-    const [open, setOpen] = useState(false);
+    const [cartData, setCartData] = useState([]);
+    const { user } = useContext(AuthContext);
+    const { cartSuccess, setCartSuccess, cartDrawerOpen, setCartDrawerOpen } = useContext(StateContext);
+
+
     const showDrawer = () => {
-        setOpen(true);
+        setCartDrawerOpen(true);
     };
 
     const onClose = () => {
-        setOpen(false);
+        setCartDrawerOpen(false);
     };
 
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getCartDataByEmail(user?.data?.user?.email);
+                if (res) {
+                    setCartData(res?.data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+
+        if (cartSuccess) {
+            fetchData();
+            setCartSuccess(false)
+        }
+    }, [user?.data?.user?.email, cartSuccess])
+
+    console.log(cartData)
     return (
         <div>
             <button onClick={showDrawer} className='bg-white rounded-full p-1.5 relative'>
@@ -25,9 +52,8 @@ const CartDrawer = () => {
             </button>
             <Drawer
                 title="Shopping Cart"
-                width={500}
                 onClose={onClose}
-                open={open}
+                open={cartDrawerOpen}
                 closeIcon={null}
                 extra={
                     <button onClick={onClose} className='text-2xl border border-white hover:border-dark'>
@@ -42,14 +68,16 @@ const CartDrawer = () => {
                 }
             >
                 <div className='mx-4'>
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
-                    <CheckoutCard statusCard={true} />
+                    {
+                        cartData?.cartData?.products?.length > 0 ? cartData?.cartData?.products?.map(product =>
+
+                            <CheckoutCard
+                                key={product?._id}
+                                product={product}
+                                statusCard={true}
+                            />
+                        ) : <p className='text-center'>No cart data found</p>
+                    }
                 </div>
             </Drawer>
         </div>
