@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import avatar from '../../../../public/assets/avatar.png'
 import Link from 'next/link';
 import { BsPersonGear } from 'react-icons/bs';
@@ -9,17 +9,44 @@ import { IoHomeOutline } from 'react-icons/io5';
 import { TbLocationPin, TbShoppingCartCancel, TbTruckReturn } from "react-icons/tb";
 import { MdOutlineReviews } from "react-icons/md";
 import { usePathname } from 'next/navigation';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { getSingelUser } from '@/lib/accountApi/accountApi';
+import { StateContext } from '@/context/stateProvider/StateProvider';
 
 
 const AccountSidebar = () => {
     const pathname = usePathname();
-    
+    const [userData, setUserData] = useState(null);
+    const { user } = useContext(AuthContext);
+    const { profileSuccess, setProfileSuccess } = useContext(StateContext)
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getSingelUser(user?.data?.user?.email);
+                if (res) {
+                    setUserData(res?.data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData();
+
+        if (profileSuccess) {
+            fetchData();
+            setProfileSuccess(false)
+        }
+    }, [user?.data?.user?.email, profileSuccess])
+
     return (
         <div className='rounded-lg bg-white'>
             <div className='bg-primary rounded-t-lg flex flex-col items-center py-10'>
                 <Image className='rounded-full h-20 w-20' src={avatar} alt='seller' quality={100} placeholder='blur' />
-                <p className='text-white font-semibold capitalize mt-2'>Adnan Hossain</p>
-                <p className='text-gray-200 font-light text-sm mt-1'>adnan@gmail.com</p>
+                <p className='text-white font-semibold capitalize mt-2'>{userData?.name}</p>
+                <p className='text-gray-200 font-light text-sm mt-1'>{userData?.email}</p>
             </div>
 
             {/* menu bar  */}

@@ -7,6 +7,7 @@ const StateProvider = ({ children }) => {
     const [sellerPSuccess, setSellerPSuccess] = useState(false);
     const [addressSuccess, setAddressSuccess] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [profileSuccess, setProfileSuccess] = useState(false)
 
 
     const stateInfo = {
@@ -15,7 +16,9 @@ const StateProvider = ({ children }) => {
         addressSuccess,
         setAddressSuccess,
         modalOpen,
-        setModalOpen
+        setModalOpen,
+        profileSuccess,
+        setProfileSuccess
     }
 
     return (

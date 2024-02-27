@@ -33,5 +33,6 @@ const updateUserMutation = async (email, data) => {
 };
 
 export {
-    getSingelUser
+    getSingelUser,
+    updateUserMutation
 }
