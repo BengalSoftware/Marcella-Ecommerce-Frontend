@@ -1,9 +1,11 @@
 'use client'
 import AddressForm from '@/components/form/account/AddressForm';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
+import { getSingelUser } from '@/lib/accountApi/accountApi';
 import { activeSingleAddress, deleteSingelAddress } from '@/lib/addressApi/addressApi';
 import { Modal } from 'antd';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
@@ -12,11 +14,28 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
     const [dLoading, setDLoading] = useState(false)
     const { setAddressSuccess } = useContext(StateContext);
     const { _id, shippingName, selected, shippingPhone, address } = adrs || {};
+    const [userData, setUserData] = useState(null);
+    const { user } = useContext(AuthContext);
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getSingelUser(user?.data?.user?.email);
+                if (res) {
+                    setUserData(res)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData();
+    }, [user?.data?.user?.email])
 
     const handleActiveAddress = async (id) => {
         try {
-            await activeSingleAddress(email, { id });
+            await activeSingleAddress(userData?.data?._id, { id });
             setSelectSuccess(!selectSuccess);
         } catch (error) {
             console.error(error)
@@ -42,6 +61,9 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
         setModalOpen(true);
         setEditAddress(adrs)
     }
+
+
+    console.log(userData?.data?._id)
     return (
         <div className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${'adrs?.selected' && 'border-green-600'}`}>
             <div className='flex justify-between items-center'>
