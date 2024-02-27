@@ -1,11 +1,18 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { deleteCardDataByEmailId } from '@/lib/addToCartApi/addToCartApi';
+import DeleteLoader from '@/utility/deleteLoader/DeleteLoader';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 
 const CheckoutCard = ({ statusCard, product }) => {
     const [productQty, setProductQty] = useState(1);
+    const [deleteLoading, setDeleteLoading] = useState(false)
+    const { user } = useContext(AuthContext)
+    const { setCartSuccess } = useContext(StateContext)
     const { _id, images, name, altTag } = product?.product || {};
 
 
@@ -20,7 +27,21 @@ const CheckoutCard = ({ statusCard, product }) => {
         setProductQty(newQty);
     }
 
-    console.log(product)
+
+    const handleDeleteProduct = async (cartId) => {
+        setDeleteLoading(true);
+        try {
+            const res = await deleteCardDataByEmailId(user?.data?.user?.email, { cartId });
+            if (res) {
+                setCartSuccess(true);
+                toast.success('Cart delete successfull')
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setDeleteLoading(false);
+        }
+    };
 
     return (
         <div className={`border rounded-md grid grid-cols-6 gap-4 items-center p-2 my-4 ${statusCard ? 'lg:grid-cols-6' : 'lg:grid-cols-10'}`}>
@@ -36,7 +57,11 @@ const CheckoutCard = ({ statusCard, product }) => {
                 <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-2 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}><FiPlus /></button>
             </div>
             <div className={`col-span-3 text-end ${statusCard ? 'lg:col-span-3' : 'lg:col-span-1'}`}>
-                <button className='text-2xl'><MdDelete /></button>
+                <button onClick={() => handleDeleteProduct(_id)} className='text-xl'>
+                    {
+                        deleteLoading ? <DeleteLoader /> : <MdDelete />
+                    }
+                </button>
             </div>
         </div>
     );

@@ -27,9 +27,11 @@ const CartDrawer = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await getCartDataByEmail(user?.data?.user?.email);
-                if (res) {
-                    setCartData(res?.data)
+                if (user?.data?.user?.email) {
+                    const res = await getCartDataByEmail(user?.data?.user?.email);
+                    if (res) {
+                        setCartData(res?.data)
+                    }
                 }
             } catch (error) {
                 console.error(error)
