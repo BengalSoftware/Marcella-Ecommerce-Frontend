@@ -11,7 +11,7 @@ const CartPage = () => {
     const [cartData, setCartData] = useState([]);
     const [activeAddress, setActiveAddress] = useState(null)
     const { user } = useContext(AuthContext)
-    const { addressSuccess, setAddressSuccess, setCartDrawerOpen, selectSuccess } = useContext(StateContext);
+    const { addressSuccess, cartSuccess, setCartSuccess, setAddressSuccess, setModalOpen, selectSuccess } = useContext(StateContext);
 
 
     useEffect(() => {
@@ -31,10 +31,11 @@ const CartPage = () => {
         }
         fetchData()
 
-        if (addressSuccess || selectSuccess) {
+        if (addressSuccess || selectSuccess || cartSuccess) {
             fetchData()
             setAddressSuccess(false)
-            setCartDrawerOpen(false)
+            setModalOpen(false)
+            setCartSuccess(false)
         }
 
     }, [user?.data?.user?.email, addressSuccess, selectSuccess])

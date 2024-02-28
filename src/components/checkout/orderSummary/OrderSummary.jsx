@@ -1,29 +1,44 @@
 'use client'
-import React, { useState } from 'react';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { placeSingleOrderByEmail } from '@/lib/addToCartApi/addToCartApi';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const OrderSummary = ({ cartData }) => {
     const [payment, setPayment] = useState('');
-    const { subtotal, total, shippingCharge } = cartData || {};
+    const { subtotal, total, shippingCharge, discountAmount } = cartData || {};
+    const { user } = useContext(AuthContext);
+    const { setCartSuccess } = useContext(StateContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlePayment = async () => {
         if (!payment) {
             toast.error('Please Select Payment Method')
         }
-        // else if (payment === 'COD') {
-        //     const modifiedData = {
-        //         paymentType: payment,
-        //         totalAmount: total,
-        //         shippingCharge: shippingCharge,
-        //         status: 'pending',
-        //         discountAmount: discountAmount,
-        //     }
-        //     if (modifiedData) {
-        //         if (response) {
-        //             toast.success('Order Successfull')
-        //         }
-        //     }
-        // }
+        else if (payment === 'COD') {
+            const modifiedData = {
+                paymentType: payment,
+                totalAmount: total,
+                shippingCharge: shippingCharge,
+                status: 'pending',
+                discountAmount: discountAmount,
+            }
+            try {
+                setIsLoading(true)
+                if (modifiedData && user?.data?.user?.email) {
+                    const response = await placeSingleOrderByEmail(user?.data?.user?.email, modifiedData)
+                    if (response) {
+                        toast.success('Order Successfull')
+                        setCartSuccess(true)
+                    }
+                }
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setIsLoading(false)
+            }
+        }
     }
 
     return (
@@ -64,7 +79,7 @@ const OrderSummary = ({ cartData }) => {
                 <input onChange={(e) => setPayment(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
             </div>
             <div className='mt-4 flex items-center justify-center'>
-                <button onClick={handlePayment} className='bg-primary w-full py-2 text-white rounded-md hover:bg-dark'>Place Order</button>
+                <button onClick={handlePayment} className='bg-primary w-full py-2 text-white rounded-md hover:bg-dark'>{isLoading ? 'Loading..' : 'Place Order'}</button>
             </div>
         </div>
     );

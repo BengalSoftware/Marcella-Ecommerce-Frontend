@@ -52,8 +52,29 @@ const deleteCardDataByEmailId = async (email, cartId) => {
     return res.json();
 };
 
+
+// add single order
+const placeSingleOrderByEmail = async (email, data) => {
+    const res = await fetch(`${baseUrl}/order/${email}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
 export {
     getCartDataByEmail,
     addToCartDataByEmail,
-    deleteCardDataByEmailId
+    deleteCardDataByEmailId,
+    placeSingleOrderByEmail
 }
