@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-const OrderProgressBar = () => {
-    const status = 'processing';
+const OrderProgressBar = ({status}) => {
+    
     return (
         <div className='mt-5'>
             <div className='relative w-4/5 mx-auto'>

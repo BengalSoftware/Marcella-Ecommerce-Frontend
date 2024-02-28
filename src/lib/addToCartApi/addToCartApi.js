@@ -72,9 +72,22 @@ const placeSingleOrderByEmail = async (email, data) => {
     return res.json();
 };
 
+
+// get all order by user email
+const getAllOrderByUserEmail = async (email) => {
+    const res = await fetch(`${baseUrl}/order/user/${email}`)
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
 export {
     getCartDataByEmail,
     addToCartDataByEmail,
     deleteCardDataByEmailId,
-    placeSingleOrderByEmail
+    placeSingleOrderByEmail,
+    getAllOrderByUserEmail
 }
