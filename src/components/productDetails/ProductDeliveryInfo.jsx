@@ -1,12 +1,39 @@
+'use client'
+import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegClock } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
 import { GrDeliver } from "react-icons/gr";
 import { IoWarningOutline } from "react-icons/io5";
 
-const ProductDeliveryInfo = () => {
+const ProductDeliveryInfo = ({ product }) => {
+    const [sellerInfo, setSellerInfo] = useState(null);
+    const { sellerId } = product || {};
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (sellerId) {
+                    const res = await getSingleSellerById(sellerId)
+                    if (res) {
+                        setSellerInfo(res)
+                    }
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [sellerId])
+
+
+    const handleVisitStore = () => {
+        localStorage.setItem('sci', JSON.stringify(sellerId))
+    }
+
     return (
         <div>
             <h1 className='text-dark text-xl'>Delivery Info</h1>
@@ -60,7 +87,9 @@ const ProductDeliveryInfo = () => {
                     </div>
                 </div>
                 <div className='text-center mt-2'>
-                    <Link href='/shop/bengal-shop' className='text-primary'>Visit Store</Link>
+                    {
+                        sellerInfo ? <Link onClick={handleVisitStore} href={`/shop/${sellerInfo?.data?.slug}`} className='text-primary'>Visit Store</Link> : null
+                    }
                 </div>
             </div>
         </div>

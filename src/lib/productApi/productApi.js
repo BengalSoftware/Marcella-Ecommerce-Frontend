@@ -2,10 +2,7 @@ import { baseUrl, token } from "../api/baseUrl";
 
 // get all product 
 const getAllProduct = async (queryUrl) => {
-    const res = await fetch(`${baseUrl}/product/${queryUrl}`,
-        {
-            cache: 'force-cache'
-        })
+    const res = await fetch(`${baseUrl}/product/${queryUrl}`)
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')

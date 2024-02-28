@@ -51,6 +51,8 @@ const ProductTable = () => {
     }, [seller?.data?.user?.email]);
 
 
+    console.log(products)
+
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
             <h1 className='p-4'>All Products</h1>

@@ -12,7 +12,21 @@ const getSingleSeller = async (email) => {
     return res.json();
 };
 
+// get single seller by seller id 
+const getSingleSellerById = async (id) => {
+    const res = await fetch(`${baseUrl}/auth/client-seller/${id}`, {
+        method: 'POST',
+    })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
 
 export {
-    getSingleSeller
+    getSingleSeller,
+    getSingleSellerById
 }
