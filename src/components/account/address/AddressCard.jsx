@@ -65,7 +65,7 @@ const AddressCard = ({ adrs, email, selectSuccess, setSelectSuccess }) => {
 
 
     return (
-        <div className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${'adrs?.selected' && 'border-green-600'}`}>
+        <div className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${adrs?.selected && 'border-green-600'}`}>
             <div className='flex justify-between items-center'>
                 <p className='text-sm font-[500]'>{shippingName}</p>
                 <div className='flex justify-between items-center'>

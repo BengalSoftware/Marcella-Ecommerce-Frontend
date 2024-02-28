@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
-const OrderSummary = () => {
+const OrderSummary = ({ cartData }) => {
     const [payment, setPayment] = useState('');
+    const { subtotal, total, shippingCharge } = cartData || {};
 
     const handlePayment = async () => {
         if (!payment) {
             toast.error('Please Select Payment Method')
-        } 
+        }
         // else if (payment === 'COD') {
         //     const modifiedData = {
         //         paymentType: payment,
@@ -31,16 +32,16 @@ const OrderSummary = () => {
             <div className='mt-10'>
                 <div className='flex items-center justify-between py-3 border-b'>
                     <p>Sub Total</p>
-                    <p><span>৳</span> 1200</p>
+                    <p><span>৳</span> {subtotal}</p>
                 </div>
                 <div className='flex items-center justify-between py-3 border-b'>
                     <p>Delivery Fee</p>
-                    <p><span>৳</span> 60</p>
+                    <p><span>৳</span> {shippingCharge}</p>
                 </div>
 
                 <div className='flex items-center justify-between py-3 border-b'>
                     <p>Total</p>
-                    <p><span>৳</span> 1260</p>
+                    <p><span>৳</span> {total}</p>
                 </div>
             </div>
             <div className='mt-4'>

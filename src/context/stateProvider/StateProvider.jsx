@@ -10,6 +10,7 @@ const StateProvider = ({ children }) => {
     const [profileSuccess, setProfileSuccess] = useState(false);
     const [cartSuccess, setCartSuccess] = useState(false);
     const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+    const [selectSuccess, setSelectSuccess] = useState(false);
 
 
     const stateInfo = {
@@ -24,7 +25,9 @@ const StateProvider = ({ children }) => {
         cartSuccess,
         setCartSuccess,
         cartDrawerOpen,
-        setCartDrawerOpen
+        setCartDrawerOpen,
+        selectSuccess,
+        setSelectSuccess
     }
 
     return (

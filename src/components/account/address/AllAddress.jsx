@@ -8,8 +8,8 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 const AllAddress = () => {
     const [allAddress, setAllAddress] = useState(null);
     const { user, } = useContext(AuthContext);
-    const { addressSuccess, setAddressSuccess } = useContext(StateContext);
-    const [selectSuccess, setSelectSuccess] = useState(false);
+    const { addressSuccess, setAddressSuccess, selectSuccess, setSelectSuccess } = useContext(StateContext);
+    
 
     useEffect(() => {
         const fetchData = async () => {

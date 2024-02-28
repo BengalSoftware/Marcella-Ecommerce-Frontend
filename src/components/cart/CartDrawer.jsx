@@ -45,7 +45,6 @@ const CartDrawer = () => {
         }
     }, [user?.data?.user?.email, cartSuccess])
 
-    console.log(cartData)
     return (
         <div>
             <button onClick={showDrawer} className='bg-white rounded-full p-1.5 relative'>

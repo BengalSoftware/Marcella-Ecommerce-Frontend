@@ -46,15 +46,15 @@ const CheckoutCard = ({ statusCard, product }) => {
     return (
         <div className={`border rounded-md grid grid-cols-6 gap-4 items-center p-2 my-4 ${statusCard ? 'lg:grid-cols-6' : 'lg:grid-cols-10'}`}>
             <div className={`col-span-2 lg:col-span-2`}>
-                <Image width={500} height={500} quality={100} className='h-20 w-20 rounded-md' src={images?.[0]} alt={altTag} />
+                <Image width={500} height={500} quality={100} className='h-12 w-12 rounded-md' src={images?.[0]} alt={altTag} />
             </div>
             <div className={`col-span-4 ${statusCard ? 'lg:col-span-4' : 'lg:col-span-5'}`}>
                 <p className='line-clamp-2 text-sm'>{name}</p>
             </div>
-            <div className={`col-span-3 flex items-center justify-between border rounded-md ${statusCard ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
-                <button onClick={handleDecrement} disabled={productQty <= 1} className={`text-sm p-2 border-r ${productQty <= 1 && 'cursor-not-allowed'}`}><FiMinus /></button>
+            <div className={`col-span-3 flex items-center justify-between border rounded-md w-fit ${statusCard ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
+                <button onClick={handleDecrement} disabled={productQty <= 1} className={`text-sm p-1 border-r ${productQty <= 1 && 'cursor-not-allowed'}`}><FiMinus /></button>
                 <p className='px-4'>{productQty}</p>
-                <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-2 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}><FiPlus /></button>
+                <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-1 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}><FiPlus /></button>
             </div>
             <div className={`col-span-3 text-end ${statusCard ? 'lg:col-span-3' : 'lg:col-span-1'}`}>
                 <button onClick={() => handleDeleteProduct(_id)} className='text-xl'>
