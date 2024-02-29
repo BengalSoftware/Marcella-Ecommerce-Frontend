@@ -69,7 +69,7 @@ const ProductTable = () => {
                 </thead>
                 <tbody>
                     {
-                        products?.result?.map((product, idx) =>
+                        products?.result?.data?.map((product, idx) =>
                             <tr key={product?._id}>
                                 <td className="border px-4 py-2 text-sm text-center">{idx + 1}</td>
                                 <td className="border px-4 py-2 text-sm text-center"><p className='line-clamp-1'>{product?.name}</p></td>

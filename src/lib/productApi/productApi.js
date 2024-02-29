@@ -76,10 +76,7 @@ const getRelatedProduct = async (slug) => {
 
 // get seller product 
 const getSellerProduct = async (id) => {
-    const res = await fetch(`${baseUrl}/product/seller-products/${id}`,
-        {
-            cache: 'force-cache'
-        })
+    const res = await fetch(`${baseUrl}/product/seller-products/${id}`)
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')

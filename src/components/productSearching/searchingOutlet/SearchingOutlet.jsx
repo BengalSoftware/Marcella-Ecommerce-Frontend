@@ -47,10 +47,10 @@ const SearchingOutlet = () => {
             {
                 (pathname.startsWith('/shop')) ? <>
                     {
-                        products?.result?.length > 0 ?
+                        products?.result?.data?.length > 0 ?
                             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-2'>
                                 {
-                                    products?.result?.map(product =>
+                                    products?.result?.data?.map(product =>
                                         <ProductCard
                                             key={product?._id}
                                             product={product}
