@@ -124,7 +124,7 @@ const addProductMutation = async (formData) => {
 const updateProductMutation = async (id, data) => {
     try {
         const res = await fetch(`${baseUrl}/product/${id}`, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Authorization': token
             },

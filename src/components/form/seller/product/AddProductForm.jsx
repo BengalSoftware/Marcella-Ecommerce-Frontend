@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ProductDescriptionForm from './ProductDescriptionForm';
 import UploadImage from './UploadImage';
-import { addProductMutation, getSingleProductDetails } from '@/lib/productApi/productApi';
+import { addProductMutation, getSingleProductDetails, updateProductMutation } from '@/lib/productApi/productApi';
 import CategoryForm from './CategoryForm';
 import { TagsInput } from 'react-tag-input-component';
 import BrandForm from './BrandForm';
@@ -62,9 +62,14 @@ const AddProductForm = ({ id }) => {
         if (productTags) formData.append("tags", JSON.stringify(productTags));
         if (images) formData.append('images', images?.[0])
 
-        const res = await addProductMutation(formData);
-        if (res) {
+        if (id) {
+            const res = await updateProductMutation(id, formData);
             setSellerPSuccess(true)
+        } else {
+            const res = await addProductMutation(formData);
+            if (res) {
+                setSellerPSuccess(true)
+            }
         }
 
     }
@@ -92,6 +97,7 @@ const AddProductForm = ({ id }) => {
         if (sellerPSuccess) {
             toast.success('Product Added Successfull');
             router.push('/seller/product');
+            setSellerPSuccess(false)
         }
     }, [sellerPSuccess])
 
@@ -130,7 +136,7 @@ const AddProductForm = ({ id }) => {
         };
         fetchData();
     }, [seller?.data?.user?.email]);
-
+    console.log(id)
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>
