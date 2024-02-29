@@ -88,7 +88,7 @@ const ProductDeliveryInfo = ({ product }) => {
                 </div>
                 <div className='text-center mt-2'>
                     {
-                        sellerInfo ? <Link onClick={handleVisitStore} href={`/shop/${sellerInfo?.data?.slug}`} className='text-primary'>Visit Store</Link> : null
+                        sellerInfo ? <Link onClick={handleVisitStore} href={`/shop/${sellerInfo?.data?.slug}`} className='text-primary text-xs uppercase hover:underline'>Visit Store</Link> : null
                     }
                 </div>
             </div>
