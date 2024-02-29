@@ -1,5 +1,6 @@
+'use client'
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import avatar from '../../../../public/assets/avatar.png'
 import Link from 'next/link';
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -8,14 +9,38 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsPersonGear } from "react-icons/bs";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { VscReport } from "react-icons/vsc";
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 
 const SellerSidebar = () => {
+    const [sellerInfo, setSellerInfo] = useState(null)
+    const { seller } = useContext(AuthContext);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (seller?.data?.user?.email) {
+                    const res = await getSingleSeller(seller?.data?.user?.email)
+                    if (res) {
+                        setSellerInfo(res)
+                    }
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData()
+    }, [seller?.data?.user?.email])
+
+    
     return (
         <div className='rounded-lg bg-white'>
             <div className='bg-primary rounded-t-lg flex flex-col items-center py-10'>
                 <Image className='rounded-full h-20 w-20' src={avatar} alt='seller' quality={100} placeholder='blur' />
-                <p className='text-white font-semibold capitalize mt-2'>Bengal Shop</p>
-                <p className='text-gray-200 font-light text-sm mt-1'>bengal@gmail.com</p>
+                <p className='text-white font-semibold capitalize mt-2'>{sellerInfo?.data?.name}</p>
+                <p className='text-gray-200 font-light text-sm mt-1'>{sellerInfo?.data?.email}</p>
             </div>
 
             {/* menu bar  */}
