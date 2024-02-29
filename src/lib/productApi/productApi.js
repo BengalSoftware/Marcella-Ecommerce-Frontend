@@ -1,8 +1,8 @@
 import { baseUrl, token } from "../api/baseUrl";
 
 // get all product 
-const getAllProduct = async (queryUrl) => {
-    const res = await fetch(`${baseUrl}/product/${queryUrl}`)
+const getAllProduct = async () => {
+    const res = await fetch(`${baseUrl}/product`)
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -11,6 +11,16 @@ const getAllProduct = async (queryUrl) => {
     return res.json();
 };
 
+// get all product by query
+const getAllProductByQuery = async (queryUrl) => {
+    const res = await fetch(`${baseUrl}/product/${queryUrl}`)
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
 
 // get product type 
 const getProductByProductType = async (productType) => {
@@ -137,6 +147,7 @@ const updateProductMutation = async (id, data) => {
 
 export {
     getAllProduct,
+    getAllProductByQuery,
     getProductByProductType,
     getSingleProduct,
     getRelatedProduct,

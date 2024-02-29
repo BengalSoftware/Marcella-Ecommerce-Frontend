@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import ProductCard from '@/components/card/ProductCard';
-import { getAllProduct, getSellerProduct } from '@/lib/productApi/productApi';
+import { getAllProductByQuery, getSellerProduct } from '@/lib/productApi/productApi';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import SearchHistory from '../searchHistory/SearchHistory';
 
@@ -26,7 +26,7 @@ const SearchingOutlet = () => {
                     const productsData = await getSellerProduct(sellerId);
                     setProducts(productsData);
                 } else {
-                    const productsData = await getAllProduct(`?${params.toString()}`);
+                    const productsData = await getAllProductByQuery(`?${params.toString()}`);
                     setProducts(productsData);
                 }
             } catch (error) {
