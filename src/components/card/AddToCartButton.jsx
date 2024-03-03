@@ -2,6 +2,7 @@
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { addToCartDataByEmail } from '@/lib/addToCartApi/addToCartApi';
+import { addWishlistProductByEmail } from '@/lib/wishlistApi/wishListApi';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FaRegHeart } from 'react-icons/fa';
@@ -34,9 +35,24 @@ const AddToCartButton = ({ product }) => {
         }
     }
 
+
+    const handleAddToWishlist = async () => {
+        const data = { product: product?._id }
+        try {
+            if (user?.data?.user?.email) {
+                const res = await addWishlistProductByEmail(user?.data?.user?.email, data);
+                if (res) {
+                    toast.success('Wishlist Added Successfull')
+                }
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <div className='absolute top-5 right-2 flex flex-col gap-y-3 opacity-0 group-hover:opacity-100'>
-            <button className='bg-primary p-2 rounded-full'> <FaRegHeart className='text-white md:text-lg' /></button>
+            <button onClick={handleAddToWishlist} className='bg-primary p-2 rounded-full'> <FaRegHeart className='text-white md:text-lg' /></button>
             <button onClick={handelAddToCart} className='bg-primary p-2 rounded-full'> <FiShoppingBag className='text-white md:text-lg' /></button>
         </div>
     );

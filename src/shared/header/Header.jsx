@@ -58,9 +58,16 @@ const Header = () => {
                         </div>
                         <div className='w-1/4'>
                             <div className='flex items-center justify-end gap-6'>
-                                <Link href='/wishlist' className='bg-white text-xl rounded-full p-1.5'>
-                                    <CiHeart />
-                                </Link>
+                                {
+                                    (user?.data?.user?.email || userLoginSuccess) ?
+                                        <Link href='/wishlist' className='bg-white text-xl rounded-full p-1.5'>
+                                            <CiHeart />
+                                        </Link> :
+                                        <Link href='/login' className='bg-white text-xl rounded-full p-1.5'>
+                                            <CiHeart />
+                                        </Link>
+                                }
+
                                 <span className='text-white border-x px-4 border-green-700 hidden lg:block'>
                                     <p>Cart</p>
                                     <p className='font-medium'>1800</p>
