@@ -1,6 +1,7 @@
 'use client'
 import WishListCard from '@/components/card/WishListCard';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getWishlistByUserEmail } from '@/lib/wishlistApi/wishListApi';
 import UserPrivateRoute from '@/privateRoute/UserPrivateRoute';
 import Link from 'next/link';
@@ -11,6 +12,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 const WishlistPage = () => {
     const [wishProducts, setWishProducts] = useState(null);
     const { user } = useContext(AuthContext);
+    const { wishlistSuccess, setWishlistSuccess } = useContext(StateContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,9 +26,13 @@ const WishlistPage = () => {
             }
         }
         fetchData()
-    }, [user?.data?.user?.email])
+        if (wishlistSuccess) {
+            fetchData();
+            setWishlistSuccess(false)
+        }
+    }, [user?.data?.user?.email, wishlistSuccess])
 
-   
+
 
     return (
         <div className='bg-secondary'>
@@ -41,17 +47,20 @@ const WishlistPage = () => {
 
                     <h1 className='text-dark font-medium text-3xl my-5'>My Wishlist</h1>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10'>
-                        { wishProducts?.length > 0 ?
-                            wishProducts?.map(product =>
-                                <WishListCard
-                                    key={product?._id}
-                                    product={product}
-                                />
-                            ) : 
-                            <p className='text-center'>No WIshlist Product Found</p>
-                        }
-                    </div>
+                    {
+                        wishProducts?.length > 0 ?
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10'>
+                                {
+                                    wishProducts?.map(product =>
+                                        <WishListCard
+                                            key={product?._id}
+                                            product={product}
+                                        />
+                                    )
+                                }
+                            </div> :
+                            <p className='text-center border'>No WIshlist Product Found</p>
+                    }
                 </div>
             </div>
         </div>

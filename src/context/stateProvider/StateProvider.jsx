@@ -11,6 +11,7 @@ const StateProvider = ({ children }) => {
     const [cartSuccess, setCartSuccess] = useState(false);
     const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
     const [selectSuccess, setSelectSuccess] = useState(false);
+    const [wishlistSuccess, setWishlistSuccess] = useState(false)
 
 
     const stateInfo = {
@@ -27,7 +28,9 @@ const StateProvider = ({ children }) => {
         cartDrawerOpen,
         setCartDrawerOpen,
         selectSuccess,
-        setSelectSuccess
+        setSelectSuccess,
+        wishlistSuccess,
+        setWishlistSuccess
     }
 
     return (

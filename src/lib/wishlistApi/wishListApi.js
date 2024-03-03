@@ -39,7 +39,33 @@ const getWishlistByUserEmail = async (email) => {
     }
 };
 
+
+
+// delete wishlist product by email 
+const deleteWishlistProductByEmail = async (email, data) => {
+    try {
+        const res = await fetch(`${baseUrl}/wishlist/${email}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
+    }
+};
+
 export {
     addWishlistProductByEmail,
-    getWishlistByUserEmail
+    getWishlistByUserEmail,
+    deleteWishlistProductByEmail
 }
