@@ -1,15 +1,20 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MdDiscount } from "react-icons/md";
 import Rating from '../rating/Rating';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import toast from 'react-hot-toast';
 import WishlistButtonAndShare from './WishlistButtonAndShare';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { addToCartDataByEmail } from '@/lib/addToCartApi/addToCartApi';
 
 
 const ProductDescription = ({ product }) => {
     const [productQty, setProductQty] = useState(1);
-    console.log(product)
+    const { user } = useContext(AuthContext);
+    const { setCartSuccess, setCartDrawerOpen } = useContext(StateContext);
+    const [cartLoading, setCartLoading] = useState(false)
     const { name, categories, numReviews, totalRating, quantity, price, offerPrice, color, size } = product || {};
 
     const handleQtyIncrement = () => {
@@ -27,6 +32,35 @@ const ProductDescription = ({ product }) => {
             toast.error('Select a minimum of one product');
         } else {
             setProductQty(newQty);
+        }
+    }
+
+
+
+    // handle add to cart 
+    const handelAddToCart = async () => {
+        let data = {};
+        if (user?.data?.user?.email) {
+            data = {
+                product: product?._id,
+                sellerId: product?.sellerId,
+                offerPrice: product?.offerPrice,
+            };
+        } else {
+            toast.error('Please Signin Your Account')
+        }
+        try {
+            setCartLoading(true)
+            const res = await addToCartDataByEmail(user?.data?.user?.email, data);
+            if (res) {
+                toast.success('Cart Added Successfull')
+                setCartSuccess(true)
+                setCartDrawerOpen(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setCartLoading(false)
         }
     }
 
@@ -87,7 +121,7 @@ const ProductDescription = ({ product }) => {
             </div>
 
             <div className='flex items-center gap-x-20 mt-4'>
-                <button className='bg-primary text-white px-10 lg:px-16 py-2 lg:py-3 rounded-md hover:bg-dark ease-in-out duration-500'>Add to Cart</button>
+                <button onClick={handelAddToCart} className='bg-primary text-white px-10 lg:px-16 py-2 lg:py-3 rounded-md hover:bg-dark ease-in-out duration-500'>{cartLoading ? 'Loading..' : 'Add to Cart'}</button>
                 <p className='text-sm font-light'>Stock: {quantity}</p>
             </div>
         </div>
