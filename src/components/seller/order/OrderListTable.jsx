@@ -1,10 +1,30 @@
+'use client'
+import { getAllOrderByQuery } from '@/lib/orderApi/orderApi';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSolidPencil } from 'react-icons/bi';
 import { IoEye } from 'react-icons/io5';
 import { MdDelete } from 'react-icons/md';
 
 const OrderListTable = () => {
+    const [allOrders, setAllOrders] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getAllOrderByQuery();
+                setAllOrders(data?.data)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData();
+    }, [])
+
+    const filterOrder = allOrders?.map(order => order?.products).map(product => console.log(product?.[0]?.sellerId));
+    // console.log(filterOrder)
+
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
             <h1 className='p-4'>All Orders</h1>

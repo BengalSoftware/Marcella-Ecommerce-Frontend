@@ -16,6 +16,7 @@ const AddToCartButton = ({ product }) => {
         if (user?.data?.user?.email) {
             data = {
                 product: product?._id,
+                sellerId: product?.sellerId,
                 offerPrice: product?.offerPrice,
             };
         } else {
