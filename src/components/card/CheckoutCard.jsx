@@ -1,7 +1,7 @@
 'use client'
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
-import { deleteCardDataByEmailId } from '@/lib/addToCartApi/addToCartApi';
+import { addToCartDataByEmail, deleteCardDataByEmailId } from '@/lib/addToCartApi/addToCartApi';
 import DeleteLoader from '@/utility/deleteLoader/DeleteLoader';
 import Image from 'next/image';
 import React, { useContext, useState } from 'react';
@@ -9,22 +9,63 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 
 const CheckoutCard = ({ statusCard, product }) => {
-    const [productQty, setProductQty] = useState(1);
-    const [deleteLoading, setDeleteLoading] = useState(false)
+    const [productQty, setProductQty] = useState(product?.quantity);
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [incrementLoading, setIncrementLoading] = useState(false)
+    const [decrementLoading, setDecrementLoading] = useState(false)
     const { user } = useContext(AuthContext)
     const { setCartSuccess } = useContext(StateContext)
     const { _id, images, name, altTag } = product?.product || {};
 
 
-    const handleIncrement = () => {
+    const handleIncrement = async () => {
         const newQty = productQty + 1;
         setProductQty(newQty);
+        let data = {};
+        if (user?.data?.user?.email) {
+            data = {
+                product: _id,
+            };
+        } else {
+            toast.error('Please Signin Your Account')
+        }
+        try {
+            setIncrementLoading(true)
+            const res = await addToCartDataByEmail(user?.data?.user?.email, data);
+            if (res) {
+                setCartSuccess(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIncrementLoading(false)
+        }
     }
 
 
-    const handleDecrement = () => {
+    const handleDecrement = async () => {
         const newQty = productQty - 1;
         setProductQty(newQty);
+        let data = {};
+        if (user?.data?.user?.email) {
+            data = {
+                product: _id,
+                minusQty: product?.quantity
+            };
+        } else {
+            toast.error('Please Signin Your Account')
+        }
+        try {
+            setDecrementLoading(true)
+            const res = await addToCartDataByEmail(user?.data?.user?.email, data);
+            if (res) {
+                setCartSuccess(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setDecrementLoading(false)
+        }
     }
 
 
@@ -53,9 +94,9 @@ const CheckoutCard = ({ statusCard, product }) => {
                 <p className='line-clamp-2 text-sm'>{name}</p>
             </div>
             <div className={`col-span-3 flex items-center justify-between border rounded-md w-fit ${statusCard ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
-                <button onClick={handleDecrement} disabled={productQty <= 1} className={`text-sm p-1 border-r ${productQty <= 1 && 'cursor-not-allowed'}`}><FiMinus /></button>
-                <p className='px-4'>{productQty}</p>
-                <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-1 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}><FiPlus /></button>
+                <button onClick={handleDecrement} disabled={productQty <= 1} className={`text-sm p-1 border-r ${productQty <= 1 && 'cursor-not-allowed'}`}>{decrementLoading ? <DeleteLoader /> : <FiMinus />}</button>
+                <p className='px-4'>{product?.quantity}</p>
+                <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-1 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}>{incrementLoading ? <DeleteLoader /> : <FiPlus />}</button>
             </div>
             <div className={`col-span-3 text-end ${statusCard ? 'lg:col-span-3' : 'lg:col-span-1'}`}>
                 <button onClick={() => handleDeleteProduct()} className='text-xl'>

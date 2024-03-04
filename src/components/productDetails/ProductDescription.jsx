@@ -45,6 +45,7 @@ const ProductDescription = ({ product }) => {
                 product: product?._id,
                 sellerId: product?.sellerId,
                 offerPrice: product?.offerPrice,
+                quantity: productQty
             };
         } else {
             toast.error('Please Signin Your Account')

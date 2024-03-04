@@ -10,7 +10,8 @@ import { FiShoppingBag } from 'react-icons/fi';
 
 const AddToCartButton = ({ product }) => {
     const { user } = useContext(AuthContext);
-    const { setCartSuccess, setCartDrawerOpen, setWishlistSuccess } = useContext(StateContext)
+    const { setCartSuccess, setCartDrawerOpen, setWishlistSuccess, productQty } = useContext(StateContext)
+    // const { setCartSuccess, productQty, setProductQty } = useContext(StateContext)
 
     const handelAddToCart = async () => {
         let data = {};
@@ -19,6 +20,7 @@ const AddToCartButton = ({ product }) => {
                 product: product?._id,
                 sellerId: product?.sellerId,
                 offerPrice: product?.offerPrice,
+                quantity: productQty
             };
         } else {
             toast.error('Please Signin Your Account')
