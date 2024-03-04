@@ -38,7 +38,7 @@ const WishlistPage = () => {
         <div className='bg-secondary'>
             <div className='container mx-auto py-5'>
                 <UserPrivateRoute />
-                <div className='mx-4 md:mx-0'>
+                <div className='mx-4 md:mx-0 min-h-screen'>
                     <div className='flex items-center gap-2'>
                         <MdHome className='text-primary' />
                         <MdKeyboardDoubleArrowRight className='text-gray-500' />
@@ -59,7 +59,7 @@ const WishlistPage = () => {
                                     )
                                 }
                             </div> :
-                            <p className='text-center border'>No WIshlist Product Found</p>
+                            <p className='text-center mt-20'>No WIshlist Product Found</p>
                     }
                 </div>
             </div>

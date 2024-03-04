@@ -10,7 +10,7 @@ import { FiShoppingBag } from 'react-icons/fi';
 
 const AddToCartButton = ({ product }) => {
     const { user } = useContext(AuthContext);
-    const { setCartSuccess, setCartDrawerOpen } = useContext(StateContext)
+    const { setCartSuccess, setCartDrawerOpen, setWishlistSuccess } = useContext(StateContext)
 
     const handelAddToCart = async () => {
         let data = {};
@@ -43,6 +43,7 @@ const AddToCartButton = ({ product }) => {
                 const res = await addWishlistProductByEmail(user?.data?.user?.email, data);
                 if (res) {
                     toast.success('Wishlist Added Successfull')
+                    setWishlistSuccess(true)
                 }
             }
         } catch (error) {

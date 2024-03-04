@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import Link from 'next/link';
@@ -8,10 +8,35 @@ import { FiUser } from "react-icons/fi";
 import MobileNav from '../mobileNav/MobileNav';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { StateContext } from '@/context/stateProvider/StateProvider';
+import { getWishlistByUserEmail } from '@/lib/wishlistApi/wishListApi';
+import { FaHeart } from 'react-icons/fa';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout } = useContext(AuthContext);
+    const [wishProducts, setWishProducts] = useState(null);
+    const { wishlistSuccess, setWishlistSuccess } = useContext(StateContext);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getWishlistByUserEmail(user?.data?.user?.email);
+                if (res) {
+                    setWishProducts(res)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+        if (wishlistSuccess) {
+            fetchData();
+            setWishlistSuccess(false)
+        }
+    }, [user?.data?.user?.email, wishlistSuccess])
+
+
     return (
         <div className='bg-g-primary'>
             <div className="container mx-auto py-4">
@@ -60,8 +85,9 @@ const Header = () => {
                             <div className='flex items-center justify-end gap-6'>
                                 {
                                     (user?.data?.user?.email || userLoginSuccess) ?
-                                        <Link href='/wishlist' className='bg-white text-xl rounded-full p-1.5'>
-                                            <CiHeart />
+                                        <Link href='/wishlist' className='bg-white text-xl rounded-full p-1.5 relative'>
+                                            {wishProducts?.length > 0 ? <FaHeart className='text-red-500' /> : <CiHeart />}
+                                            <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>{wishProducts?.length}</p>
                                         </Link> :
                                         <Link href='/login' className='bg-white text-xl rounded-full p-1.5'>
                                             <CiHeart />
