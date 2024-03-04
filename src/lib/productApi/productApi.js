@@ -144,6 +144,29 @@ const updateProductMutation = async (id, data) => {
 };
 
 
+//  product searchSuggestion
+const productSearchSuggestion = async (queryUrl) => {
+    try {
+        const res = await fetch(`${baseUrl}/product/searchSuggestion?search=${queryUrl}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            cache: 'force-cache'
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error('Error adding product:', error);
+        throw error;
+    }
+};
+
+
 
 export {
     getAllProduct,
@@ -154,5 +177,6 @@ export {
     addProductMutation,
     getSellerProduct,
     updateProductMutation,
-    getSingleProductDetails
+    getSingleProductDetails,
+    productSearchSuggestion
 }

@@ -11,9 +11,11 @@ import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getWishlistByUserEmail } from '@/lib/wishlistApi/wishListApi';
 import { FaHeart } from 'react-icons/fa';
+import MobileSearchbar from '../mobileSearchbar/MobileSearchbar';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
     const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout } = useContext(AuthContext);
     const [wishProducts, setWishProducts] = useState(null);
     const { wishlistSuccess, setWishlistSuccess } = useContext(StateContext);
@@ -104,12 +106,16 @@ const Header = () => {
                         <button onClick={() => setMobileNavOpen(!mobileNavOpen)} className='text-4xl text-white'>
                             <CgMenuGridO />
                         </button>
-                        <div className='flex items-center justify-center w-full'>
-                            <div className='bg-white w-full flex items-center rounded-full px-4'>
-                                <input className='w-full py-2 pr-3 outline-none rounded-full placeholder:text-sm' placeholder='Search for products..' type="text" name="" id="" />
-                                <IoIosSearch className='text-2xl' />
-                            </div>
-                        </div>
+                        {/* <div className='flex items-center justify-center w-full'>
+                                <div className='bg-white w-full flex items-center rounded-full px-4'>
+                                    <input className='w-full py-2 pr-3 outline-none rounded-full placeholder:text-sm' placeholder='Search for products..' type="text" name="" id="" />
+                                    <IoIosSearch className='text-2xl' />
+                                </div>
+                            </div> */}
+                        <MobileSearchbar
+                            openDrawer={openDrawer}
+                            setOpenDrawer={setOpenDrawer}
+                        />
                     </div>
                     <MobileNav
                         open={mobileNavOpen}
