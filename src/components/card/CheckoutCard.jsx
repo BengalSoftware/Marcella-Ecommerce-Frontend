@@ -14,7 +14,7 @@ const CheckoutCard = ({ statusCard, product }) => {
     const [incrementLoading, setIncrementLoading] = useState(false)
     const [decrementLoading, setDecrementLoading] = useState(false)
     const { user } = useContext(AuthContext)
-    const { setCartSuccess } = useContext(StateContext)
+    const { setCartSuccess, setCheckoutSuccess } = useContext(StateContext)
     const { _id, images, name, altTag } = product?.product || {};
 
 
@@ -34,6 +34,7 @@ const CheckoutCard = ({ statusCard, product }) => {
             const res = await addToCartDataByEmail(user?.data?.user?.email, data);
             if (res) {
                 setCartSuccess(true)
+                setCheckoutSuccess(true)
             }
         } catch (error) {
             console.error(error)
@@ -60,6 +61,7 @@ const CheckoutCard = ({ statusCard, product }) => {
             const res = await addToCartDataByEmail(user?.data?.user?.email, data);
             if (res) {
                 setCartSuccess(true)
+                setCheckoutSuccess(true)
             }
         } catch (error) {
             console.error(error)
@@ -76,6 +78,7 @@ const CheckoutCard = ({ statusCard, product }) => {
             const res = await deleteCardDataByEmailId(user?.data?.user?.email, data);
             if (res) {
                 setCartSuccess(true);
+                setCheckoutSuccess(true)
                 toast.success('Cart delete successfull')
             }
         } catch (error) {
