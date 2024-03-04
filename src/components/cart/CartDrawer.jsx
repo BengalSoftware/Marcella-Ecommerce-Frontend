@@ -44,13 +44,19 @@ const CartDrawer = () => {
             setCartSuccess(false)
         }
     }, [user?.data?.user?.email, cartSuccess])
-
+    console.log(cartData)
     return (
         <div>
-            <button onClick={showDrawer} className='bg-white rounded-full p-1.5 relative'>
-                <RiShoppingBag3Line className='text-xl font-light' />
-                <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>10</p>
-            </button>
+            <div className='flex items-center gap-6'>
+                <span className='text-white border-x px-4 border-green-700 hidden lg:block text-xs md:text-sm'>
+                    <p className='text-center'>Cart</p>
+                    <p className='font-medium text-center'>{cartData?.subtotal}</p>
+                </span>
+                <button onClick={showDrawer} className='bg-white rounded-full p-1.5 relative'>
+                    <RiShoppingBag3Line className='text-xl font-light' />
+                    <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>{cartData?.totalQuantity ? cartData?.totalQuantity : 0}</p>
+                </button>
+            </div>
             <Drawer
                 title="Shopping Cart"
                 onClose={onClose}

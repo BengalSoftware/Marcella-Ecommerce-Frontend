@@ -93,11 +93,6 @@ const Header = () => {
                                             <CiHeart />
                                         </Link>
                                 }
-
-                                <span className='text-white border-x px-4 border-green-700 hidden lg:block'>
-                                    <p>Cart</p>
-                                    <p className='font-medium'>1800</p>
-                                </span>
                                 <CartDrawer />
                             </div>
                         </div>

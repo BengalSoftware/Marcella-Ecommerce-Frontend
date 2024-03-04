@@ -34,22 +34,26 @@ const addToCartDataByEmail = async (email, data) => {
 
 
 // delete cart data
-const deleteCardDataByEmailId = async (email, cartId) => {
-    const res = await fetch(`${baseUrl}/cart/cartEdit/${email}`,
-        {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(cartId),
+const deleteCardDataByEmailId = async (email, data) => {
+    try {
+        const res = await fetch(`${baseUrl}/cart/cartEdit/${email}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
         }
-    )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 

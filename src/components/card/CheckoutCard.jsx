@@ -28,10 +28,11 @@ const CheckoutCard = ({ statusCard, product }) => {
     }
 
 
-    const handleDeleteProduct = async (cartId) => {
+    const handleDeleteProduct = async () => {
         setDeleteLoading(true);
+        const data = { cartId: product?._id }
         try {
-            const res = await deleteCardDataByEmailId(user?.data?.user?.email, { cartId });
+            const res = await deleteCardDataByEmailId(user?.data?.user?.email, data);
             if (res) {
                 setCartSuccess(true);
                 toast.success('Cart delete successfull')
@@ -57,7 +58,7 @@ const CheckoutCard = ({ statusCard, product }) => {
                 <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-1 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}><FiPlus /></button>
             </div>
             <div className={`col-span-3 text-end ${statusCard ? 'lg:col-span-3' : 'lg:col-span-1'}`}>
-                <button onClick={() => handleDeleteProduct(_id)} className='text-xl'>
+                <button onClick={() => handleDeleteProduct()} className='text-xl'>
                     {
                         deleteLoading ? <DeleteLoader /> : <MdDelete />
                     }
