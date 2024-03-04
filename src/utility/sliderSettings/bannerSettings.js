@@ -1,5 +1,5 @@
 export const banneSettings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,

@@ -23,8 +23,14 @@ const MobileSearchbar = ({ openDrawer, setOpenDrawer }) => {
 
     useEffect(() => {
         const searchMutation = async () => {
-            const data = await productSearchSuggestion(suggestSearch);
-            setSearchData(data?.tags)
+            try {
+                const data = await productSearchSuggestion(suggestSearch);
+                if (data) {
+                    setSearchData(data?.tags)
+                }
+            } catch (error) {
+                console.error(error)
+            }
 
         }
         searchMutation();
@@ -34,7 +40,7 @@ const MobileSearchbar = ({ openDrawer, setOpenDrawer }) => {
         }
     }, [suggestSearch])
 
-   
+
     return (
         <div className='w-full'>
             <button onClick={() => setOpenDrawer(true)} className='bg-white flex items-center justify-between w-full rounded-full gap-8 text-xs text-gray-400 font-medium py-2 px-4'>

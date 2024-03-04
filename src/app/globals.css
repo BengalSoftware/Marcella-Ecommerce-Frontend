@@ -46,16 +46,35 @@ button.slick-arrow.slick-prev::before {
 }
 
 /* and drawer  */
-:where(.css-dev-only-do-not-override-1b0bdye).ant-drawer .ant-drawer-body{
+:where(.css-dev-only-do-not-override-1b0bdye).ant-drawer .ant-drawer-body {
   padding-left: 0px;
   padding-right: 0px;
 }
 
 /* quill  */
-.ql-toolbar.ql-snow + .ql-container.ql-snow{
+.ql-toolbar.ql-snow+.ql-container.ql-snow {
   height: 10rem;
 }
 
 .seller-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.slick-dots {
+  margin-bottom: 40px;
+}
+
+.slick-dots li {
+  margin: 0px;
+}
+
+.slick-dots li button {
+  padding: 0px;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+}
+.slick-dots li.slick-active button:before{
+  color: white;
 }
