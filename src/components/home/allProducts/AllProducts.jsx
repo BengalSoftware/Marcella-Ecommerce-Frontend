@@ -20,7 +20,7 @@ const AllProducts = async () => {
                     )
                 }
             </div>
-            <div className='mt-10 flex items-center justify-center mb-10 lg:mb-0'>
+            <div className='mt-10 flex items-center justify-center mb-10'>
                 <Link href='/products' className='bg-g-primary rounded-md px-6 py-3 md:px-10 lg:px-12 xl:px-16 text-white hover:opacity-90'>Load More</Link>
             </div>
         </div>

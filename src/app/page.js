@@ -14,7 +14,7 @@ import FlashSaleLoader from "@/components/loader/FlashSaleLoader";
 export default function Home() {
   return (
     <div className="bg-secondary">
-      <div className="container mx-auto py-1 md:py-5">
+      <div className="container mx-auto py-1 md:py-2">
         <div className="mx-4 md:mx-0">
           <BannerCategories />
           <TopCategories />
