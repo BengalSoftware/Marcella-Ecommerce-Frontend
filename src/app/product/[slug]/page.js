@@ -27,7 +27,7 @@ const ProductDetailsPage = async ({ params }) => {
                         <ProductDeliveryInfo product={data?.result} />
                     </div>
                 </div>
-                <DetailsNavTab />
+                <DetailsNavTab product={data?.result} />
                 <RelatedProducts slug={slug} />
             </div>
         </div>

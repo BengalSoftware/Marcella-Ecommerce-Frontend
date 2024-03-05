@@ -44,7 +44,7 @@ const getAllReviewsByEmail = async (email) => {
 // add all reviwes by slug
 const getAllReviewsByProductId = async (slug) => {
     try {
-        const res = await fetch(`${baseUrl}/review/allByProductId//${slug}`)
+        const res = await fetch(`${baseUrl}/review/allByProductId/${slug}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')

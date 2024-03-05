@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ReviewRatingIndex from './reviews';
 
-const DetailsNavTab = () => {
+const DetailsNavTab = ({ product }) => {
     const [navValue, setNavValue] = useState('description');
     const handleNavChange = (value) => {
         setNavValue(value)
@@ -20,7 +20,7 @@ const DetailsNavTab = () => {
             {
                 navValue === 'reviews' &&
                 <div className='mt-5'>
-                    <ReviewRatingIndex />
+                    <ReviewRatingIndex product={product} />
                 </div>
             }
             {
