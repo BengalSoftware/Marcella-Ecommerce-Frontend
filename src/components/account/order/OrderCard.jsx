@@ -4,6 +4,7 @@ import OrderDetailsModal from './OrderDetailsModal';
 import OrderSingelCard from './OrderSingelCard';
 import { getAllOrderByUserEmail } from '@/lib/addToCartApi/addToCartApi';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
+import ReturnOrder from '../return/ReturnOrder';
 
 const OrderCard = () => {
     const [orders, setOrders] = useState(null);
@@ -71,7 +72,16 @@ const OrderCard = () => {
                             }
                             {
                                 order?.status === 'delivered' ?
-                                    <button className='bg-red-500 hover:bg-red-700 px-4 py-1 rounded-full text-white text-sm'>Return</button> : null
+                                    <div className='flex items-center gap-x-4'>
+                                        <p className='text-xs'>Delivered on {new Date(order?.updatedAt).toLocaleString()}</p>
+                                        <p className='text-xs'>{Math.floor((new Date().getTime() - new Date(order?.updatedAt).getTime()) / (1000 * 60 * 60 * 24))}</p>
+                                        {
+                                            (Math.floor((new Date().getTime() - new Date(order?.updatedAt).getTime()) / (1000 * 60 * 60 * 24)) <= 7) &&
+                                            <ReturnOrder
+                                                order={order}
+                                            />
+                                        }
+                                    </div> : null
                             }
                         </div>
                     </div>
