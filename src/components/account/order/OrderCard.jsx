@@ -5,6 +5,7 @@ import OrderSingelCard from './OrderSingelCard';
 import { getAllOrderByUserEmail } from '@/lib/addToCartApi/addToCartApi';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import ReturnOrder from '../return/ReturnOrder';
+import CancelOrder from '../cancellations/CancelOrder';
 
 const OrderCard = () => {
     const [orders, setOrders] = useState(null);
@@ -68,7 +69,7 @@ const OrderCard = () => {
                         <div className='flex items-center justify-end'>
                             {
                                 order?.status === 'pending' || order?.status === 'processing' ?
-                                    <button className='bg-red-500 hover:bg-red-700 px-4 py-1 rounded-full text-white text-sm'>Cancel</button> : null
+                                    <CancelOrder order={order} /> : null
                             }
                             {
                                 order?.status === 'delivered' ?
