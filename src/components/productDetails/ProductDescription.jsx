@@ -77,7 +77,7 @@ const ProductDescription = ({ product }) => {
                         )
                     }
                 </div>
-                <WishlistButtonAndShare />
+                <WishlistButtonAndShare product={product} />
             </div>
             <div className='flex items-end justify-between mt-5'>
                 <span>
