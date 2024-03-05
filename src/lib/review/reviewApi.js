@@ -23,6 +23,23 @@ const addSingleReview = async (email, data) => {
     }
 };
 
+
+// add all reviwes by email
+const getAllReviewsByEmail = async (email) => {
+    try {
+        const res = await fetch(`${baseUrl}/review/${email}`)
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
+    }
+};
+
 export {
-    addSingleReview
+    addSingleReview,
+    getAllReviewsByEmail
 }

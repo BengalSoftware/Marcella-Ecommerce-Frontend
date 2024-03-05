@@ -9,7 +9,8 @@ const WriteReview = ({ id }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
-    const { user } = useContext(AuthContext)
+    const [reviewLoading, setReviewLoading] = useState(false);
+    const { user } = useContext(AuthContext);
 
 
     const handleSubmitReview = async (e) => {
@@ -20,6 +21,7 @@ const WriteReview = ({ id }) => {
             product: id
         }
         try {
+            setReviewLoading(true)
             if (user?.data?.user?.email) {
                 const response = await addSingleReview(user?.data?.user?.email, data);
                 if (response) {
@@ -30,6 +32,9 @@ const WriteReview = ({ id }) => {
 
         } catch (error) {
             console.error(error)
+        }
+        finally {
+            setReviewLoading(false)
         }
         e.target.reset();
     }
@@ -64,7 +69,7 @@ const WriteReview = ({ id }) => {
 
                         <textarea onChange={(e) => setReview(e.target.value)} className='border placeholder:text-sm placeholder:italic border-gray-600 outline-none w-full p-4 my-4' name="" id="" cols="60" rows="3" placeholder='Write a Reivew'></textarea>
                         <div className='flex items-center justify-end'>
-                            <button className='bg-primary hover:bg-dark px-4 py-1 rounded-md text-white'>Review</button>
+                            <button className='bg-primary hover:bg-dark px-4 py-1 rounded-md text-white'>{reviewLoading ? 'Review..' : 'Review'}</button>
                         </div>
                     </form>
                     <h1 className='font-medium text-gray-800'>Tell us your feedback about the product</h1>
