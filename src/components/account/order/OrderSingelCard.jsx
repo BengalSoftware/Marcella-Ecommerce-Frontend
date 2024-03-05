@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
-import img from '../../../../public/assets/product.webp'
+import WriteReview from '../reviews/WriteReview';
 
 const OrderSingelCard = ({ product, customStatus }) => {
-    const { name, images, altTag } = product?.product || {};
-    console.log(product)
+    const { name, images, altTag, _id } = product?.product || {};
+
     return (
         <div className='border rounded-md grid grid-cols-6 lg:grid-cols-10 gap-4 items-center p-4 my-4'>
             <div className='col-span-2 lg:col-span-2'>
@@ -22,6 +22,9 @@ const OrderSingelCard = ({ product, customStatus }) => {
                         <p className='text-xs px-4 py-1 border w-fit border-dotted border-primary rounded-full mt-2'>{customStatus}</p> : null
                 }
             </div>
+            {
+                customStatus === 'delivered' ? <WriteReview id={_id} /> : null
+            }
         </div>
     );
 };
