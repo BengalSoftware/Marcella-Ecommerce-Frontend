@@ -2,6 +2,7 @@
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { addSingleReview } from '@/lib/review/reviewApi';
 import { Modal } from 'antd';
+import { usePathname } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -11,6 +12,7 @@ const WriteReview = ({ id }) => {
     const [review, setReview] = useState('');
     const [reviewLoading, setReviewLoading] = useState(false);
     const { user } = useContext(AuthContext);
+    const pathname = usePathname()
 
 
     const handleSubmitReview = async (e) => {
@@ -42,7 +44,9 @@ const WriteReview = ({ id }) => {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)} className='bg-primary hover:bg-dark px-4 py-1 rounded-full text-white text-[10px]'>Review</button>
+            {pathname === '/account/return' ? null :
+                < button onClick={() => setModalOpen(true)} className='bg-primary hover:bg-dark px-4 py-1 rounded-full text-white text-[10px]'>Review</button>
+            }
             <Modal
                 title="What would you rate this product?"
                 centered
@@ -75,7 +79,7 @@ const WriteReview = ({ id }) => {
                     <h1 className='font-medium text-gray-800'>Tell us your feedback about the product</h1>
                 </div>
             </Modal>
-        </div>
+        </div >
     );
 };
 
