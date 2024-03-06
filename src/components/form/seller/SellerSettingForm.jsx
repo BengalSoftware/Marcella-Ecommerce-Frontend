@@ -19,16 +19,16 @@ const SellerSettingForm = () => {
                     </div>
                     <div className='mb-4'>
                         <label className='text-dark text-sm'>Profile <span className='text-red-500'>*</span></label>
-                        <input type="file" required defaultValue={'bengal@gmail.com'} className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Browse' />
+                        <input type="file" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Browse' />
                     </div>
                     <div className='mb-4'>
                         <label className='text-dark text-sm'>Cover <span className='text-red-500'>*</span></label>
-                        <input type="file" required defaultValue={'bengal@gmail.com'} className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Browse' />
+                        <input type="file" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Browse' />
                     </div>
                 </div>
                 <div className='mb-4'>
                     <label className='text-dark text-sm'>Meta Title <span className='text-red-500'>*</span></label>
-                    <input type="text" required defaultValue={'Bengal Shop'} className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Meta Title' />
+                    <input type="text" required className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Meta Title' />
                 </div>
                 <div className='mb-4'>
                     <label className='text-dark text-sm'>Meta Description <span className='text-red-500'>*</span></label>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react';
 import avatar from '../../../../public/assets/avatar.png'
 import Link from 'next/link';
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineLayout, AiOutlineShoppingCart } from "react-icons/ai";
 import { CiMoneyBill } from "react-icons/ci";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsPersonGear } from "react-icons/bs";
@@ -50,6 +50,7 @@ const SellerSidebar = () => {
                 <li><Link href='/seller/order' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Orders</Link></li>
                 <li><Link href='/seller/report' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><VscReport /> Reports</Link></li>
                 <li><Link href='/seller/coupon' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
+                <li><Link href='/seller/layout-settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineLayout /> Layout</Link></li>
                 <li><Link href='/seller/settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
             </ul>
         </div>
