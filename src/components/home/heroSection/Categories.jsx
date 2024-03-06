@@ -1,4 +1,5 @@
 import { getAllCategory } from '@/lib/categories/categoriesApi';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowForward } from "react-icons/io";
@@ -12,9 +13,10 @@ const Categories = async () => {
                     data?.result?.map(category => category?.children?.length > 0 ?
                         <li
                             key={category?._id}
-                            className='group'>
+                            className='group flex items-center hover:bg-gray-100'>
+                            <Image height={100} width={100} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
+                            <Link href={`/products?category=${category?.slug}`} className='flex items-center justify-between w-full pl-2 py-1 text-xs xl:text-sm text-dark'> <span className='line-clamp-1'>{category?.title}</span> <IoIosArrowForward className='text-primary mr-2' /></Link>
 
-                            <Link href={`/products?category=${category?.slug}`} className='flex items-center justify-between pl-4 py-1 text-xs xl:text-sm text-dark hover:bg-gray-100'> <span className='line-clamp-1'>{category?.title}</span> <IoIosArrowForward className='text-primary mr-4' /></Link>
                             {/* sub menu  */}
                             <ul className='absolute left-full bg-white w-full top-0 hidden group-hover:block py-2 h-full z-50'>
                                 {
@@ -39,8 +41,9 @@ const Categories = async () => {
                                 }
 
                             </ul>
-                        </li> : <li key={category?._id}>
-                            <Link href={`/products?category=${category?.slug}`} className='flex items-center justify-between pl-4 py-1 text-xs xl:text-sm text-dark hover:bg-gray-100'> <span className='line-clamp-1'>{category?.title}</span></Link>
+                        </li> : <li key={category?._id} className='flex items-center hover:bg-gray-100'>
+                            <Image height={100} width={100} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
+                            <Link href={`/products?category=${category?.slug}`} className='flex items-center w-full justify-between pl-2 py-1 text-xs xl:text-sm text-dark'> <span className='line-clamp-1'>{category?.title}</span></Link>
                         </li>
                     )
                 }
