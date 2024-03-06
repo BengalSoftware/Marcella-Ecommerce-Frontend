@@ -2,10 +2,12 @@ import ShopLayout from '@/components/shop/ShopLayout';
 import React from 'react';
 
 
-const ShopPage = () => {
+const ShopPage = ({ params }) => {
+    const { slug } = params || {}
+   
     return (
         <div className='mt-5'>
-            <ShopLayout />
+            <ShopLayout slug={slug} />
         </div>
     );
 };

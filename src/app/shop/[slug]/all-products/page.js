@@ -5,7 +5,9 @@ import SearchingOutlet from '@/components/productSearching/searchingOutlet/Searc
 import { Pagination } from 'antd';
 import React from 'react';
 
-const AllProductPage = () => {
+const AllProductPage = ({ params }) => {
+    const { slug } = params || {};
+    
     return (
         <div className='mt-5'>
             <BreadCrumb />
@@ -17,7 +19,7 @@ const AllProductPage = () => {
                     <MobileFilterSidebar />
                 </div>
                 <div className='md:col-span-4'>
-                    <SearchingOutlet />
+                    <SearchingOutlet slug={slug} />
                     <div className='mt-5 flex items-center justify-end'>
                         <Pagination defaultCurrent={1} total={50} />
                     </div>

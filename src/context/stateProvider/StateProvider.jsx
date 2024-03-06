@@ -14,6 +14,7 @@ const StateProvider = ({ children }) => {
     const [wishlistSuccess, setWishlistSuccess] = useState(false);
     const [checkoutSuccess, setCheckoutSuccess] = useState(false);
     const [updateLayout, setUpdateLayout] = useState(false);
+    const [activeLayout, setActiveLayout] = useState(1)
 
 
     const stateInfo = {
@@ -36,7 +37,9 @@ const StateProvider = ({ children }) => {
         checkoutSuccess,
         setCheckoutSuccess,
         updateLayout,
-        setUpdateLayout
+        setUpdateLayout,
+        activeLayout,
+        setActiveLayout
     }
 
     return (

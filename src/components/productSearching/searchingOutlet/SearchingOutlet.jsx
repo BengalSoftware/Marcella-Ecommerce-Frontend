@@ -4,13 +4,15 @@ import ProductCard from '@/components/card/ProductCard';
 import { getAllProductByQuery, getSellerProduct } from '@/lib/productApi/productApi';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import SearchHistory from '../searchHistory/SearchHistory';
+import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
 
-const SearchingOutlet = () => {
+const SearchingOutlet = ({ slug }) => {
     const [products, setProducts] = useState([]);
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
     const [sellerId, setSellerId] = useState(null)
+    const [sellerInfo, setSellerInfo] = useState(null)
 
     useEffect(() => {
 
@@ -23,8 +25,14 @@ const SearchingOutlet = () => {
             try {
                 const params = new URLSearchParams(searchParams.toString());
                 if (pathname.startsWith('/shop')) {
-                    const productsData = await getSellerProduct(sellerId);
-                    setProducts(productsData);
+                    if (sellerInfo?.data?._id) {
+                        const productsData = await getSellerProduct(sellerInfo?.data?._id);
+                        setProducts(productsData);
+                    } else {
+                        const productsData = await getSellerProduct(sellerId);
+                        setProducts(productsData);
+                    }
+
                 } else {
                     const productsData = await getAllProductByQuery(`?${params.toString()}`);
                     setProducts(productsData);
@@ -35,8 +43,29 @@ const SearchingOutlet = () => {
         };
 
         loadData();
-    }, [searchParams, sellerId]);
+    }, [searchParams, sellerInfo?.data?._id, sellerId]);
 
+
+    useEffect(() => {
+        const fetLoaclData = () => {
+            const id = JSON.parse(localStorage.getItem('sci'))
+            setSellerId(id)
+        }
+        fetLoaclData()
+        const fetchData = async () => {
+            try {
+                if (sellerId || slug) {
+                    const res = await getSingleSellerById(sellerId || slug)
+                    if (res) {
+                        setSellerInfo(res)
+                    }
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [sellerId || slug])
 
 
     return (
