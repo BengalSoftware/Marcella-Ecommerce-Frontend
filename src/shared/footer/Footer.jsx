@@ -1,11 +1,12 @@
 import React from 'react';
-import { FaRegEnvelopeOpen } from "react-icons/fa";
+import { FaLocationArrow, FaRegEnvelopeOpen } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import appStore from '../../../public/assets/app.png';
 import playStore from '../../../public/assets/googleplay.png';
 import paymentsLogo from '../../../public/assets/payments.png'
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaLocationDot } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
@@ -22,13 +23,17 @@ const Footer = () => {
                             disseminates food products across the entire Kingdom market utilizing an extensive fleet of
                             well-equipped vehicles and a proficient sales team. </p>
 
+                        <span className="flex text-white gap-4 mt-2">
+                            <FaLocationDot className='mt-0.5 text-2xl' />
+                            <p className='text-sm pl-1.5'>House No: 298, Road No: 04, Baridhara DOHS, Dhaka Cantt. Dhaka-1206, Bangladesh.</p>
+                        </span>
                         <span className="flex text-white items-center gap-4 mt-2">
                             <FaRegEnvelopeOpen />
                             <p>example@gmail.com</p>
                         </span>
                         <span className="flex text-white items-center gap-4 mt-2">
                             <FaPhoneAlt />
-                            <p>01800-000000</p>
+                            <p>01894-961361</p>
                         </span>
                     </div>
 

@@ -14,7 +14,7 @@ const Categories = async () => {
                         <li
                             key={category?._id}
                             className='group flex items-center hover:bg-gray-100'>
-                            <Image height={100} width={100} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
+                            <Image quality={100} height={500} width={500} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
                             <Link href={`/products?category=${category?.slug}`} className='flex items-center justify-between w-full pl-2 py-1 text-xs xl:text-sm text-dark'> <span className='line-clamp-1'>{category?.title}</span> <IoIosArrowForward className='text-primary mr-2' /></Link>
 
                             {/* sub menu  */}
@@ -42,7 +42,7 @@ const Categories = async () => {
 
                             </ul>
                         </li> : <li key={category?._id} className='flex items-center hover:bg-gray-100'>
-                            <Image height={100} width={100} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
+                            <Image quality={100} height={500} width={500} src={category?.icon} className='h-3.5 w-3.5 ml-2' alt='icon' />
                             <Link href={`/products?category=${category?.slug}`} className='flex items-center w-full justify-between pl-2 py-1 text-xs xl:text-sm text-dark'> <span className='line-clamp-1'>{category?.title}</span></Link>
                         </li>
                     )
