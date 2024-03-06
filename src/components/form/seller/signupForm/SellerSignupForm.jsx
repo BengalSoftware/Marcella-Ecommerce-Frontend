@@ -1,6 +1,7 @@
 'use client'
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { sellerSignupMutation } from '@/lib/authApi/authApi';
+import { createAndUpdateLayoutMutation } from '@/lib/layoutApi/layoutApi';
 import PrivateRoute from '@/privateRoute/PrivateRoute';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -44,7 +45,25 @@ const SellerSignupForm = () => {
                 }
             }
         }
+
+
+        const handleUpdateLayout = async (id) => {
+            try {
+                const data = {
+                    name: "layout",
+                    email: emailPhone,
+                    selected: 1
+                }
+                if (emailPhone) {
+                    await createAndUpdateLayoutMutation(emailPhone, data);
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
         sellerMutation();
+        handleUpdateLayout()
     }
 
 
