@@ -15,9 +15,9 @@ const getSelectedLayoutByEmail = async (email) => {
 };
 
 // post and update layout
-const createAndUpdateLayoutMutation = async (data) => {
+const createAndUpdateLayoutMutation = async (email, data) => {
     try {
-        const res = await fetch(`${baseUrl}/report`,
+        const res = await fetch(`${baseUrl}/layout/${email}`,
             {
                 method: 'PUT',
                 headers: {

@@ -13,6 +13,7 @@ const StateProvider = ({ children }) => {
     const [selectSuccess, setSelectSuccess] = useState(false);
     const [wishlistSuccess, setWishlistSuccess] = useState(false);
     const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+    const [updateLayout, setUpdateLayout] = useState(false);
 
 
     const stateInfo = {
@@ -33,7 +34,9 @@ const StateProvider = ({ children }) => {
         wishlistSuccess,
         setWishlistSuccess,
         checkoutSuccess,
-        setCheckoutSuccess
+        setCheckoutSuccess,
+        updateLayout,
+        setUpdateLayout
     }
 
     return (
