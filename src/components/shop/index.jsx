@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../card/ProductCard';
+import img from '../../../public/assets/watch.webp'
 
 const SellerShopIndex = () => {
     return (
@@ -11,6 +12,7 @@ const SellerShopIndex = () => {
                     Array(10).fill().map((_, idx) =>
                         <ProductCard
                             key={idx}
+                            imgs={img}
                         />
                     )
                 }

@@ -6,6 +6,7 @@ import Layout1 from './shopLayout/Layout1';
 import Layout2 from './shopLayout/Layout2';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
+import Layout3 from './shopLayout/Layout3';
 
 
 const ShopLayout = ({ slug }) => {
@@ -76,6 +77,9 @@ const ShopLayout = ({ slug }) => {
                         return <Layout1 key={layout?.selected} />
                     } else if (layout?.selected === 2) {
                         return <Layout2 key={layout?.selected} />
+                    }
+                    else if (layout?.selected === 3) {
+                        return <Layout3 key={layout?.selected} />
                     }
                     return null;
                 })

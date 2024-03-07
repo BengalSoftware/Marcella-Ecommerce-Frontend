@@ -1,9 +1,8 @@
 import React from 'react';
-import banner1 from '../../../../public/assets/seller1.png'
-import banner2 from '../../../../public/assets/seller2.png'
+import banner1 from '../../../../public/assets/menu-3.jpg'
+import banner2 from '../../../../public/assets/menu-4.jpg'
 import product1 from '../../../../public/assets/fogg.webp'
 import product2 from '../../../../public/assets/product4.webp'
-import VendorShopCardWithBanner from '../VendorShopCardWithBanner';
 import SellerShopIndex from '..';
 import Image from 'next/image';
 import Slider from 'react-slick';
@@ -29,9 +28,9 @@ const Layout2 = () => {
             {
                 products?.map((product, idx) =>
                     <div className='my-4'>
-                        <div className='flex w-full items-center gap-x-4'>
-                            <Image className='h-36 rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
-                            <Image className='h-36 rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
+                        <div className='grid grid-cols-2 w-full items-center gap-x-4 mb-4'>
+                            <Image className='rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
+                            <Image className='rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
                         </div>
                         <Slider {...productSettings}>
                             {

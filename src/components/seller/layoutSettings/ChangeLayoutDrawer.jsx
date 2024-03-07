@@ -1,6 +1,7 @@
 'use client'
 import LayoutButton1 from '@/components/shop/layoutButton/LayoutButton1';
 import LayoutButton2 from '@/components/shop/layoutButton/LayoutButton2';
+import LayoutButton3 from '@/components/shop/layoutButton/LayoutButton3';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { createAndUpdateLayoutMutation } from '@/lib/layoutApi/layoutApi';
@@ -61,7 +62,7 @@ const ChangeLayoutDrawer = () => {
                     <LayoutButton2 activeLayout={activeLayout} />
                 </button>
                 <button onClick={() => handleUpdateLayout(3)} className={`${activeLayout === 3 ? 'bg-primary' : 'bg-dark'} text-white ease-in-out duration-500 p-2 rounded-md mb-5`}>
-                    <LayoutButton1 activeLayout={activeLayout} />
+                    <LayoutButton3 activeLayout={activeLayout} />
                 </button>
 
             </Drawer>
