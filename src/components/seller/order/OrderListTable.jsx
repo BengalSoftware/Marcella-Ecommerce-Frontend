@@ -33,8 +33,8 @@ const OrderListTable = () => {
     const allProducts = allOrders?.find(order => order?.products?.length > 0 ?
         order?.products?.find(product => product?.sellerId === sellerInfo?._id) : null
     );
-    
-    
+
+
 
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
@@ -69,12 +69,13 @@ const OrderListTable = () => {
                                 <td className="border p-2 text-xs text-center">
                                     <select required name="" className='block w-full border rounded-md p-2.5 outline-none text-dark text-xs'>
                                         <option value="pending">Pending</option>
-                                        <option value="processing">Processing</option>
-                                        <option value="shipped">Shipped</option>
                                         <option value="cancelled">Cancelled</option>
-                                        <option value="returned">Returned</option>
-                                        <option value="delivered">Delivered</option>
-                                        <option value="expired">Expired</option>
+                                        <option value="confirmed">Confirmed</option>
+                                        {/* <option value="shipped">Shipped</option> */}
+                                        {/* <option value="processing">Processing</option> */}
+                                        {/* <option value="returned">Returned</option> */}
+                                        {/* <option value="delivered">Delivered</option> */}
+                                        {/* <option value="expired">Expired</option> */}
                                     </select>
                                 </td>
                                 <td className="border p-2 text-xs text-center">

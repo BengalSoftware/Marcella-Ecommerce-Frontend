@@ -32,9 +32,9 @@ const ReportTableList = () => {
                                 <td className="border p-2 text-sm text-center">11/02/2024</td>
                                 <td className="border p-2 text-sm text-center">
                                     <select required name="" className='block w-full border rounded-md p-2.5 outline-none text-dark text-sm'>
-                                        <option value="">Pending</option>
-                                        <option value="">Confirmed</option>
-                                        <option value="">Delivery</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="confirmed">Confirmed</option>
                                     </select>
                                 </td>
                                 <td className="border p-2 text-sm text-center"><p className='line-clamp-1'>Valo na</p></td>
