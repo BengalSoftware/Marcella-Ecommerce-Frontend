@@ -1,5 +1,6 @@
 import AllProducts from "@/components/home/allProducts/AllProducts";
 import ComputingAndGaming from "@/components/home/computingAndGaming/ComputingAndGaming";
+import ExtraSubCategory from "@/components/home/extraSubCategory/ExtraSubCategory";
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
@@ -18,6 +19,7 @@ export default function Home() {
         <div className="mx-4 md:mx-0">
           <BannerCategories />
           <TopCategories />
+          <ExtraSubCategory />
           <AdsFestivalIndex />
           <TopBrands />
           <PopularProducts />
