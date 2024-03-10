@@ -5,7 +5,7 @@ import { IoEye } from 'react-icons/io5';
 import SellerOrderDetails from './SellerOrderDetails';
 import { getSingleOrderById } from '@/lib/orderApi/orderApi';
 
-const OrderViewModal = ({ id }) => {
+const OrderViewModal = ({ id, sellerInfo }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [singleOrder, setSingelOrder] = useState(null);
 
@@ -35,7 +35,9 @@ const OrderViewModal = ({ id }) => {
                 footer={false}
                 width={1200}
             >
-                <SellerOrderDetails singleOrder={singleOrder} />
+                <SellerOrderDetails
+                    sellerInfo={sellerInfo}
+                    singleOrder={singleOrder} />
             </Modal>
         </div>
     );

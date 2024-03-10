@@ -28,10 +28,9 @@ const OrderListTable = () => {
         fetchData();
     }, [seller?.data?.user?.email])
 
-    const allProducts = allOrders?.find(order => order?.products?.length > 0 ?
-        order?.products?.find(product => product?.sellerId === sellerInfo?._id) : null
+    const allProducts = allOrders?.filter(entry =>
+        entry.products.some(product => product.product.sellerId === sellerInfo?._id)
     );
-
 
 
     return (
@@ -53,32 +52,29 @@ const OrderListTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {allProducts?.products?.length > 0 ?
-                        allProducts?.products?.map((_, idx) =>
+                    {allProducts?.length > 0 ?
+                        allProducts?.map((product, idx) =>
                             <tr key={idx}>
                                 <td className="border p-2 text-xs text-center">{idx + 1}</td>
-                                <td className="border p-2 text-xs text-center"><p className='line-clamp-1' title={allProducts?.userName}>{allProducts?.userName}</p></td>
-                                <td className="border p-2 text-xs text-center">{allProducts?.orderId}</td>
-                                <td className="border p-2 text-xs text-center">{allProducts?.userPhone}</td>
-                                <td className="border p-2 text-xs text-center">{allProducts?.totalAmount}</td>
-                                <td className="border p-2 text-xs text-center">{allProducts?.paymentType}</td>
-                                <td className="border p-2 text-xs text-center">{new Date().toDateString(allProducts?.createdAt)}</td>
-                                <td className="border p-2 text-xs text-center">{new Date().toDateString(allProducts?.updatedAt)}</td>
+                                <td className="border p-2 text-xs text-center"><p className='line-clamp-1' title={product?.userName}>{product?.userName}</p></td>
+                                <td className="border p-2 text-xs text-center">{product?.orderId}</td>
+                                <td className="border p-2 text-xs text-center">{product?.userPhone}</td>
+                                <td className="border p-2 text-xs text-center">{product?.totalAmount}</td>
+                                <td className="border p-2 text-xs text-center">{product?.paymentType}</td>
+                                <td className="border p-2 text-xs text-center">{new Date().toDateString(product?.createdAt)}</td>
+                                <td className="border p-2 text-xs text-center">{new Date().toDateString(product?.updatedAt)}</td>
                                 <td className="border p-2 text-xs text-center">
                                     <select required name="" className='block w-full border rounded-md p-2.5 outline-none text-dark text-xs'>
                                         <option value="pending">Pending</option>
                                         <option value="cancelled">Cancelled</option>
                                         <option value="confirmed">Confirmed</option>
-                                        {/* <option value="shipped">Shipped</option> */}
-                                        {/* <option value="processing">Processing</option> */}
-                                        {/* <option value="returned">Returned</option> */}
-                                        {/* <option value="delivered">Delivered</option> */}
-                                        {/* <option value="expired">Expired</option> */}
                                     </select>
                                 </td>
                                 <td className="border p-2 text-xs text-center">
                                     <div className='flex items-center justify-center'>
-                                        <OrderViewModal id={allProducts?._id} />
+                                        <OrderViewModal
+                                            sellerInfo={sellerInfo}
+                                            id={product?._id} />
                                         <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
                                             <MdDelete />
                                         </button>
