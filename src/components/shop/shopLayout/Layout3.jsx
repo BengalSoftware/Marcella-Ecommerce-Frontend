@@ -1,8 +1,8 @@
 'use client'
 import { productSettings } from '@/utility/sliderSettings/productSettings';
 import React from 'react';
-import banner1 from '../../../../public/assets/menu-3.jpg'
-import banner2 from '../../../../public/assets/menu-4.jpg'
+import banner1 from '../../../../public/assets/Menu-3.jpg'
+import banner2 from '../../../../public/assets/Menu-4.jpg'
 import banner3 from '../../../../public/assets/seller2.png'
 import banner4 from '../../../../public/assets/category.jpg'
 import banner5 from '../../../../public/assets/ads2.webp'
