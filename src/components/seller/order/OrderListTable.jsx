@@ -75,9 +75,9 @@ const OrderListTable = () => {
                                         <OrderViewModal
                                             sellerInfo={sellerInfo}
                                             id={product?._id} />
-                                        <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
+                                        {/* <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
                                             <MdDelete />
-                                        </button>
+                                        </button> */}
                                     </div>
                                 </td>
                             </tr>

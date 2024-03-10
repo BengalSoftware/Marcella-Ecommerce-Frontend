@@ -2,10 +2,10 @@
 import { Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { IoEye } from 'react-icons/io5';
-import SellerOrderDetails from './SellerOrderDetails';
 import { getSingleOrderById } from '@/lib/orderApi/orderApi';
+import SellerOrderDetails from '../order/SellerOrderDetails';
 
-const OrderViewModal = ({ id, sellerInfo }) => {
+const ReportViewModal = ({ id, sellerInfo }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [singleOrder, setSingelOrder] = useState(null);
 
@@ -26,7 +26,7 @@ const OrderViewModal = ({ id, sellerInfo }) => {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)} className='bg-green-500 rounded hover:bg-green-600 text-white text-xl px-3 py-1'><IoEye /></button>
+            <button onClick={() => setModalOpen(true)} className='bg-green-500 rounded hover:bg-green-600 text-white text-xl py-1 px-3'><IoEye /></button>
             <Modal
                 title="Order Details"
                 centered
@@ -43,4 +43,4 @@ const OrderViewModal = ({ id, sellerInfo }) => {
     );
 };
 
-export default OrderViewModal;
+export default ReportViewModal;

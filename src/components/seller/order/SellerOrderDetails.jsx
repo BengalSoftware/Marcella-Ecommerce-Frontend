@@ -12,7 +12,7 @@ import { useReactToPrint } from 'react-to-print';
 import { FiPrinter } from 'react-icons/fi';
 
 const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
-    const { address, createdAt, orderId, products, shippingCharge, status, totalAmount, updatedAt } = singleOrder?.result || {};
+    const { address, createdAt, orderId, products, shippingCharge, status, paymentType, totalAmount, updatedAt } = singleOrder?.result || {};
     const printRef = useRef()
 
     const handlePrint = useReactToPrint({
@@ -20,7 +20,7 @@ const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
     });
 
     const filterProducts = products?.filter(product => product?.product?.sellerId === sellerInfo?._id)
-   
+    
 
     const subtotal = filterProducts?.reduce((acc, product) => acc + (product.quantity * product.offerPrice), 0);
 
@@ -44,11 +44,11 @@ const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
                             </div>
                             <div className='flex items-center gap-x-2 text-dark py-0.5 rounded-t-lg'>
                                 <BsCash />
-                                <h1>{shippingCharge}</h1>
+                                <h1>{paymentType}</h1>
                             </div>
-                            <div className='flex items-center gap-x-2 text-dark py-0.5 rounded-t-lg'>
-                                <IoLocationOutline />
-                                <h1>{'Badda'}</h1>
+                            <div className='flex gap-x-2 text-dark py-0.5 rounded-t-lg'>
+                                <IoLocationOutline className='mt-1' />
+                                <h1>{address?.address}</h1>
                             </div>
                         </div>
                     </div>
@@ -70,8 +70,8 @@ const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
                                 <FaPhoneAlt />
                                 <h1>{address?.shippingPhone}</h1>
                             </div>
-                            <div className='flex items-center gap-x-2 text-dark py-0.5 rounded-t-lg'>
-                                <IoLocationOutline />
+                            <div className='flex gap-x-2 text-dark py-0.5 rounded-t-lg'>
+                                <IoLocationOutline className='mt-1' />
                                 <h1>{address?.address}</h1>
                             </div>
                         </div>
