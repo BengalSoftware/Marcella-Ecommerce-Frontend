@@ -44,10 +44,15 @@ const orderReportMutation = async (data) => {
 
 
 
-// get all order report 
-const getAllOrderReport = async (data) => {
+// get single order by id 
+const getSingleOrderById = async (id) => {
     try {
-        const res = await fetch(`${baseUrl}/report`)
+        const res = await fetch(`${baseUrl}/order/${id}`,
+            {
+                headers: {
+                    'Authorization': token,
+                }
+            })
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -62,5 +67,5 @@ const getAllOrderReport = async (data) => {
 export {
     getAllOrderByQuery,
     orderReportMutation,
-    getAllOrderReport
+    getSingleOrderById
 }

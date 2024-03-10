@@ -2,11 +2,9 @@
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { getAllOrderByQuery } from '@/lib/orderApi/orderApi';
 import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
-import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
-import { BiSolidPencil } from 'react-icons/bi';
-import { IoEye } from 'react-icons/io5';
 import { MdDelete } from 'react-icons/md';
+import OrderViewModal from './OrderViewModal';
 
 const OrderListTable = () => {
     const [allOrders, setAllOrders] = useState(null);
@@ -80,8 +78,7 @@ const OrderListTable = () => {
                                 </td>
                                 <td className="border p-2 text-xs text-center">
                                     <div className='flex items-center justify-center'>
-                                        <Link href='/' className='rounded-l bg-blue-500 hover:bg-blue-600 text-white text-xl p-1'><BiSolidPencil /></Link>
-                                        <Link href='/' className='bg-green-500 hover:bg-green-600 text-white text-xl p-1'><IoEye /></Link>
+                                        <OrderViewModal id={allProducts?._id} />
                                         <button className='rounded-r bg-red-500 hover:bg-red-600 text-white text-xl p-1'>
                                             <MdDelete />
                                         </button>
