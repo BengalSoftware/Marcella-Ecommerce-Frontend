@@ -11,6 +11,8 @@ import { TfiAnnouncement } from "react-icons/tfi";
 import { VscReport } from "react-icons/vsc";
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
+import { AiOutlineDeliveredProcedure } from "react-icons/ai";
+import { LiaMoneyCheckSolid } from "react-icons/lia";
 
 const SellerSidebar = () => {
     const [sellerInfo, setSellerInfo] = useState(null)
@@ -34,7 +36,7 @@ const SellerSidebar = () => {
         fetchData()
     }, [seller?.data?.user?.email])
 
-    
+
     return (
         <div className='rounded-lg bg-white'>
             <div className='bg-primary rounded-t-lg flex flex-col items-center py-10'>
@@ -49,6 +51,8 @@ const SellerSidebar = () => {
                 <li><Link href='/seller/product' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineShoppingCart /> Products</Link></li>
                 <li><Link href='/seller/order' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Orders</Link></li>
                 <li><Link href='/seller/report' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><VscReport /> Reports</Link></li>
+                <li><Link href='/seller/report' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineDeliveredProcedure /> Order Overview</Link></li>
+                <li><Link href='/seller/transaction' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><LiaMoneyCheckSolid /> Transactions</Link></li>
                 <li><Link href='/seller/coupon' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
                 <li><Link href='/seller/layout-settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineLayout /> Layout</Link></li>
                 <li><Link href='/seller/settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
