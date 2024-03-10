@@ -16,6 +16,7 @@ const CancelOrder = ({ order }) => {
         const description = e.target.description.value;
         const data = {
             orderId: order?.orderId,
+            products: order?.products,
             email: user?.data?.user?.email,
             requestedFor: 'cancel',
             reason,
@@ -36,7 +37,7 @@ const CancelOrder = ({ order }) => {
         }
     }
 
-  
+
     return (
         <div>
             {order?.report ?
