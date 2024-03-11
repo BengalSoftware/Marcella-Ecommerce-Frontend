@@ -12,6 +12,7 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 import { getWishlistByUserEmail } from '@/lib/wishlistApi/wishListApi';
 import { FaHeart } from 'react-icons/fa';
 import MobileSearchbar from '../mobileSearchbar/MobileSearchbar';
+import SearchBar from './SearchBar';
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -78,10 +79,7 @@ const Header = () => {
                             <h1 className='text-3xl lg:text-5xl font-semibold text-white'>MARCELLA</h1>
                         </Link>
                         <div className='w-2/4 hidden lg:flex items-center justify-center'>
-                            <div className='bg-white w-full flex items-center rounded-full px-4'>
-                                <input className='w-full py-3 pr-3 outline-none rounded-full' placeholder='Search for products..' type="text" name="" id="" />
-                                <IoIosSearch className='text-2xl' />
-                            </div>
+                            <SearchBar />
                         </div>
                         <div className='w-1/4'>
                             <div className='flex items-center justify-end gap-6'>
