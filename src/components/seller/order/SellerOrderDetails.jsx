@@ -10,6 +10,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useReactToPrint } from 'react-to-print';
 import { FiPrinter } from 'react-icons/fi';
+import BarCodeInvoice from './BarCodeInvoice';
 
 const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
     const { address, createdAt, orderId, products, shippingCharge, status, paymentType, totalAmount, updatedAt } = singleOrder?.result || {};
@@ -20,7 +21,7 @@ const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
     });
 
     const filterProducts = products?.filter(product => product?.product?.sellerId === sellerInfo?._id)
-    
+
 
     const subtotal = filterProducts?.reduce((acc, product) => acc + (product.quantity * product.offerPrice), 0);
 
@@ -136,6 +137,10 @@ const SellerOrderDetails = ({ singleOrder, sellerInfo }) => {
                         </tr>
                     </tbody>
                 </table>
+                <BarCodeInvoice
+                    sellerInfo={sellerInfo}
+                    singleOrder={singleOrder}
+                />
             </div>
 
             <div className='flex items-center justify-end mt-4'>
