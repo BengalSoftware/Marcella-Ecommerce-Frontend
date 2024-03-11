@@ -18,7 +18,7 @@ const BarCodeInvoice = ({ singleOrder }) => {
                 height: 120
             });
         }
-    }, ['value']);
+    }, [orderId]);
 
 
     return (

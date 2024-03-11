@@ -1,9 +1,10 @@
+import TransactionTable from '@/components/seller/transaction/TransactionTable';
 import React from 'react';
 
 const TransactionPage = () => {
     return (
         <div>
-            <h1>Transaction</h1>
+            <TransactionTable />
         </div>
     );
 };
