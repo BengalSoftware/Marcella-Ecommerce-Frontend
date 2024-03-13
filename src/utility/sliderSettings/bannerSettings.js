@@ -7,7 +7,6 @@ export const banneSettings = {
     speed: 300,
     autoplaySpeed: 5000,
     cssEase: "linear",
-    arrows: false,
     responsive: [
         {
             breakpoint: 1024,
