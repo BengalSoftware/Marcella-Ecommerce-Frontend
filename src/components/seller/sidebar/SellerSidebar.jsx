@@ -58,7 +58,7 @@ const SellerSidebar = () => {
                         <p className='font-light flex items-center justify-between w-full gap-x-2'>Flash Sale {collapsOpen ? <MdOutlineKeyboardArrowDown /> : <MdKeyboardArrowRight />}</p>
                     </button>
                     <ul className={`${collapsOpen ? 'block bg-secondary pl-4' : 'hidden'}`}>
-                        <li><Link href='/seller/order' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><MdOutlineLocalOffer /> Add Flashsale</Link></li>
+                        <li><Link href='/seller/add-flashsale' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><MdOutlineLocalOffer /> Add Flashsale</Link></li>
                         <li><Link href='/seller/flashsale-offer' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BiSolidOffer /> Show Offer</Link></li>
                     </ul>
                 </li>
