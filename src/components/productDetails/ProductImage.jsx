@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from 'react-image-magnify';
 
 
 const ProductImage = ({ dImages }) => {
@@ -9,7 +9,7 @@ const ProductImage = ({ dImages }) => {
     return (
         <div className='w-full'>
             <div >
-                <ReactImageMagnify {...{
+                {/* <ReactImageMagnify {...{
                     smallImage: {
                         alt: 'details',
                         isFluidWidth: true,
@@ -20,7 +20,9 @@ const ProductImage = ({ dImages }) => {
                         width: 400,
                         height: 1100
                     }
-                }} />
+                }} /> */}
+                <Image className='w-full' quality={100} height={1080} width={1200} src={dImages?.[selectedImage]} alt='detail' />
+
             </div>
 
             <div className='flex items-center gap-2 w-full overflow-x-scroll seller-scrollbar'>
