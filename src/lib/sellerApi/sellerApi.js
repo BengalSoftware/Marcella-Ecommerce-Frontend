@@ -26,7 +26,26 @@ const getSingleSellerById = async (id) => {
 };
 
 
+// update single seller by seller id 
+const updateSellerMutation = async (id, data) => {
+    const res = await fetch(`${baseUrl}/auth/seller/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'PUT',
+        body: JSON.stringify(data)
+    })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
+
+
 export {
     getSingleSeller,
-    getSingleSellerById
+    getSingleSellerById,
+    updateSellerMutation
 }
