@@ -16,6 +16,7 @@ const ProductDescription = ({ product }) => {
     const { setCartSuccess, setCartDrawerOpen } = useContext(StateContext);
     const [cartLoading, setCartLoading] = useState(false)
     const { name, categories, numReviews, totalRating, quantity, price, offerPrice, color, size } = product || {};
+    const [sizePrice, setSizePrice] = useState(null)
 
     const handleQtyIncrement = () => {
         const newQty = productQty + 1;
@@ -81,8 +82,8 @@ const ProductDescription = ({ product }) => {
             </div>
             <div className='flex items-end justify-between mt-5'>
                 <span>
-                    <p className='line-through'>BDT {offerPrice && price}</p>
-                    <h1 className='text-dark font-semibold text-2xl lg:text-3xl mt-3'>BDT {offerPrice && offerPrice}</h1>
+                    <p className='line-through'>BDT {offerPrice && (sizePrice ? sizePrice * price : price)}</p>
+                    <h1 className='text-dark font-semibold text-2xl lg:text-3xl mt-3'>BDT {offerPrice && (sizePrice ? sizePrice * offerPrice : offerPrice)}</h1>
                 </span>
                 <p className='bg-primary text-white text-xs w-fit rounded-full px-2 py-0.5 flex items-center gap-1'><MdDiscount /> -BDT {price - offerPrice}</p>
             </div>
@@ -103,7 +104,7 @@ const ProductDescription = ({ product }) => {
                 <p>Size: </p>
                 {
                     size?.map(sz =>
-                        <button key={sz?._id} className='rounded-full text-sm text-dark'>{sz?.name}</button>
+                        <button onClick={() => setSizePrice(parseFloat(sz?.name))} key={sz?._id} className={`text-sm text-dark px-2 ${sizePrice === parseFloat(sz?.name) ? 'border border-primary' : ''}`}>{sz?.name}</button>
                     )
                 }
             </div>
