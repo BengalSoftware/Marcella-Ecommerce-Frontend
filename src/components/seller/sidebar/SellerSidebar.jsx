@@ -66,7 +66,7 @@ const SellerSidebar = () => {
                 <li><Link href='/seller/report' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><VscReport /> Reports</Link></li>
                 <li><Link href='/seller/order-overview' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineDeliveredProcedure /> Order Overview</Link></li>
                 <li><Link href='/seller/transaction' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><LiaMoneyCheckSolid /> Transactions</Link></li>
-                <li><Link href='/seller/coupon' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li>
+                {/* <li><Link href='/seller/coupon' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li> */}
                 <li><Link href='/seller/layout-settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineLayout /> Layout</Link></li>
                 <li><Link href='/seller/settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
             </ul>
