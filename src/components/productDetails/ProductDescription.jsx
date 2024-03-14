@@ -85,7 +85,7 @@ const ProductDescription = ({ product }) => {
                     <p className='line-through'>BDT {offerPrice && (sizePrice ? sizePrice * price : price)}</p>
                     <h1 className='text-dark font-semibold text-2xl lg:text-3xl mt-3'>BDT {offerPrice && (sizePrice ? sizePrice * offerPrice : offerPrice)}</h1>
                 </span>
-                <p className='bg-primary text-white text-xs w-fit rounded-full px-2 py-0.5 flex items-center gap-1'><MdDiscount /> -BDT {price - offerPrice}</p>
+                <p className='bg-primary text-white text-xs w-fit rounded-full px-2 py-0.5 flex items-center gap-1'><MdDiscount /> -BDT {sizePrice ? ((sizePrice * price) - (sizePrice * offerPrice)) : (price - offerPrice)}</p>
             </div>
             <div className='flex items-center justify-between mt-3'>
                 <Rating rate={totalRating} />
