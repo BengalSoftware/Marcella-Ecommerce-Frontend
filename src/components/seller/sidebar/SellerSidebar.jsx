@@ -7,19 +7,18 @@ import { AiOutlineLayout, AiOutlineShoppingCart } from "react-icons/ai";
 import { CiMoneyBill } from "react-icons/ci";
 import { IoFlashOutline, IoHomeOutline } from "react-icons/io5";
 import { BsPersonGear } from "react-icons/bs";
-import { TfiAnnouncement } from "react-icons/tfi";
 import { VscReport } from "react-icons/vsc";
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { LiaMoneyCheckSolid } from "react-icons/lia";
-import { MdKeyboardArrowRight, MdOutlineKeyboardArrowDown, MdOutlineLocalOffer } from 'react-icons/md';
-import { BiSolidOffer } from 'react-icons/bi';
+import { MdKeyboardArrowRight, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const SellerSidebar = () => {
     const [sellerInfo, setSellerInfo] = useState(null)
     const { seller } = useContext(AuthContext);
     const [collapsOpen, setCollapsOpen] = useState(false)
+    const [layoutCollaps, setLayoutCollaps] = useState(false);
 
 
     useEffect(() => {
@@ -57,9 +56,9 @@ const SellerSidebar = () => {
                         <IoFlashOutline className='text-xl' />
                         <p className='font-light flex items-center justify-between w-full gap-x-2'>Flash Sale {collapsOpen ? <MdOutlineKeyboardArrowDown /> : <MdKeyboardArrowRight />}</p>
                     </button>
-                    <ul className={`${collapsOpen ? 'block bg-secondary pl-4' : 'hidden'}`}>
-                        <li><Link href='/seller/add-flashsale' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><MdOutlineLocalOffer /> Add Flashsale</Link></li>
-                        <li><Link href='/seller/flashsale-offer' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BiSolidOffer /> Show Offer</Link></li>
+                    <ul className={`${collapsOpen ? 'h-[5.1rem] visible bg-secondary pl-4' : 'h-0 overflow-hidden invisible'} ease-in-out duration-300`}>
+                        <li><Link href='/seller/add-flashsale' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4 pl-6'>Add Flashsale</Link></li>
+                        <li><Link href='/seller/flashsale-offer' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4 pl-6'>Show Offer</Link></li>
                     </ul>
                 </li>
                 <li><Link href='/seller/order' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><CiMoneyBill /> Orders</Link></li>
@@ -67,7 +66,17 @@ const SellerSidebar = () => {
                 <li><Link href='/seller/order-overview' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineDeliveredProcedure /> Order Overview</Link></li>
                 <li><Link href='/seller/transaction' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><LiaMoneyCheckSolid /> Transactions</Link></li>
                 {/* <li><Link href='/seller/coupon' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><TfiAnnouncement /> Coupon</Link></li> */}
-                <li><Link href='/seller/layout-settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><AiOutlineLayout /> Layout</Link></li>
+                
+                <li>
+                    <button onClick={() => setLayoutCollaps(!layoutCollaps)} className={`w-full border-b flex items-center justify-start gap-x-4 p-2 hover:bg-secondary cursor-pointer ${layoutCollaps && 'bg-secondary'}`}>
+                        <AiOutlineLayout className='text-xl' />
+                        <p className='font-light flex items-center justify-between w-full gap-x-2'>Layout {layoutCollaps ? <MdOutlineKeyboardArrowDown /> : <MdKeyboardArrowRight />}</p>
+                    </button>
+                    <ul className={`${layoutCollaps ? 'h-[5.1rem] visible bg-secondary pl-4' : 'h-0 overflow-hidden invisible'} ease-in-out duration-300`}>
+                        <li><Link href='/seller/layout-settings' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4 pl-6'>Select Layout</Link></li>
+                        <li><Link href='/seller/store-layout' className='hover:bg-white border-b w-full p-2 hover:rounded flex font-light items-center gap-4 pl-6'>Store Layout</Link></li>
+                    </ul>
+                </li>
                 <li><Link href='/seller/settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
             </ul>
         </div>
