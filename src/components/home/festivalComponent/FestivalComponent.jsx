@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import ProductCard from '../../card/ProductCard';
 import Image from 'next/image';
 import { getFlashSaleOfferType, getFlashSaleProduct } from '@/lib/flashSale/flashSaleApi';
@@ -6,12 +7,23 @@ import ProductSlider from '@/utility/productSlider/ProductSlider';
 import OfferCount from './OfferCount';
 import Link from 'next/link';
 
-const FestivalComponent = async ({ offerType, fesTitle, fesColor, offerDate, endDate }) => {
-    const [flashType, flashProduct] = await Promise.all([
-        getFlashSaleOfferType(),
-        getFlashSaleProduct(offerType)
-    ])
- 
+const FestivalComponent = ({ offerType, fesTitle, fesColor, offerDate, endDate }) => {
+    const [flashType, setFlashType] = useState(null);
+    const [flashProduct, setFlashProduct] = useState(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const [flashTypeRes, flashProductRes] = await Promise.all([
+                getFlashSaleOfferType(),
+                getFlashSaleProduct(offerType)
+            ])
+            setFlashType(flashTypeRes)
+            setFlashProduct(flashProductRes)
+        }
+        fetchData()
+    }, [offerType])
+
+    
     return (
         <div className='bg-white rounded-xl shadow mb-6'>
             <div className='flex items-center justify-between md:pr-5'>
