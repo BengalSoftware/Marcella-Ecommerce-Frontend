@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { getFlashSaleProduct } from '@/lib/flashSale/flashSaleApi';
 import ProductSlider from '@/utility/productSlider/ProductSlider';
 import OfferCount from './OfferCount';
+import Link from 'next/link';
 
 const FestivalComponent = async ({ offerType, fesTitle, fesColor, fesImage, offerDate, endDate }) => {
     const data = await getFlashSaleProduct(offerType);
@@ -17,7 +18,7 @@ const FestivalComponent = async ({ offerType, fesTitle, fesColor, fesImage, offe
                         <OfferCount endDate={endDate} />
                     </div>
                 </div>
-                <button className='border hidden md:block border-primary hover:bg-primary hover:text-white text-primary rounded-full px-4 py-1 font-medium ease-in-out duration-500'>Show All</button>
+                <Link href={`/campaigns?flashsale=${offerType}`} className='border hidden md:block border-primary hover:bg-primary hover:text-white text-primary rounded-full px-4 py-1 font-medium ease-in-out duration-500'>Show All</Link>
             </div>
             <Image quality={100} className='w-full h-fit' src={fesImage} alt="" />
 
