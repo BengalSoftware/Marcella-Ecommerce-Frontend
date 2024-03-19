@@ -4,6 +4,7 @@ import { getActiveSingleAddress } from '@/lib/addressApi/addressApi';
 import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
+import { CiDiscount1 } from 'react-icons/ci';
 import { FaRegClock } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -68,14 +69,20 @@ const ProductDeliveryInfo = ({ product }) => {
                 <GrDeliver />
                 <p>Delivery Charge</p>
             </div>
-            <div className='flex items-center justify-between ml-6 mt-2'>
-                <p className='text-sm text-dark'>Inside Dhaka</p>
-                <p className='text-primary font-[auto]'>60 ৳</p>
-            </div>
-            <div className='flex items-center justify-between ml-6 mt-2'>
-                <p className='text-sm text-dark'>Outside Dhaka</p>
-                <p className='text-primary font-[auto]'>100 ৳</p>
-            </div>
+            {
+                product?.freeShipping === true ?
+                    <p className='text-dark text-sm pl-6 mt-2 flex items-center gap-1'> Free <CiDiscount1 className='text-lg text-primary' /></p> :
+                    <>
+                        <div className='flex items-center justify-between ml-6 mt-2'>
+                            <p className='text-sm text-dark'>Inside Dhaka</p>
+                            <p className='text-primary font-[auto]'>60 ৳</p>
+                        </div>
+                        <div className='flex items-center justify-between ml-6 mt-2'>
+                            <p className='text-sm text-dark'>Outside Dhaka</p>
+                            <p className='text-primary font-[auto]'>100 ৳</p>
+                        </div>
+                    </>
+            }
             <div className='text-dark flex items-center text-sm mt-5 lg:mt-10 gap-2'>
                 <GiReceiveMoney />
                 <p>Cash on delivery available</p>

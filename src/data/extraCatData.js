@@ -3,7 +3,7 @@ export const extraCatData = [
         "id": 1,
         "name": "Free Delivery",
         "image": "https://i.ibb.co/FY4TSHB/7b3222e4-db4b-4c3b-908d-6cb6b79cee58.png",
-        "slug": '/products?category=mens-and-boys-fashion'
+        "slug": '/products?freeShipping=true'
     },
     {
         "id": 2,
