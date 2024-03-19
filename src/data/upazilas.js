@@ -2962,5 +2962,11 @@ export const upazilas = [
     "district_id": "7",
     "name": "Dasar",
     "bn_name": "দশর"
+  },
+  {
+    "id": "496",
+    "district_id": "1",
+    "name": "Inside Dhaka City",
+    "bn_name": "ঢাকার মধ্যে"
   }
 ]

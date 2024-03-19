@@ -9,15 +9,34 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const AddressForm = ({ address }) => {
-    const [newAddress, setNewAddress] = useState();
     const [aLoading, setALoading] = useState(false);
+    const [updateDivision, setUpdateDivision] = useState(null)
+    const [updateDistrict, setUpdateDistrict] = useState(null)
+    const [updateUpazila, setUpdateUpazila] = useState(null)
     const { user } = useContext(AuthContext);
     const { setAddressSuccess, setModalOpen } = useContext(StateContext);
     const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
 
     const handleSubmitAddress = async (e) => {
         e.preventDefault();
+        const shippingName = e.target.shippingName.value
+        const town = e.target.town.value
+        const zipCode = e.target.zipCode.value
+        const shippingEmail = e.target.shippingEmail.value
+        const shippingPhone = e.target.shippingPhone.value
+        const addrs = e.target.address.value
 
+        const newAddress = {
+            shippingName,
+            town,
+            zipCode,
+            shippingEmail,
+            shippingPhone,
+            address: addrs,
+            division: updateDivision?.name,
+            district: updateDistrict?.name,
+            upazila: updateUpazila?.name
+        }
         try {
             setALoading(true)
             if (!address || Object.keys(address).length === 0) {
@@ -42,75 +61,68 @@ const AddressForm = ({ address }) => {
         }
     }
 
-    const handleAddressChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-
-        const updateAddress = { ...newAddress };
-        updateAddress[name] = value;
-        setNewAddress(updateAddress);
-    }
-
-    console.log(address)
 
     return (
         <form onSubmit={handleSubmitAddress}>
             <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Name <span className='text-red-600'>*</span></label>
-            <input onChange={handleAddressChange} defaultValue={shippingName} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Name' name='shippingName' type="text" />
+            <input defaultValue={shippingName} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Name' name='shippingName' type="text" />
 
             <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Town / City <span className='text-red-600'>*</span></label>
-            <input onChange={handleAddressChange} defaultValue={''} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Town' name='town' type="text" />
+            <input defaultValue={''} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Town' name='town' type="text" />
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Division <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} defaultValue={address?.division} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
+                    <select onChange={(e) => setUpdateDivision(JSON.parse(e.target.value))} defaultValue={address?.division} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
+                        <option>Select</option>
                         {
                             divisions?.map(division =>
-                                <option key={division?.id} value={division?.name}>{division?.name}</option>
+                                <option key={division?.id} value={JSON.stringify({ name: division?.name, id: division?.id })}>{division?.name}</option>
                             )
                         }
                     </select>
                 </div>
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Zip Code</label>
-                    <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Zip Code' name='zipCode' type="text" />
+                    <input className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Zip Code' name='zipCode' type="text" />
                 </div>
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select District <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} defaultValue={address?.district} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
+                    <select disabled={!updateDivision} onChange={(e) => setUpdateDistrict(JSON.parse(e.target.value))} defaultValue={address?.district} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
+                        <option>Select</option>
                         {
-                            districts?.map(district =>
-                                <option key={district?.id} value={district?.name}>{district?.name}</option>
+                            districts?.map(district => district?.division_id === updateDivision?.id &&
+                                <option key={district?.id} value={JSON.stringify({ name: district?.name, id: district?.id })}>{district?.name}</option>
                             )
                         }
                     </select>
                 </div>
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Email</label>
-                    <input onChange={handleAddressChange} defaultValue={shippingEmail} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Email' name='shippingEmail' type="text" />
+                    <input defaultValue={shippingEmail} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Email' name='shippingEmail' type="text" />
                 </div>
 
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Upazilla <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} defaultValue={address?.upazila} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
+                    <select disabled={!updateDistrict} onChange={(e) => setUpdateUpazila(JSON.parse(e.target.value))} defaultValue={address?.upazila} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
+                        <option>Select</option>
                         {
-                            upazilas?.map(upzila =>
-                                <option key={upzila?.id} value={upzila?.name}>{upzila?.name}</option>
+                            upazilas?.map(upzila => upzila?.district_id === updateDistrict?.id &&
+                                <option key={upzila?.id} value={JSON.stringify({ name: upzila?.name, id: upzila?.id })}>{upzila?.name}</option>
                             )
                         }
                     </select>
                 </div>
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Phone</label>
-                    <input onChange={handleAddressChange} defaultValue={shippingPhone} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Phone' name='shippingPhone' type="text" />
+                    <input defaultValue={shippingPhone} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Phone' name='shippingPhone' type="text" />
                 </div>
             </div>
 
             <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Street Address <span className='text-red-600'>*</span></label>
-            <textarea onChange={handleAddressChange} defaultValue={address?.address} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
+            <textarea defaultValue={address?.address} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
 
             <div className='flex items-center justify-end'>
                 {
