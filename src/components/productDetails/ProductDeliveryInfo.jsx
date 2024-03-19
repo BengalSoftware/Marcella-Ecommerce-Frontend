@@ -1,7 +1,9 @@
 'use client'
+import { AuthContext } from '@/context/authProvider/AuthProvider';
+import { getActiveSingleAddress } from '@/lib/addressApi/addressApi';
 import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaRegClock } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -10,8 +12,9 @@ import { IoWarningOutline } from "react-icons/io5";
 
 const ProductDeliveryInfo = ({ product }) => {
     const [sellerInfo, setSellerInfo] = useState(null);
+    const [address, setAddress] = useState(null)
+    const { user } = useContext(AuthContext);
     const { sellerId } = product || {};
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +33,21 @@ const ProductDeliveryInfo = ({ product }) => {
     }, [sellerId])
 
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getActiveSingleAddress(user?.data?.user?.email);
+                if (data) {
+                    setAddress(data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [user?.data?.user?.email])
+
+
     const handleVisitStore = () => {
         localStorage.setItem('sci', JSON.stringify(sellerId))
     }
@@ -38,9 +56,13 @@ const ProductDeliveryInfo = ({ product }) => {
         <div>
             <h1 className='text-dark text-xl'>Delivery Info</h1>
 
-            <div className='text-dark flex items-center text-sm mt-4 gap-2'>
-                <FaLocationDot />
-                <p>No Address Found</p>
+            <div className='text-dark flex items-start text-sm mt-4 gap-2'>
+                <FaLocationDot className='mt-1' />
+                {
+                    address?.data?.address ?
+                        <p className='w-11/12 text-sm'>{address?.data?.address}</p> :
+                        <p>No Address Found</p>
+                }
             </div>
             <div className='text-dark flex items-center text-sm mt-5 lg:mt-10 gap-2'>
                 <GrDeliver />
