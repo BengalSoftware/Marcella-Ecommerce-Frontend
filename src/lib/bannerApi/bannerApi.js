@@ -13,6 +13,23 @@ const getDesktopBanner = async () => {
 };
 
 
+const getSingleDesktopBanner = async (slug) => {
+    try {
+        const res = await fetch(`${baseUrl}/desktopBanner/${slug}`, {
+            cache: 'force-cache'
+        })
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
+    }
+};
+
 export {
-    getDesktopBanner
+    getDesktopBanner,
+    getSingleDesktopBanner
 }

@@ -5,6 +5,7 @@ import { banneSettings } from '../../../utility/sliderSettings/bannerSettings';
 import Image from 'next/image';
 import { getDesktopBanner } from '@/lib/bannerApi/bannerApi';
 import DesktopBannerLoader from '@/components/loader/DesktopBannerLoader';
+import Link from 'next/link';
 
 const Banner = () => {
     const [bannerData, setBannerData] = useState(null);
@@ -35,7 +36,7 @@ const Banner = () => {
                         <Slider {...banneSettings}>
                             {
                                 bannerData?.data?.map(ban =>
-                                    <div key={ban?._id}>
+                                    <Link key={ban?._id} href={`/campaign-products/${ban?._id}`}>
                                         <Image
                                             width={1200}
                                             height={420}
@@ -44,7 +45,7 @@ const Banner = () => {
                                             quality={100}
                                             className='h-fit md:h-[19rem] xl:h-[22rem] w-full rounded-md lg:rounded-l-none xl:rounded-r-lg'
                                         />
-                                    </div>
+                                    </Link>
                                 )
                             }
                         </Slider>
