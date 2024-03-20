@@ -136,7 +136,7 @@ const AddProductForm = ({ id }) => {
         };
         fetchData();
     }, [seller?.data?.user?.email]);
-    console.log(id)
+   
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>

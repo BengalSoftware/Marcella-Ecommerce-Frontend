@@ -5,7 +5,7 @@ import { getRelatedProduct } from '@/lib/productApi/productApi';
 
 const RelatedProducts = async ({ slug }) => {
     const data = await getRelatedProduct(slug);
-    console.log('related', data)
+   
     return (
         <div className='mt-10'>
             <h1 className='font-medium text-2xl'>Related Products</h1>

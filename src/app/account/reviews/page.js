@@ -22,7 +22,7 @@ const AccountReviewPage = () => {
         fetchData()
     }, [user?.data?.user?.email])
 
-    console.log(allReviews)
+   
 
     return (
         <div className='bg-white shadow rounded-lg p-4'>

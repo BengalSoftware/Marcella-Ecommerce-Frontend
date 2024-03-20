@@ -44,7 +44,7 @@ const CartDrawer = () => {
             setCartSuccess(false)
         }
     }, [user?.data?.user?.email, cartSuccess])
-    console.log(cartData)
+    
     return (
         <div>
             <div className='flex items-center gap-6'>

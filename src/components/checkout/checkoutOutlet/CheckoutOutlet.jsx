@@ -11,7 +11,7 @@ import { IoMdSwitch } from "react-icons/io";
 const CheckoutOutlet = ({ address, cartData }) => {
     const { modalOpen, setModalOpen } = useContext(StateContext)
     const [switchModal, setSwitchModal] = useState(false)
-    console.log(cartData)
+    
 
     return (
         <div>

@@ -29,7 +29,7 @@ const OrderCard = () => {
     }, [user?.data?.user?.email])
 
 
-    console.log('orders', orders)
+    
 
     return (
         <>

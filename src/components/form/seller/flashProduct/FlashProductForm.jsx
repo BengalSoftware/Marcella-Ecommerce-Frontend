@@ -93,7 +93,6 @@ const FlashProductForm = ({ id }) => {
         const newProduct = { ...updateProduct, shortDescription, description, termsCondition, selectedSizeOption, selectedColorOption, images };
         newProduct[name] = value;
         setUpdateProduct(newProduct);
-        console.log(newProduct)
     }
 
 
@@ -149,7 +148,7 @@ const FlashProductForm = ({ id }) => {
         };
         fetchData();
     }, [seller?.data?.user?.email]);
-    console.log(id)
+   
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>

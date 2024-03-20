@@ -9,7 +9,7 @@ const DetailsNavTab = ({ product }) => {
         setNavValue(value)
     }
 
-    console.log(product)
+    
     return (
         <div className='mt-10'>
             <div className='flex items-center justify-between lg:justify-start lg:gap-10'>

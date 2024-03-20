@@ -20,7 +20,7 @@ const UserPrivateRoute = ({ children }) => {
             router.push('/login')
         }
     }, [user?.data?.user?.email])
-    console.log(user?.data?.user?.email)
+    
 
     return (
         <div>

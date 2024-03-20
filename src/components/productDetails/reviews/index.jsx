@@ -7,7 +7,7 @@ import ReviewsCard from './ReviewsCard';
 const ReviewRatingIndex = ({ product }) => {
     const [allReviews, setAllreviews] = useState(null)
 
-    console.log('allReviews', allReviews)
+   
 
     useEffect(() => {
         const fetchData = async () => {

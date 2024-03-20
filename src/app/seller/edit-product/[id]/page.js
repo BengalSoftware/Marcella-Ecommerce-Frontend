@@ -4,7 +4,7 @@ import React from 'react';
 
 const ProductEditPage = ({ params }) => {
     const { id } = params || {};
-    console.log(params)
+  
     return (
         <div>
             <div className='flex items-center justify-between bg-white p-4 shadow rounded-md'>

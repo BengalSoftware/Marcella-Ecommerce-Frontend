@@ -5,7 +5,7 @@ import { getAllBrands } from '@/lib/categories/categoriesApi';
 
 const TopBrands = async () => {
     const data = await getAllBrands();
-    console.log(data?.result)
+    
     return (
         <div className='lg:mt-16'>
             <h1 className='text-center font-semibold text-3xl'>Top Brands</h1>
