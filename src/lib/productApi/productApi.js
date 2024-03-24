@@ -2,97 +2,125 @@ import { baseUrl, token } from "../api/baseUrl";
 
 // get all product 
 const getAllProduct = async (page) => {
-    const res = await fetch(`${baseUrl}/product?page=${page}`)
+    try {
+        const res = await fetch(`${baseUrl}/product?page=${page}`)
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 // get all product by query
 const getAllProductByQuery = async (queryUrl) => {
-    const res = await fetch(`${baseUrl}/product/${queryUrl}`)
+    try {
+        const res = await fetch(`${baseUrl}/product/${queryUrl}`)
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 // get product type 
 const getProductByProductType = async (productType) => {
-    const res = await fetch(`${baseUrl}/product/productType/${productType}`,
-        {
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/product/productType/${productType}`,
+            {
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // get single product 
 const getSingleProduct = async (slug) => {
-    const res = await fetch(`${baseUrl}/product/${slug}`,
-        {
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/product/${slug}`,
+            {
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 // get single product 
 const getSingleProductDetails = async (id) => {
-    const res = await fetch(`${baseUrl}/product/admin/${id}`,
-        {
-            headers: {
-                'Authorization': token
-            },
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/product/admin/${id}`,
+            {
+                headers: {
+                    'Authorization': token
+                },
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // get related product 
 const getRelatedProduct = async (slug) => {
-    const res = await fetch(`${baseUrl}/product/related-products/${slug}`,
-        {
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/product/related-products/${slug}`,
+            {
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // get seller product 
 const getSellerProduct = async (id) => {
-    const res = await fetch(`${baseUrl}/product/seller-products/${id}`)
+    try {
+        const res = await fetch(`${baseUrl}/product/seller-products/${id}`)
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 

@@ -2,34 +2,42 @@ import { baseUrl } from "../api/baseUrl";
 
 // get add to cart
 const getCartDataByEmail = async (email) => {
-    const res = await fetch(`${baseUrl}/cart/myCart/${email}`
-    )
+    try {
+        const res = await fetch(`${baseUrl}/cart/myCart/${email}`
+        )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // add to cart
 const addToCartDataByEmail = async (email, data) => {
-    const res = await fetch(`${baseUrl}/cart/cartAdd/${email}`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+    try {
+        const res = await fetch(`${baseUrl}/cart/cartAdd/${email}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
         }
-    )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
@@ -59,33 +67,41 @@ const deleteCardDataByEmailId = async (email, data) => {
 
 // add single order
 const placeSingleOrderByEmail = async (email, data) => {
-    const res = await fetch(`${baseUrl}/order/${email}`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+    try {
+        const res = await fetch(`${baseUrl}/order/${email}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
         }
-    )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // get all order by user email
 const getAllOrderByUserEmail = async (email) => {
-    const res = await fetch(`${baseUrl}/order/user/${email}`)
+    try {
+        const res = await fetch(`${baseUrl}/order/user/${email}`)
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 export {

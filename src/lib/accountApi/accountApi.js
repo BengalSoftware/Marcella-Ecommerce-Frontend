@@ -2,34 +2,42 @@ import { baseUrl } from "../api/baseUrl";
 
 // get single user
 const getSingelUser = async (email) => {
-    const res = await fetch(`${baseUrl}/user/${email}`
-    )
+    try {
+        const res = await fetch(`${baseUrl}/user/${email}`
+        )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 // update single user
 const updateUserMutation = async (email, data) => {
-    const res = await fetch(`${baseUrl}/user/updateProfile/${email}`,
-        {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+    try {
+        const res = await fetch(`${baseUrl}/user/updateProfile/${email}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
         }
-    )
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 export {

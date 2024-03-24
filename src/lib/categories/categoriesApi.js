@@ -1,32 +1,40 @@
 import { baseUrl } from "../api/baseUrl";
 
 const getAllCategory = async () => {
-    const res = await fetch(`${baseUrl}/category`,
-        {
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/category`,
+            {
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
 
 // get all brand 
 const getAllBrands = async () => {
-    const res = await fetch(`${baseUrl}/manufacturer`,
-        {
-            cache: 'force-cache'
-        })
+    try {
+        const res = await fetch(`${baseUrl}/manufacturer`,
+            {
+                cache: 'force-cache'
+            })
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
     }
-
-    return res.json();
 };
 
 
