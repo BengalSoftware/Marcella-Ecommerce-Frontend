@@ -31,7 +31,7 @@ const AllProducts = () => {
 
     return (
         <div className='mt-10'>
-            <h1 className='font-medium text-2xl'>Products</h1>
+            <h1 className='font-medium text-xl md:text-2xl'>Products</h1>
             <div className='mt-6 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-5'>
                 {products.map(product => (
                     <div key={product?._id}>

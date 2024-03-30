@@ -1,16 +1,10 @@
 import AllProducts from "@/components/home/allProducts/AllProducts";
-import ComputingAndGaming from "@/components/home/computingAndGaming/ComputingAndGaming";
 import ExtraSubCategory from "@/components/home/extraSubCategory/ExtraSubCategory";
 import AdsFestivalIndex from "@/components/home/festivalComponent";
 import TopCategories from "@/components/home/header/TopCategories";
 import BannerCategories from "@/components/home/heroSection";
-import HomeAppliance from "@/components/home/homeAppliance/HomeAppliance";
-import MensFashion from "@/components/home/mensFashion/MensFashion";
-import MobileAndGadget from "@/components/home/mobileAndGadget/MobileAndGadget";
-import PopularProducts from "@/components/home/popularProducts/PopularProducts";
+import ProductType from "@/components/home/productType/ProductType";
 import TopBrands from "@/components/home/topBrands/TopBrands";
-import WomensFashion from "@/components/home/womensFashion/WomensFashion";
-import FlashSaleLoader from "@/components/loader/FlashSaleLoader";
 
 export default function Home() {
   return (
@@ -22,12 +16,7 @@ export default function Home() {
           <ExtraSubCategory />
           <AdsFestivalIndex />
           <TopBrands />
-          <PopularProducts />
-          <MensFashion />
-          <WomensFashion />
-          <MobileAndGadget />
-          <HomeAppliance />
-          <ComputingAndGaming />
+          <ProductType />
           <AllProducts />
         </div>
       </div>

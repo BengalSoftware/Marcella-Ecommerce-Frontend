@@ -2,10 +2,7 @@ import { baseUrl } from "../api/baseUrl";
 
 const getAllCategory = async () => {
     try {
-        const res = await fetch(`${baseUrl}/category`,
-            {
-                cache: 'force-cache'
-            })
+        const res = await fetch(`${baseUrl}/category`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -22,10 +19,7 @@ const getAllCategory = async () => {
 // get all brand 
 const getAllBrands = async () => {
     try {
-        const res = await fetch(`${baseUrl}/manufacturer`,
-            {
-                cache: 'force-cache'
-            })
+        const res = await fetch(`${baseUrl}/manufacturer`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')

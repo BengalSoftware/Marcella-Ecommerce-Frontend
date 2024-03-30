@@ -33,10 +33,7 @@ const getAllProductByQuery = async (queryUrl) => {
 // get product type 
 const getProductByProductType = async (productType) => {
     try {
-        const res = await fetch(`${baseUrl}/product/productType/${productType}`,
-            {
-                cache: 'force-cache'
-            })
+        const res = await fetch(`${baseUrl}/product/productType/${productType}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -52,10 +49,7 @@ const getProductByProductType = async (productType) => {
 // get single product 
 const getSingleProduct = async (slug) => {
     try {
-        const res = await fetch(`${baseUrl}/product/${slug}`,
-            {
-                cache: 'force-cache'
-            })
+        const res = await fetch(`${baseUrl}/product/${slug}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -75,7 +69,6 @@ const getSingleProductDetails = async (id) => {
                 headers: {
                     'Authorization': token
                 },
-                cache: 'force-cache'
             })
 
         if (!res.ok) {
@@ -92,10 +85,7 @@ const getSingleProductDetails = async (id) => {
 // get related product 
 const getRelatedProduct = async (slug) => {
     try {
-        const res = await fetch(`${baseUrl}/product/related-products/${slug}`,
-            {
-                cache: 'force-cache'
-            })
+        const res = await fetch(`${baseUrl}/product/related-products/${slug}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -133,7 +123,6 @@ const addProductMutation = async (formData) => {
                 'Authorization': token
             },
             body: formData,
-            cache: 'force-cache'
         });
 
         if (!res.ok) {
@@ -157,7 +146,6 @@ const updateProductMutation = async (id, data) => {
                 'Authorization': token
             },
             body: data,
-            cache: 'force-cache'
         });
 
         if (!res.ok) {
@@ -180,7 +168,6 @@ const productSearchSuggestion = async (queryUrl) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            cache: 'force-cache'
         });
 
         if (!res.ok) {
@@ -194,7 +181,20 @@ const productSearchSuggestion = async (queryUrl) => {
     }
 };
 
+// get all produc type options 
+const getAllProductTypeOptions = async () => {
+    try {
+        const res = await fetch(`${baseUrl}/product-type`)
 
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
+    }
+};
 
 export {
     getAllProduct,
@@ -206,5 +206,6 @@ export {
     getSellerProduct,
     updateProductMutation,
     getSingleProductDetails,
-    productSearchSuggestion
+    productSearchSuggestion,
+    getAllProductTypeOptions
 }
