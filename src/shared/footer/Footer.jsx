@@ -1,12 +1,11 @@
 import React from 'react';
-import { FaLocationArrow, FaRegEnvelopeOpen } from "react-icons/fa";
+import { FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaRegEnvelopeOpen, FaTwitterSquare } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
-import appStore from '../../../public/assets/app.png';
-import playStore from '../../../public/assets/googleplay.png';
 import paymentsLogo from '../../../public/assets/payments.png'
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaLocationDot } from 'react-icons/fa6';
+import logo from '../../../public/assets/logo.png'
 
 const Footer = () => {
     return (
@@ -16,7 +15,7 @@ const Footer = () => {
                     <div className='md:w-[35%] flex md:block flex-col justify-center items-center'>
                         <span className='uppercase text-white flex items-center font-[500] gap-2'>
                             <Link href="/">
-                                <h1 className="text-4xl md:text-5xl font-semibold uppercase text-secondary">Marcella</h1>
+                                <Image src={logo} quality={100} className='md:w-3/4' alt='veendeshi' />
                             </Link>
                         </span>
                         <p className='text-white my-5 text-center md:text-start'>Presently, the company efficiently conveys and
@@ -29,11 +28,11 @@ const Footer = () => {
                         </span>
                         <span className="flex text-white items-center gap-4 mt-2">
                             <FaRegEnvelopeOpen />
-                            <p>example@gmail.com</p>
+                            <p>info@veendeshi.com</p>
                         </span>
                         <span className="flex text-white items-center gap-4 mt-2">
                             <FaPhoneAlt />
-                            <p>01894-961361</p>
+                            <a href="tel:+8801894-961377">+8801894-961377</a>
                         </span>
                     </div>
 
@@ -41,41 +40,49 @@ const Footer = () => {
                         <div className='w-full md:w-1/2'>
                             <h2 className='text-white text-xl font-medium'>Information</h2>
                             <ul className='text-white mt-5 text-sm md:text-base'>
-                                <li><Link className='hover:text-secondary' href=''>Terms & Condition</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>FAQ</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Refund Policy</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Seller Promises</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Help center</Link></li>
+                                <li><Link className='hover:text-secondary hover:underline' href='/terms-condition'>Terms & Condition</Link></li>
+                                <li><Link className='hover:text-secondary hover:underline' href='/delivery-info'>Delivery Info</Link></li>
+                                <li><Link className='hover:text-secondary hover:underline' href='/return-refund'>Refund Policy</Link></li>
+                                <li><Link className='hover:text-secondary hover:underline' href='/privacy-policy'>Privacy Policy</Link></li>
+                                <li><Link className='hover:text-secondary hover:underline' href='/store-location'>Store Location</Link></li>
                             </ul>
                         </div>
                         <div className='w-full md:w-1/2 ml-10 md:ml-0'>
-                            <h2 className='text-white text-xl font-medium'>Services</h2>
+                            <h2 className='text-white text-xl font-medium'>Account</h2>
                             <ul className='text-white mt-5 text-sm md:text-base'>
-                                <li><Link className='hover:text-secondary' href=''>Payment Method</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Contact Us</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>About Us</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Shipping Policy</Link></li>
-                                <li><Link className='hover:text-secondary' href=''>Account</Link></li>
+                                <li><Link className='hover:text-secondary' href='/seller-signup'>Become a Seller</Link></li>
+                                <li><Link className='hover:text-secondary' href='/login'>Account</Link></li>
+                                <li><Link className='hover:text-secondary' href='/contact'>Contact Us</Link></li>
                             </ul>
                         </div>
                     </div>
 
                     <div className='md:w-[30%]'>
-                        <h1 className='text-white text-center md:text-start mt-12'>Download our mobile app</h1>
-
-                        <div className='flex items-center justify-center md:justify-start gap-4 mt-8'>
-                            <Image quality={100} placeholder='blur' src={playStore} alt="playstore" />
-                            <Image quality={100} placeholder='blur' src={appStore} alt="appstore" />
-                        </div>
-
+                        <h1 className='text-white text-center md:text-start mt-12'>We Accept</h1>
                         <Image quality={100} placeholder='blur' className='mt-8' src={paymentsLogo} alt="payments" />
                     </div>
                 </div>
                 <div className='py-5 border-t border-t-white md:flex items-center justify-between'>
-                    <p className='text-white text-center text-sm'>{`© ${new Date().getFullYear()} Copyright Marcella All Rights Reserved.`}</p>
-                    <p className='text-white text-sm text-center md:text-end'>Developed By: <Link target='_blank'
-                        href="https://www.bengalsoftware.com/" className='text-secondary hover:text-white'>Bengal
-                        Software</Link></p>
+                    <div className='flex items-center justify-center mb-4 md:mb-0 gap-x-2'>
+                        <Link href='https://www.facebook.com/' target='_blank'>
+                            <FaFacebookSquare className='text-3xl text-[#222222] bg-[#6d6d6d] border border-white rounded cursor-pointer' />
+                        </Link>
+                        <Link href='https://linkedin.com/' target='_blank'>
+                            <FaLinkedin className='text-3xl text-[#222222] bg-[#6d6d6d] border border-white rounded cursor-pointer' />
+                        </Link>
+                        <Link href='https://twitter.com/' target='_blank'>
+                            <FaTwitterSquare className='text-3xl text-[#222222] bg-[#6d6d6d] border border-white rounded cursor-pointer' />
+                        </Link>
+                        <Link href='https://www.instagram.com/' target='_blank'>
+                            <FaInstagramSquare className='text-3xl text-[#222222] bg-[#6d6d6d] border border-white rounded cursor-pointer' />
+                        </Link>
+                    </div>
+                        <p className='text-white text-center text-sm'>{`© ${new Date().getFullYear()} Copyright Veendeshi All Rights Reserved.`}</p>
+                    <div>
+                        <p className='text-white text-xs text-center md:text-end'>Developed By: <Link target='_blank'
+                            href="https://www.bengalsoftware.com/" className='text-secondary hover:text-white'>Bengal
+                            Software</Link></p>
+                    </div>
                 </div>
             </div>
         </div>

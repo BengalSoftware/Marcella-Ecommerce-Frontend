@@ -20,9 +20,6 @@ const ProductsPage = () => {
                         </div>
                         <div className='md:col-span-4'>
                             <SearchingOutlet />
-                            <div className='mt-5 flex items-center justify-end'>
-                                <Pagination defaultCurrent={1} total={10} />
-                            </div>
                         </div>
                     </div>
                 </div>

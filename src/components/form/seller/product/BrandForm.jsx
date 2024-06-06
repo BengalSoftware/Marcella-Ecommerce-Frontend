@@ -22,7 +22,7 @@ const BrandForm = ({ handleChange, manufacturer }) => {
             <select value={manufacturer?.name} onChange={handleChange} name="manufacturer" className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
                 {
                     brands?.result?.map(brand =>
-                        <option value={brand?._id}>{brand?.name}</option>
+                        <option defaultValue={manufacturer} value={brand?._id}>{brand?.name}</option>
                     )
                 }
             </select>

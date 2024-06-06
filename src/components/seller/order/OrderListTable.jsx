@@ -83,7 +83,7 @@ const OrderListTable = () => {
                             </tr>
                         ) :
                         <tr>
-                            <td className="border p-2 text-xs text-center"><p>No Order Found</p></td>
+                            <td colSpan={12} className="border p-2 text-xs text-center py-10"><p>No Order Found</p></td>
                         </tr>
                     }
                 </tbody>

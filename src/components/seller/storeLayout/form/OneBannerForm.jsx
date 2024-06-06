@@ -6,6 +6,7 @@ import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 import { Select } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
+import StoreLayoutTable from '../table/StoreLayoutTable';
 
 const OneBannerForm = ({ activeButton }) => {
     const imgRef = useRef();
@@ -65,18 +66,19 @@ const OneBannerForm = ({ activeButton }) => {
 
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        const formData = new FormData()
-        if (selectedProduct) formData.append('products', selectedProduct)
-        if (imgRef.current) formData.append('images', imgRef.current.files[0])
+        const formData = new FormData(); // Initialize formData here
 
-        const data = await createStoreLayoutWithProduct(seller?.data?.user?.email, formData)
+        if (selectedProduct) formData.append('products', selectedProduct);
+        if (imgRef.current) formData.append('images', imgRef.current.files[0]);
+
+        const data = await createStoreLayoutWithProduct(seller?.data?.user?.email, formData);
         if (data) {
-            toast.success('Success')
+            toast.success('Success');
         }
+    };
 
-    }
 
 
     return (
@@ -86,7 +88,7 @@ const OneBannerForm = ({ activeButton }) => {
                 <div className='grid grid-cols-1 gap-2'>
                     <div>
                         <label className='text-lg'>Image <span className='text-red-500'>*</span></label>
-                        <input className='border border-gray-300 mt-2 outline-none p-1.5 placeholder:text-sm rounded-md w-full block' placeholder='Image' ref={imgRef} name='image' type="file" />
+                        <input multiple={activeButton === 'two' || activeButton === 'three'} className='border border-gray-300 mt-2 outline-none p-1.5 placeholder:text-sm rounded-md w-full block' placeholder='Image' ref={imgRef} name='image' type="file" />
                     </div>
                     <div className='mt-5'>
                         <label className='text-lg'>Products <span className='text-red-500'>*</span></label>
@@ -107,6 +109,9 @@ const OneBannerForm = ({ activeButton }) => {
                     <button type='submit' className='text-white font-medium bg-primary px-6 py-2 rounded hover:bg-dark ease-in-out duration-500'>{'Submit'}</button>
                 </div>
             </form>
+            <StoreLayoutTable
+                email={seller?.data?.user?.email}
+            />
         </div>
     );
 };

@@ -1,37 +1,41 @@
-import React from 'react';
-import banner1 from '../../../../public/assets/seller1.png'
-import banner2 from '../../../../public/assets/seller2.png'
-import product1 from '../../../../public/assets/fogg.webp'
-import product2 from '../../../../public/assets/product4.webp'
+'use client'
+import React, { useEffect, useState } from 'react';
 import VendorShopCardWithBanner from '../VendorShopCardWithBanner';
 import SellerShopIndex from '..';
+import { getStoreLayoutQuery } from '@/lib/layoutStore/layoutStoreApi';
 
 
-const products = [
-    {
-        banner: banner1,
-        img: product1
-    },
-    {
-        banner: banner2,
-        img: product2
-    },
-]
+const Layout1 = ({ email, id }) => {
+    const [layouts, setLayouts] = useState(null);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getStoreLayoutQuery(email)
+                if (res) {
+                    setLayouts(res)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [email])
+    const products = layouts?.data?.filter(layout => layout?.images?.length <= 1)
 
-const Layout1 = () => {
     return (
         <div>
             {
                 products?.map((product, idx) =>
                     <VendorShopCardWithBanner
                         key={idx}
-                        banner={product?.banner}
-                        products={product?.img}
+                        banner={product?.images}
+                        id={id}
+                        products={product?.products}
                     />
                 )
             }
-            <SellerShopIndex />
+            <SellerShopIndex id={id} />
         </div>
     );
 };

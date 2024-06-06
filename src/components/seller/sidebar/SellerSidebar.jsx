@@ -12,7 +12,7 @@ import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { LiaMoneyCheckSolid } from "react-icons/lia";
-import { MdKeyboardArrowRight, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdOutlineHelpCenter, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const SellerSidebar = () => {
     const [sellerInfo, setSellerInfo] = useState(null)
@@ -78,6 +78,7 @@ const SellerSidebar = () => {
                     </ul>
                 </li>
                 <li><Link href='/seller/settings' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><BsPersonGear /> Settings</Link></li>
+                <li><Link href='/seller/help' className='hover:bg-secondary border-b w-full p-2 hover:rounded flex font-light items-center gap-4'><MdOutlineHelpCenter /> Help</Link></li>
             </ul>
         </div>
     );

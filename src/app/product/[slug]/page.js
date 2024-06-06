@@ -7,6 +7,26 @@ import DetailsNavTab from '@/components/productDetails/DetailsNavTab';
 import ProductImage from '@/components/productDetails/ProductImage';
 import { getSingleProduct } from '@/lib/productApi/productApi';
 
+
+export async function generateMetadata({ params }) {
+    const { slug } = params || {};
+    const data = await getSingleProduct(slug);
+
+    const { name, description, images } = data?.result || {};
+
+    return {
+        title: name ? `${name}` : 'Veendeshi',
+        description: description,
+        openGraph: {
+            title: name ? `${name}` : 'Veendeshi',
+            description: name,
+            url: `https://veendeshi.com/product/${slug}`,
+            image: images?.[0]
+        },
+    };
+}
+
+
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const data = await getSingleProduct(slug);

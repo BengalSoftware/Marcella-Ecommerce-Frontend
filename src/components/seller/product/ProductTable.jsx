@@ -51,7 +51,7 @@ const ProductTable = () => {
     }, [seller?.data?.user?.email]);
 
 
-    
+
 
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
@@ -68,7 +68,7 @@ const ProductTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    {products?.result?.data?.length > 0 ?
                         products?.result?.data?.map((product, idx) =>
                             <tr key={product?._id}>
                                 <td className="border px-4 py-2 text-sm text-center">{idx + 1}</td>
@@ -86,7 +86,10 @@ const ProductTable = () => {
                                     </div>
                                 </td>
                             </tr>
-                        )
+                        ) :
+                        <tr>
+                            <td colSpan={6} className="border py-10 p-2 text-xs text-center"><p>No product Found</p></td>
+                        </tr>
                     }
                 </tbody>
             </table>

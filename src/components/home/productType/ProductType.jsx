@@ -1,9 +1,25 @@
+'use client'
 import { getAllProductTypeOptions } from '@/lib/productApi/productApi';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MensFashion from '../mensFashion/MensFashion';
 
-const ProductType = async () => {
-    const data = await getAllProductTypeOptions();
+const ProductType = () => {
+    const [data, setData] = useState(null);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getAllProductTypeOptions();
+                if (data) {
+                    setData(data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [])
 
     return (
         <div>

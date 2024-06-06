@@ -2,15 +2,21 @@
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { placeSingleOrderByEmail } from '@/lib/addToCartApi/addToCartApi';
+import { addCouponMutation } from '@/lib/couponApi/couponApi';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const OrderSummary = ({ cartData }) => {
     const [payment, setPayment] = useState('');
+    const [coupon, setCoupon] = useState('');
     const { subtotal, total, shippingCharge, discountAmount } = cartData || {};
     const { user } = useContext(AuthContext);
     const { setCartSuccess } = useContext(StateContext);
     const [isLoading, setIsLoading] = useState(false);
+    const [couponError, setCouponError] = useState(false);
+    const [couponSuccess, setCouponSuccess] = useState(false);
+    const router = useRouter()
 
     const handlePayment = async () => {
         if (!payment) {
@@ -28,9 +34,11 @@ const OrderSummary = ({ cartData }) => {
                 setIsLoading(true)
                 if (modifiedData && user?.data?.user?.email) {
                     const response = await placeSingleOrderByEmail(user?.data?.user?.email, modifiedData)
+                    console.log(response)
                     if (response) {
                         toast.success('Order Successfull')
                         setCartSuccess(true)
+                        router.push('/account/order')
                     }
                 }
             } catch (error) {
@@ -38,6 +46,22 @@ const OrderSummary = ({ cartData }) => {
             } finally {
                 setIsLoading(false)
             }
+        }
+    }
+
+
+
+    // handle coupon 
+    const handleCouponCode = async (e) => {
+        e.preventDefault();
+        try {
+            const data = await addCouponMutation({ cartId: cartData?.cartData?._id, couponCode: coupon, email: user?.data?.user?.email })
+            if (data) {
+                setCouponSuccess(true)
+            }
+
+        } catch (error) {
+            setCouponError(true)
         }
     }
 
@@ -59,12 +83,18 @@ const OrderSummary = ({ cartData }) => {
                     <p><span>৳</span> {total}</p>
                 </div>
             </div>
-            <div className='mt-4'>
-                <p className='text-sm text-dark'>Have a coupon code ?</p>
-                <div className='border rounded-md flex items-center mt-2'>
-                    <input className='rounded-md outline-none p-2 placeholder:text-sm w-full' type="text" placeholder='Enter Coupon Code' />
-                    <button className='bg-primary px-6 py-2 text-white rounded-r-md hover:bg-dark'>Apply</button>
-                </div>
+            <div className='mt-2 w-full'>
+                <label className='text-sm text-dark'>Have a coupon code ?</label>
+                <form onSubmit={handleCouponCode} className="border rounded-md flex items-center mt-2">
+                    <input onChange={(e) => setCoupon(e.target.value)} className="rounded-md outline-none p-2 placeholder:text-sm w-full" type="text" name="coupon" placeholder="Enter Coupon Code" />
+                    <button className="bg-primary px-6 py-2 text-white rounded-r-md hover:bg-dark cursor-pointer">Apply</button>
+                </form>
+                {
+                    couponSuccess && <p className='text-center text-green-600 mt-3'>{couponSuccess ? 'Succesfully' : 'Already Used'}</p>
+                }
+                {
+                    couponError && <p className='text-center text-red-600 mt-3'>Coupon is invalid!</p>
+                }
             </div>
 
             <div className='py-4 font-semibold text-sm flex justify-between my-5 md:my-10 items-center gap-2'>

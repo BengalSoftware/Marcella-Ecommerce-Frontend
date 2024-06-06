@@ -1,5 +1,5 @@
 'use client'
-import { productSearchSuggestion } from '@/lib/productApi/productApi';
+import { getAllProductByQuery, productSearchSuggestion } from '@/lib/productApi/productApi';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
@@ -20,9 +20,14 @@ const SearchBar = () => {
     useEffect(() => {
         const searchMutation = async () => {
             try {
-                const data = await productSearchSuggestion(searchValue);
-                if (data) {
-                    setSearchData(data?.tags)
+                const [tagResponse, productResponse] = await Promise.all([
+                    productSearchSuggestion(searchValue),
+                    getAllProductByQuery(`?search=${searchValue}`)
+                ])
+                if (productResponse) {
+                    setSearchData(productResponse?.result?.data)
+                } else {
+                    setSearchData(tagResponse?.tags)
                 }
             } catch (error) {
                 console.error(error)
@@ -32,7 +37,7 @@ const SearchBar = () => {
         searchMutation();
     }, [searchValue])
 
-    
+
 
     useEffect(() => {
         const handleOutsideClick = (e) => {
@@ -46,7 +51,7 @@ const SearchBar = () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         }
     }, []);
-
+    
     return (
         <div ref={suggestionBarRef} className='w-full relative rounded-b-md'>
             <form onSubmit={handelSubmitSearch} className='bg-white w-full flex items-center rounded-full px-4'>
@@ -55,13 +60,13 @@ const SearchBar = () => {
             </form>
 
             {
-                searchValue && <ul className='absolute bg-white rounded-md shadow w-full z-50 top-14'>
+                searchValue && <ul className='absolute bg-white rounded-md shadow w-full z-[999] top-14'>
                     {
                         searchData?.length > 0 ?
                             searchData?.map((tag, idx) =>
                                 <li key={idx}>
-                                    <Link onClick={() => setSearchValue(null)} href={`/products?search=${tag}`} className='w-full flex items-center justify-between py-2 text-sm px-4 hover:text-primary'>
-                                        {tag}
+                                    <Link onClick={() => setSearchValue(null)} href={`/products?search=${tag?.name ? tag?.name : tag}`} className='w-full flex items-center justify-between py-2 text-sm px-4 hover:text-primary'>
+                                        {tag?.name ? tag?.name : tag}
                                         <MdOutlineArrowOutward />
                                     </Link>
 

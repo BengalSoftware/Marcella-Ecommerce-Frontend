@@ -31,7 +31,7 @@ const OfferCount = ({ endDate }) => {
     }, []);
     return (
         <div>
-            <h1>{countdown}</h1>
+            <h1 className='text-xs md:text-base'>{countdown}</h1>
         </div>
     );
 };

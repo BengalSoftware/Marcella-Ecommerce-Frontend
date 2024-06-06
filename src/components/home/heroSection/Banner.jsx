@@ -36,14 +36,14 @@ const Banner = () => {
                         <Slider {...banneSettings}>
                             {
                                 bannerData?.data?.map(ban =>
-                                    <Link key={ban?._id} href={`/campaign-products/${ban?._id}`}>
+                                    <Link key={ban?._id} href={ban?.url?.startsWith(' https') ? ban?.url : `/campaign-products/${ban?.slug}`}>
                                         <Image
                                             width={1200}
                                             height={420}
                                             src={ban?.image}
                                             alt={ban?.name}
                                             quality={100}
-                                            className='h-fit md:h-[19rem] xl:h-[22rem] w-full rounded-md lg:rounded-l-none xl:rounded-r-lg'
+                                            className='h-fit md:h-[20.5rem] xl:h-[23.75rem] w-full rounded-md lg:rounded-l-none xl:rounded-r-lg'
                                         />
                                     </Link>
                                 )

@@ -75,7 +75,8 @@ button.slick-arrow.slick-prev::before {
 .slick-dots li button:before {
   font-size: 10px;
 }
-.slick-dots li.slick-active button:before{
+
+.slick-dots li.slick-active button:before {
   color: white;
 }
 

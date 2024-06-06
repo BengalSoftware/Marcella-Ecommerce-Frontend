@@ -1,7 +1,6 @@
 import Rating from '@/components/rating/Rating';
 import Image from 'next/image';
 import React from 'react';
-import img from '../../../../public/assets/product.webp'
 import { MdDelete } from 'react-icons/md';
 
 const ReviewCard = ({ review }) => {

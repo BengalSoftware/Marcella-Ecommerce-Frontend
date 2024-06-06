@@ -20,10 +20,7 @@ const createStoreLayoutWithProduct = async (email, formData) => {
         const res = await fetch(`${baseUrl}/store-layout/${email}`,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData,
             })
 
         if (!res.ok) {
@@ -37,7 +34,23 @@ const createStoreLayoutWithProduct = async (email, formData) => {
 };
 
 
+// get store layout 
+const getStoreLayoutQuery = async (email) => {
+    try {
+        const res = await fetch(`${baseUrl}/store-layout/${email}`)
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data')
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error(error)
+    }
+};
+
 export {
     getSelectedLayoutByEmail,
-    createStoreLayoutWithProduct
+    createStoreLayoutWithProduct,
+    getStoreLayoutQuery
 }

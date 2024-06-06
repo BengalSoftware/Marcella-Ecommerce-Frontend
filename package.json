@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "@reduxjs/toolkit": "^2.1.0",
     "antd": "^5.13.3",
     "js-cookie": "^3.0.5",

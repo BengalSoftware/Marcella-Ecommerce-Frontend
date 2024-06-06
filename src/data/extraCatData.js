@@ -39,6 +39,6 @@ export const extraCatData = [
         "id": 7,
         "name": "New Arraivals",
         "image": "https://i.ibb.co/v48qPyV/62624b46-f8ca-43b7-a5fa-1d31920a6eb5.png",
-        "slug": 'watches-bags-jewellery'
+        "slug": '/products?new-arraival'
     }
 ]

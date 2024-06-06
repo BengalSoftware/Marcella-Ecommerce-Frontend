@@ -18,7 +18,7 @@ const getAllProduct = async (page) => {
 // get all product by query
 const getAllProductByQuery = async (queryUrl) => {
     try {
-        const res = await fetch(`${baseUrl}/product/${queryUrl}`)
+        const res = await fetch(`${baseUrl}/product${queryUrl}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')

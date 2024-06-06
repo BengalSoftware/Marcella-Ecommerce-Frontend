@@ -105,7 +105,7 @@ const ProductDeliveryInfo = ({ product }) => {
             </div>
 
             <div className='mt-5'>
-                <div className='flex items-center justify-between'>
+                {/* <div className='flex items-center justify-between'>
                     <div>
                         <p className='text-sm text-dark'>Product Seller Ratings</p>
                         <p className='text-2xl'>85%</p>
@@ -114,7 +114,7 @@ const ProductDeliveryInfo = ({ product }) => {
                         <p className='text-sm text-dark'>Ship on Time</p>
                         <p className='text-2xl'>100%</p>
                     </div>
-                </div>
+                </div> */}
                 <div className='text-center mt-2'>
                     {
                         sellerInfo ? <Link onClick={handleVisitStore} href={`/shop/${sellerInfo?.data?.slug}`} className='text-primary text-xs uppercase hover:underline'>Visit Store</Link> : null

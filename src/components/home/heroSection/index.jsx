@@ -1,7 +1,6 @@
 import React from 'react';
 import Categories from './Categories';
 import Banner from './Banner';
-import SliderAds from './SliderAds';
 
 const BannerCategories = () => {
     return (
@@ -12,9 +11,6 @@ const BannerCategories = () => {
             <div className='lg:col-span-4'>
                 <Banner />
             </div>
-            {/* <div className='lg:col-span-1'>
-                <SliderAds />
-            </div> */}
         </div>
     );
 };

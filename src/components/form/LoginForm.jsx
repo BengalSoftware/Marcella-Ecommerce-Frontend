@@ -76,7 +76,7 @@ const LoginForm = () => {
             }
             <form onSubmit={handleSubmit}>
                 <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-8"
-                    placeholder="Enter Email or Phone" name='emailPhone' type="email" />
+                    placeholder="Enter Email or Phone" name='emailPhone' type="text" />
                 <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
                     placeholder="Password" name='password' type="password" />
 

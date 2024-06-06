@@ -83,7 +83,7 @@ const FilterSidebar = () => {
                     {
                         brands?.map(brand =>
                             <li key={brand?._id}>
-                                <Link href={pathname + '?' + createQueryString('brand', brand.name)} className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-secondary border-t'>{brand?.name}</Link>
+                                <Link href={pathname + '?' + createQueryString('brand', brand?.slug)} className='w-full block rounded px-4 py-2 text-sm text-dark hover:bg-secondary border-t'>{brand?.name}</Link>
                             </li>
                         )
                     }

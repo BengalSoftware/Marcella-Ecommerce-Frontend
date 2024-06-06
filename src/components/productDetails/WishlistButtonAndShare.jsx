@@ -79,10 +79,7 @@ const WishlistButtonAndShare = ({ product }) => {
                     <IoShareSocial />
                 </button>
                 <button onClick={handleAddToWishlist} className='text-3xl'>
-
-                    {isExist ? <FaHeart className='text-red-500' /> : <FaRegHeart className='text-gray-400' />
-
-                    }
+                    {isExist ? <FaHeart className='text-red-500' /> : <FaRegHeart className='text-gray-400' />}
                 </button>
             </div>
 
@@ -90,13 +87,13 @@ const WishlistButtonAndShare = ({ product }) => {
                 <div className='relative'>
                     <IoMdArrowDropup className='text-4xl absolute bottom-full right-0 text-primary' />
                     <div className='flex items-center gap-4'>
-                        <FacebookShareButton url={`https://marcella-ten.vercel.app${pathname}`}>
+                        <FacebookShareButton url={`https://veendeshi.com${pathname}`} imageUrl={product?.images?.[0]}>
                             <FacebookIcon size={32} round={true} />
                         </FacebookShareButton>
-                        <TwitterShareButton url={`https://marcella-ten.vercel.app${pathname}`}>
+                        <TwitterShareButton url={`https://veendeshi.com${pathname}`} imageUrl={product?.images?.[0]}>
                             <TwitterIcon size={32} round={true} />
                         </TwitterShareButton>
-                        <WhatsappShareButton url={`https://marcella-ten.vercel.app${pathname}`}>
+                        <WhatsappShareButton url={`https://veendeshi.com${pathname}`} imageUrl={product?.images?.[0]}>
                             <WhatsappIcon size={32} round={true} />
                         </WhatsappShareButton>
                     </div>

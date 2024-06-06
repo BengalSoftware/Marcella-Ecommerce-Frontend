@@ -3,7 +3,7 @@ import { QRCode } from 'antd';
 import JsBarcode from 'jsbarcode';
 import React, { useEffect, useRef } from 'react';
 
-const BarCodeInvoice = ({ singleOrder }) => {
+const BarCodeInvoice = ({ printRef, sellerInfo, singleOrder }) => {
     const { address, createdAt, orderId } = singleOrder?.result || {};
     const ref = useRef()
 
@@ -22,9 +22,9 @@ const BarCodeInvoice = ({ singleOrder }) => {
 
 
     return (
-        <div className='border border-black w-1/2 mt-10'>
+        <div ref={printRef} className='border border-black w-1/2 mt-10'>
             <div className='grid grid-cols-3'>
-                <h1 className='uppercase text-primary text-3xl font-semibold border-r border-r-black p-1 text-center w-full'>Marcella</h1>
+                <h1 className='uppercase text-primary text-3xl font-semibold border-r border-r-black p-1 text-center w-full'>Veendeshi</h1>
                 <div className='border-r border-r-black p-1'>
                     <p className='text-[10px] text-center text-black'>Order Id</p>
                     <p className='text-center text-black text-xs'>{orderId}</p>
@@ -44,9 +44,16 @@ const BarCodeInvoice = ({ singleOrder }) => {
                         value={address?.address}
                     />
                 </div>
-                <div className='col-span-2 border-l border-l-black'>
-                    <p className='text-black text-xs border-b border-b-black pl-3 py-3'>Recipient: {address?.address}</p>
-                    <p className='text-black text-xs pl-3 py-3'>Seller: {address?.address}</p>
+                <div className='w-full border-l border-l-black'>
+                    <div className='border-b border-b-black pl-3 py-3'>
+                        <p className='text-black text-xs pb-1'><span className='font-medium'>Recipient:</span> {address?.shippingName}</p>
+                        <p className='text-black text-xs pb-1'>{address?.address}</p>
+                        <p className='text-black text-xs pb-1'>{address?.shippingPhone}</p>
+                    </div>
+                    <div className='pl-3 py-3'>
+                        <p className='text-black text-xs pb-1'><span className='font-medium'>Seller:</span> {sellerInfo?.name}</p>
+                        <p className='text-black text-xs pb-1'>{sellerInfo?.address}</p>
+                    </div>
                 </div>
             </div>
         </div>

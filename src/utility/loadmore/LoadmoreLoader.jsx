@@ -2,9 +2,9 @@ import React from 'react';
 
 const LoadmoreLoader = () => {
     return (
-        <div className='mt-6 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-5'>
+        <div className='mt-6 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-5'>
             {
-                Array(10).fill().map((_, idx) => (
+                Array(12).fill().map((_, idx) => (
                     <div key={idx}>
                         <div className='relative group'>
                             <div>

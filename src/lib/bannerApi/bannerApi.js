@@ -2,9 +2,7 @@ import { baseUrl } from "../api/baseUrl";
 
 const getDesktopBanner = async () => {
     try {
-        const res = await fetch(`${baseUrl}/desktopBanner`, {
-            cache: 'force-cache'
-        })
+        const res = await fetch(`${baseUrl}/desktopBanner`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')
@@ -19,9 +17,7 @@ const getDesktopBanner = async () => {
 
 const getSingleDesktopBanner = async (slug) => {
     try {
-        const res = await fetch(`${baseUrl}/desktopBanner/${slug}`, {
-            cache: 'force-cache'
-        })
+        const res = await fetch(`${baseUrl}/desktopBanner/${slug}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')

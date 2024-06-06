@@ -1,4 +1,4 @@
-import { productSearchSuggestion } from '@/lib/productApi/productApi';
+import { getAllProductByQuery, productSearchSuggestion } from '@/lib/productApi/productApi';
 import { Drawer } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -24,9 +24,14 @@ const MobileSearchbar = ({ openDrawer, setOpenDrawer }) => {
     useEffect(() => {
         const searchMutation = async () => {
             try {
-                const data = await productSearchSuggestion(suggestSearch);
-                if (data) {
-                    setSearchData(data?.tags)
+                const [tagResponse, productResponse] = await Promise.all([
+                    productSearchSuggestion(suggestSearch),
+                    getAllProductByQuery(`?search=${suggestSearch}`)
+                ])
+                if (productResponse) {
+                    setSearchData(productResponse?.result?.data)
+                } else {
+                    setSearchData(tagResponse?.tags)
                 }
             } catch (error) {
                 console.error(error)
@@ -73,8 +78,8 @@ const MobileSearchbar = ({ openDrawer, setOpenDrawer }) => {
                         searchData?.length > 0 ?
                             searchData?.map((tag, idx) =>
                                 <li onClick={() => setOpenDrawer(false)} key={idx} className='border-b border-gray-50 '>
-                                    <Link href={`/products?search=${tag}`} className='w-full flex items-center justify-between py-2 px-4'>
-                                        {tag}
+                                    <Link href={`/products?search=${tag?.name ? tag?.name : tag}`} className='w-full flex items-center justify-between py-2 px-4'>
+                                        {tag?.name ? tag?.name : tag}
                                         <MdOutlineArrowOutward />
                                     </Link>
 

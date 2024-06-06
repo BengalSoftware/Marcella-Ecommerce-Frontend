@@ -1,6 +1,6 @@
 export const productSettings = {
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: true,
     speed: 300,

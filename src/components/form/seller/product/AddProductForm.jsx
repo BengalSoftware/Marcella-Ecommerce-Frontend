@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { getSingleSeller } from '@/lib/sellerApi/sellerApi';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
+import ProductTypeForm from './ProductTypeForm';
 
 const AddProductForm = ({ id }) => {
     const [products, setProducts] = useState(null);
@@ -29,7 +30,7 @@ const AddProductForm = ({ id }) => {
     const { seller } = useContext(AuthContext);
     const router = useRouter();
     const [singleSeller, setSingleSeller] = useState(null);
-
+    const [productTypes, setProductTypes] = useState(null)
 
     const { name, slug, altTag, manufacturer, offerPrice, price, productType, quantity, status, subcategories, subcategoryChildren, model, tags, size, color } = products?.result || {};
 
@@ -136,7 +137,7 @@ const AddProductForm = ({ id }) => {
         };
         fetchData();
     }, [seller?.data?.user?.email]);
-   
+
     return (
         <div className='bg-white p-4 shadow rounded-md mt-5'>
             <form onSubmit={handleUpdate}>
@@ -165,17 +166,10 @@ const AddProductForm = ({ id }) => {
                             subcategoryChildren={subcategoryChildren}
                         />
                     </div>
-                    <div>
-                        <label className='text-dark text-sm'>Product Type <span className='text-red-500'>*</span></label>
-                        <select onChange={handleChange} defaultValue={productType} name="productType" required className='block w-full border rounded-md p-2.5 mt-2 outline-none text-dark text-sm'>
-
-                            <option value="mens-fashion">Mens Fashion</option>
-                            <option value="Womens-fashion">Womens Fashion</option>
-                            <option value="mobile-and-gadgets">Mobile and Gadgets</option>
-                            <option value="home-appliance">Home Appliance</option>
-                            <option value="computing-and-gaming">Computing and Gaming</option>
-                        </select>
-                    </div>
+                    <ProductTypeForm
+                        handleChange={handleChange}
+                        productType={productType}
+                    />
                     <div>
                         <label className='text-dark text-sm'>Model </label>
                         <input onChange={handleChange} defaultValue={model} type="text" name='model' className='border mt-2 border-gray-300 outline-none p-2 w-full block rounded-md placeholder:text-sm placeholder:font-light' placeholder='Model' />

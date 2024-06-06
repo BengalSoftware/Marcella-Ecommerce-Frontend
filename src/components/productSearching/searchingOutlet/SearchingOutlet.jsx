@@ -1,10 +1,11 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ProductCard from '@/components/card/ProductCard';
 import { getAllProductByQuery, getSellerProduct } from '@/lib/productApi/productApi';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import SearchHistory from '../searchHistory/SearchHistory';
 import { getSingleSellerById } from '@/lib/sellerApi/sellerApi';
+import { Pagination } from 'antd';
 
 const SearchingOutlet = ({ slug }) => {
     const [products, setProducts] = useState([]);
@@ -13,6 +14,15 @@ const SearchingOutlet = ({ slug }) => {
     const pathname = usePathname();
     const [sellerId, setSellerId] = useState(null)
     const [sellerInfo, setSellerInfo] = useState(null)
+    const params = new URLSearchParams(searchParams.toString());
+
+    const createQueryString = useCallback(
+        (name, value) => {
+            params.set(name, value);
+            return params.toString();
+        },
+        [searchParams]
+    );
 
     useEffect(() => {
 
@@ -68,6 +78,12 @@ const SearchingOutlet = ({ slug }) => {
     }, [sellerId || slug])
 
 
+    const handlePagination = (page) => {
+        router.push(pathname + '?' + createQueryString("page", page))
+    }
+
+    const totalProducts = products?.result?.totalProducts || 0;
+
     return (
         <div>
             <div className='flex items-center gap-5'>
@@ -108,6 +124,17 @@ const SearchingOutlet = ({ slug }) => {
                     </>
 
             }
+            <div className='mt-5 flex items-center justify-end'>
+                <Pagination
+                    total={totalProducts || 0}
+                    hideOnSinglePage={true}
+                    pageSize={10}
+                    onChange={(page) => handlePagination(page)}
+                    responsive
+
+                    defaultCurrent={params.get("page") || 1}
+                />
+            </div>
         </div>
     );
 };

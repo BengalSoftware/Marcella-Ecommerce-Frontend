@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { IoHomeSharp } from "react-icons/io5";
 import OneBannerForm from './form/OneBannerForm';
+import ShopLayout from '@/components/shop/ShopLayout';
 
 const StoreLayoutButton = () => {
     const [activeButton, setActiveButton] = useState('home')
@@ -13,6 +14,9 @@ const StoreLayoutButton = () => {
                 <button onClick={() => setActiveButton('two')} className={`${activeButton === 'two' ? 'bg-dark hover:bg-primary' : 'bg-primary hover:bg-dark'} text-white w-full py-2 rounded-md`}>Two Banner</button>
                 <button onClick={() => setActiveButton('three')} className={`${activeButton === 'three' ? 'bg-dark hover:bg-primary' : 'bg-primary hover:bg-dark'} text-white w-full py-2 rounded-md`}>Three Banner</button>
             </div>
+            {
+                activeButton === 'home' && <ShopLayout activeButton={activeButton} />
+            }
             {
                 activeButton === 'one' && <OneBannerForm activeButton={activeButton} />
             }

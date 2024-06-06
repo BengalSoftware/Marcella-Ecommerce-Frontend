@@ -1,50 +1,78 @@
-import React from 'react';
-import banner1 from '../../../../public/assets/Menu-3.jpg'
-import banner2 from '../../../../public/assets/Menu-4.jpg'
-import product1 from '../../../../public/assets/fogg.webp'
-import product2 from '../../../../public/assets/product4.webp'
+'use client'
+import React, { useEffect, useState } from 'react';
 import SellerShopIndex from '..';
 import Image from 'next/image';
-import Slider from 'react-slick';
-import { productSettings } from '@/utility/sliderSettings/productSettings';
 import ProductCard from '@/components/card/ProductCard';
+import { getStoreLayoutQuery } from '@/lib/layoutStore/layoutStoreApi';
+import ProductSlider from '@/utility/productSlider/ProductSlider';
 
 
-const products = [
-    {
-        banner: banner1,
-        img: product1
-    },
-    {
-        banner: banner2,
-        img: product2
-    },
-]
+const Layout2 = ({ email, id }) => {
+    const [layouts, setLayouts] = useState(null);
 
-
-const Layout2 = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getStoreLayoutQuery(email)
+                if (res) {
+                    setLayouts(res)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [email])
+    const products = layouts?.data?.filter(layout => layout?.images?.length === 2)
     return (
         <div>
             {
                 products?.map((product, idx) =>
-                    <div className='my-4'>
+                    <div key={idx} className='my-4'>
                         <div className='grid grid-cols-2 w-full items-center gap-x-4 mb-4'>
-                            <Image className='rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
-                            <Image className='rounded-md' src={product?.banner} alt='banner' quality={100} placeholder='blur' />
-                        </div>
-                        <Slider {...productSettings}>
                             {
-                                Array(5).fill().map((_, idx) =>
-                                    <div key={idx} className='px-1 md:px-2'>
-                                        <ProductCard imgs={product?.img} />
-                                    </div>
+                                product?.images?.map((banner, idx) =>
+                                    <Image
+                                        key={idx}
+                                        height={500}
+                                        width={1200}
+                                        className='rounded-md mb-4'
+                                        src={banner}
+                                        alt='banner'
+                                        quality={100}
+                                    />
                                 )
                             }
-                        </Slider>
+                        </div>
+
+                        {
+                            products?.length > 5 ?
+                                <ProductSlider>
+                                    {
+                                        product?.products?.map(product => product?.sellerId === id &&
+                                            <div key={product?._id} className='px-1 md:px-2'>
+                                                <ProductCard
+                                                    product={product}
+                                                />
+                                            </div>
+                                        )
+                                    }
+                                </ProductSlider> :
+                                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2'>
+                                    {
+                                        product?.products?.map(product => product?.sellerId === id &&
+                                            <ProductCard
+                                                key={product?._id}
+                                                product={product}
+                                            />
+                                        )
+                                    }
+                                </div>
+                        }
                     </div>
                 )
             }
-            <SellerShopIndex />
+            <SellerShopIndex id={id} />
         </div>
     );
 };

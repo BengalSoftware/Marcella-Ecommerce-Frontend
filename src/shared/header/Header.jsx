@@ -1,6 +1,5 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react';
-import { IoIosSearch } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import Link from 'next/link';
 import { CgMenuGridO } from "react-icons/cg";
@@ -13,6 +12,8 @@ import { getWishlistByUserEmail } from '@/lib/wishlistApi/wishListApi';
 import { FaHeart } from 'react-icons/fa';
 import MobileSearchbar from '../mobileSearchbar/MobileSearchbar';
 import SearchBar from './SearchBar';
+import Image from 'next/image';
+import logo from '../../../public/assets/logo.png'
 
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -41,7 +42,7 @@ const Header = () => {
 
 
     return (
-        <div className='bg-g-primary'>
+        <div className='bg-[#084953]'>
             <div className="container mx-auto py-4">
                 <div className='mx-4 lg:mx-0'>
                     {/* top header start */}
@@ -49,7 +50,7 @@ const Header = () => {
                         <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
                             <Link href='/' className='text-white text-sm border-r border-green-700 pr-4'>Customer Service  </Link>
                             <Link href='' className='border-r pr-4 border-green-700'>Our Address</Link>
-                            <p>Call Us On +8801894-961361</p>
+                            <p>Call Us On <a href="tel:+8801894-961377">+8801894-961377</a></p>
                         </div>
                         <div className='flex items-center justify-end gap-5 text-white mb-5 text-sm'>
                             {
@@ -75,8 +76,8 @@ const Header = () => {
                     </div>
                     {/* top header end */}
                     <div className='flex items-center justify-between'>
-                        <Link href='/' className='w-1/4'>
-                            <h1 className='text-3xl lg:text-5xl font-semibold text-white'>MARCELLA</h1>
+                        <Link href='/' className='md:w-1/4 w-1/2'>
+                            <Image src={logo} quality={100} className='md:w-3/4' alt='veendeshi' />
                         </Link>
                         <div className='w-2/4 hidden lg:flex items-center justify-center'>
                             <SearchBar />
@@ -87,7 +88,7 @@ const Header = () => {
                                     (user?.data?.user?.email || userLoginSuccess) ?
                                         <Link href='/wishlist' className='bg-white text-xl rounded-full p-1.5 relative'>
                                             {wishProducts?.length > 0 ? <FaHeart className='text-red-500' /> : <CiHeart />}
-                                            <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>{wishProducts?.length}</p>
+                                            <p className='absolute -top-1 -right-1 bg-green-600 text-white rounded-full h-5 w-5 flex items-center justify-center text-[10px] p-0.5 border border-white'>{wishProducts?.length || 0}</p>
                                         </Link> :
                                         <Link href='/login' className='bg-white text-xl rounded-full p-1.5'>
                                             <CiHeart />
@@ -104,12 +105,7 @@ const Header = () => {
                         <button onClick={() => setMobileNavOpen(!mobileNavOpen)} className='text-4xl text-white'>
                             <CgMenuGridO />
                         </button>
-                        {/* <div className='flex items-center justify-center w-full'>
-                                <div className='bg-white w-full flex items-center rounded-full px-4'>
-                                    <input className='w-full py-2 pr-3 outline-none rounded-full placeholder:text-sm' placeholder='Search for products..' type="text" name="" id="" />
-                                    <IoIosSearch className='text-2xl' />
-                                </div>
-                            </div> */}
+                        
                         <MobileSearchbar
                             openDrawer={openDrawer}
                             setOpenDrawer={setOpenDrawer}

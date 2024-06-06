@@ -1,10 +1,26 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import FestivalComponent from './FestivalComponent';
 import { getFlashSaleOffer } from '@/lib/flashSale/flashSaleApi';
 
-const AdsFestivalIndex = async () => {
-    const flashSaleData = await getFlashSaleOffer();
-    
+const AdsFestivalIndex = () => {
+    const [flashSaleData, setFlashSaleData] = useState(null);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getFlashSaleOffer();
+                if (data) {
+                    setFlashSaleData(data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, [])
+
     return (
         <div>
             {
