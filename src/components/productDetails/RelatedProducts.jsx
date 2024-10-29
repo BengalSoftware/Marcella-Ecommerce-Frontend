@@ -27,7 +27,7 @@ const RelatedProducts = ({ slug }) => {
                 rProduct?.result?.length > 0 ?
                     <div className='mt-6 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-2'>
                         {
-                            rProduct?.result?.map(product =>
+                            rProduct?.result?.slice(0, 6)?.map(product =>
                                 <div key={product?._id}>
                                     <ProductCard product={product} />
                                 </div>

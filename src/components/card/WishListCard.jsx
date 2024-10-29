@@ -25,7 +25,7 @@ const WishListCard = ({ product }) => {
                 offerPrice,
             };
         } else {
-            toast.error('Please Signin Your Account')
+            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
         }
         try {
             setCartLoading(true)

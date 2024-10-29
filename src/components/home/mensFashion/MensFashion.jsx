@@ -9,7 +9,6 @@ const MensFashion = ({ type }) => {
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(false)
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {

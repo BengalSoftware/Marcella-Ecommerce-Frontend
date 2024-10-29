@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiShoppingBag } from 'react-icons/fi';
 import discountSvg from '../../../public/assets/discount.svg'
+import Link from 'next/link';
 
 const AddToCartButton = ({ product }) => {
     const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const AddToCartButton = ({ product }) => {
                 quantity: productQty
             };
         } else {
-            toast.error('Please Signin Your Account')
+            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
         }
         try {
             const res = await addToCartDataByEmail(user?.data?.user?.email, data);

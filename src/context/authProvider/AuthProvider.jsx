@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem('sauth')
         setSellerLogoutSuccess(true);
         setSellerLoginSuccess(false)
+        window.location.reload()
     }
 
 

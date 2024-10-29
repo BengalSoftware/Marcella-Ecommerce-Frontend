@@ -4,6 +4,7 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 import { addToCartDataByEmail, deleteCardDataByEmailId } from '@/lib/addToCartApi/addToCartApi';
 import DeleteLoader from '@/utility/deleteLoader/DeleteLoader';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
@@ -27,7 +28,7 @@ const CheckoutCard = ({ statusCard, product }) => {
                 product: _id,
             };
         } else {
-            toast.error('Please Signin Your Account')
+            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
         }
         try {
             setIncrementLoading(true)
@@ -54,7 +55,7 @@ const CheckoutCard = ({ statusCard, product }) => {
                 minusQty: product?.quantity
             };
         } else {
-            toast.error('Please Signin Your Account')
+            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
         }
         try {
             setDecrementLoading(true)
@@ -99,7 +100,7 @@ const CheckoutCard = ({ statusCard, product }) => {
             <div className={`col-span-3 flex items-center justify-between border rounded-md w-fit ${statusCard ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
                 <button onClick={handleDecrement} disabled={productQty <= 1} className={`text-sm p-1 border-r ${productQty <= 1 && 'cursor-not-allowed'}`}>{decrementLoading ? <DeleteLoader /> : <FiMinus />}</button>
                 <p className='px-4'>{product?.quantity}</p>
-                <button onClick={handleIncrement} disabled={productQty >= 5} className={`text-sm p-1 border-l ${productQty >= 5 && 'cursor-not-allowed'}`}>{incrementLoading ? <DeleteLoader /> : <FiPlus />}</button>
+                <button onClick={handleIncrement} disabled={productQty >= 100} className={`text-sm p-1 border-l ${productQty >= 100 && 'cursor-not-allowed'}`}>{incrementLoading ? <DeleteLoader /> : <FiPlus />}</button>
             </div>
             <div className={`col-span-3 text-end ${statusCard ? 'lg:col-span-3' : 'lg:col-span-1'}`}>
                 <button onClick={() => handleDeleteProduct()} className='text-xl'>

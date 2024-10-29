@@ -35,9 +35,10 @@ const HelpForm = () => {
                     </form>
                 </div>
                 <div className='md:col-span-1'>
-                    <a target='_blank' href="https://facebook.com/adnanhossaincse" className='mt-8 bg-[#1877F2] text-white p-2 rounded-md text-sm w-full block text-center hover:opacity-85'>Facebook</a>
-                    <a target='_blank' href="https://instagram.com/adnanhjoy" class="mt-4 bg-gradient-to-l from-yellow-400 via-pink-500 to-purple-500 text-white hover:opacity-85 p-2 rounded-md text-sm w-full block text-center">Instagram</a>
-                    <a target='_blank' href="https://twitter.com/adnanhjoy" className='mt-4 bg-[#1DA1F2] text-white p-2 rounded-md text-sm w-full block text-center hover:opacity-85'>Twitter</a>
+                    <a target='_blank' href="https://www.facebook.com/veendeshishop" className='mt-8 bg-[#1877F2] text-white p-2 rounded-md text-sm w-full block text-center hover:opacity-85'>Facebook</a>
+                    <a target='_blank' href="https://instagram.com" class="mt-4 bg-gradient-to-l from-yellow-400 via-pink-500 to-purple-500 text-white hover:opacity-85 p-2 rounded-md text-sm w-full block text-center">Instagram</a>
+                    <a target='_blank' href="https://wa.me/message/FXUSWADZTYY5K1" class="mt-4 bg-[#25D366] text-white hover:opacity-85 p-2 rounded-md text-sm w-full block text-center">Whatsapp</a>
+                    <a target='_blank' href="https://twitter.com" className='mt-4 bg-[#1DA1F2] text-white p-2 rounded-md text-sm w-full block text-center hover:opacity-85'>Twitter</a>
                 </div>
             </div>
         </div>

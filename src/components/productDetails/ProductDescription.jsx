@@ -8,6 +8,7 @@ import WishlistButtonAndShare from './WishlistButtonAndShare';
 import { StateContext } from '@/context/stateProvider/StateProvider';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { addToCartDataByEmail } from '@/lib/addToCartApi/addToCartApi';
+import Link from 'next/link';
 
 
 const ProductDescription = ({ product }) => {
@@ -22,11 +23,12 @@ const ProductDescription = ({ product }) => {
 
     const handleQtyIncrement = () => {
         const newQty = productQty + 1;
-        if (productQty >= 5) {
-            toast.error('Already chosen five products');
-        } else {
-            setProductQty(newQty);
-        }
+        // if (productQty >= 5) {
+        //     toast.error('Already chosen five products');
+        // } else {
+        //     setProductQty(newQty);
+        // }
+        setProductQty(newQty)
     }
 
     const handleQtyDecrement = () => {
@@ -53,7 +55,7 @@ const ProductDescription = ({ product }) => {
                 size: selectedSize
             };
         } else {
-            toast.error('Please Signin Your Account')
+            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
         }
         try {
             setCartLoading(true)

@@ -6,7 +6,6 @@ import MensFashion from '../mensFashion/MensFashion';
 const ProductType = () => {
     const [data, setData] = useState(null);
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
