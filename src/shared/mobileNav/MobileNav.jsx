@@ -42,9 +42,11 @@ const MobileNav = ({ open, setOpen }) => {
                         <HiXMark />
                     </button>
                 }
-                style={{ width: '80%' }}
+                autoFocus={true}
+                mask={false}
+                width={256}
             >
-                <MobileCategories categories={categories} />
+                <MobileCategories categories={categories} setOpen={setOpen} />
             </Drawer>
         </div>
     );

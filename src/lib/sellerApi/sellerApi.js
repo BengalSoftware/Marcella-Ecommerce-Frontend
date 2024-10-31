@@ -55,9 +55,23 @@ const updateSellerMutation = async (id, formData) => {
     }
 };
 
+// delete product
+const deleteProduct = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/product/${id}`, {
+        method: "DELETE",
+      });
+      return res.json();
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
 export {
     getSingleSeller,
     getSingleSellerById,
-    updateSellerMutation
+    updateSellerMutation,
+    deleteProduct
 }

@@ -9,6 +9,7 @@ import { StateContext } from '@/context/stateProvider/StateProvider';
 import { AuthContext } from '@/context/authProvider/AuthProvider';
 import { addToCartDataByEmail } from '@/lib/addToCartApi/addToCartApi';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 
 const ProductDescription = ({ product }) => {
@@ -20,14 +21,10 @@ const ProductDescription = ({ product }) => {
     const [sizePrice, setSizePrice] = useState(null)
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null)
+    const router = useRouter();
 
     const handleQtyIncrement = () => {
         const newQty = productQty + 1;
-        // if (productQty >= 5) {
-        //     toast.error('Already chosen five products');
-        // } else {
-        //     setProductQty(newQty);
-        // }
         setProductQty(newQty)
     }
 

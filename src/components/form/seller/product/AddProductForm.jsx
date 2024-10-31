@@ -40,7 +40,7 @@ const AddProductForm = ({ id }) => {
         event.preventDefault();
         const formData = new FormData()
         if (updateProduct?.name) formData.append('name', updateProduct?.name)
-        if (updateProduct?.slug) formData.append('slug', updateProduct?.slug)
+        if (updateProduct?.slug || generateSlug) formData.append('slug', updateProduct?.slug || generateSlug)
         if (updateProduct?.altTag) formData.append('altTag', updateProduct?.altTag)
         if (updateProduct?.model) formData.append('model', updateProduct?.model)
         if (updateProduct?.manufacturer) formData.append('manufacturer', updateProduct?.manufacturer)
