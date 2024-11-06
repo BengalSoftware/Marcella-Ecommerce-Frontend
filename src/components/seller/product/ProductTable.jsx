@@ -9,6 +9,7 @@ import { BiSolidPencil } from "react-icons/bi";
 import { IoEye } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const ProductTable = () => {
   const [products, setProducts] = useState([]); // Initialize as an empty array
@@ -59,7 +60,8 @@ const ProductTable = () => {
         const res = await deleteProduct(id);
         if (res) {
           toast.success("Product Deleted!");
-          setProducts(products.filter((product) => product._id !== id));
+          setProducts(products => products.filter(product => product._id !== id));
+          console.log(products);
           router.refresh(); // Refresh current route after product deletion
         }
       } catch (error) {

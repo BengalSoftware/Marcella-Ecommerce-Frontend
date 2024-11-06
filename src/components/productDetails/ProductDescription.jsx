@@ -52,7 +52,9 @@ const ProductDescription = ({ product }) => {
                 size: selectedSize
             };
         } else {
-            toast.error(<Link href='/login'>Please Signin Your Account</Link>)
+            // my edit.
+            router.push("/login"); 
+            toast.error("Please Signin Your Account");
         }
         try {
             setCartLoading(true)

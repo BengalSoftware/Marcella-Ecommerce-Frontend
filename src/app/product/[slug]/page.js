@@ -8,12 +8,12 @@ import ProductImage from '@/components/productDetails/ProductImage';
 import { getSingleProduct } from '@/lib/productApi/productApi';
 
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }, parent) {
     const { slug } = params || {};
     const data = await getSingleProduct(slug);
 
     const { name, description, images } = data?.result || {};
-
+    const previousImages = (await parent).openGraph?.images || []
     return {
         title: name ? `${name}` : 'Veendeshi',
         description: description,
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
             title: name ? `${name}` : 'Veendeshi',
             description: name,
             url: `https://veendeshi.com/product/${slug}`,
-            image: images?.[0]
+            images: [...images, ...previousImages]
         },
     };
 }
@@ -31,7 +31,6 @@ const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const data = await getSingleProduct(slug);
     const { images } = data?.result || {};
-
     return (
         <div className='container mx-auto mb-10 mt-5'>
             <div className='mx-4 xl:mx-0'>
