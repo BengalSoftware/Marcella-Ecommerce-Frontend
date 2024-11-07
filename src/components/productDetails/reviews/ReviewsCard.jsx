@@ -13,7 +13,7 @@ const ReviewsCard = ({ review }) => {
                     <p className='my-2 text-xs'>{new Date(review?.createdAt).toDateString()}</p>
                 </div>
                 <div className='w-2/3'>
-                    <p className='text-sm'>{review?.description} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae officiis, placeat vitae vel incidunt iusto adipisci nesciunt praesentium voluptatibus animi fuga, esse facere unde ut repellat in nisi. Quibusdam, nobis!</p>
+                    <p className='text-sm'>{review?.description}</p>
                 </div>
             </div>
         </div>
