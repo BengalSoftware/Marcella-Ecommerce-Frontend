@@ -3,7 +3,7 @@ const { baseUrl, token } = require("../api/baseUrl");
 // get all order by user email
 const getAllOrderByQuery = async (query) => {
     try {
-        const res = await fetch(`${baseUrl}/order?page=1&status=Pending`,
+        const res = await fetch(`${baseUrl}/order/allOrders`,
             {
                 headers: {
                     'Authorization': token,

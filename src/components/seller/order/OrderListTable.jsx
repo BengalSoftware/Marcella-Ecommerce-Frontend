@@ -32,6 +32,8 @@ const OrderListTable = () => {
         entry.products.some(product => product.product.sellerId === sellerInfo?._id)
     );
 
+    console.log(allProducts);
+
 
     return (
         <div className="overflow-x-auto mt-10 bg-white shadow rounded-lg">
@@ -64,11 +66,7 @@ const OrderListTable = () => {
                                 <td className="border p-2 text-xs text-center">{new Date().toDateString(product?.createdAt)}</td>
                                 <td className="border p-2 text-xs text-center">{new Date().toDateString(product?.updatedAt)}</td>
                                 <td className="border p-2 text-xs text-center">
-                                    <select required name="" className='block w-full border rounded-md p-2.5 outline-none text-dark text-xs'>
-                                        <option value="pending">Pending</option>
-                                        <option value="cancelled">Cancelled</option>
-                                        <option value="confirmed">Confirmed</option>
-                                    </select>
+                                    {product?.status}
                                 </td>
                                 <td className="border p-2 text-xs text-center">
                                     <div className='flex items-center justify-center'>
