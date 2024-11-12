@@ -62,6 +62,7 @@ const AddProductForm = ({ id }) => {
         if (selectedColorOption) formData.append('color', JSON.stringify(selectedColorOption))
         if (productTags) formData.append("tags", JSON.stringify(productTags));
         if (images) formData.append('images', images?.[0])
+            formData.append("createdBy", "seller");
 
         if (id) {
             const res = await updateProductMutation(id, formData);

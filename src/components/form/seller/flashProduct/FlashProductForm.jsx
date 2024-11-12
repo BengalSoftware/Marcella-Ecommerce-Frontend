@@ -42,7 +42,7 @@ const FlashProductForm = ({ id }) => {
         const formData = new FormData()
         formData.append("flashSale", true);
         if (updateProduct?.name) formData.append('name', updateProduct?.name)
-        if (updateProduct?.slug) formData.append('slug', updateProduct?.slug)
+        if (updateProduct?.slug || generateSlug) formData.append('slug', updateProduct?.slug || generateSlug)
         if (updateProduct?.altTag) formData.append('altTag', updateProduct?.altTag)
         if (updateProduct?.model) formData.append('model', updateProduct?.model)
         if (updateProduct?.manufacturer) formData.append('manufacturer', updateProduct?.manufacturer)
@@ -66,6 +66,7 @@ const FlashProductForm = ({ id }) => {
         if (selectedColorOption) formData.append('color', JSON.stringify(selectedColorOption))
         if (productTags) formData.append("tags", JSON.stringify(productTags));
         if (images) formData.append('images', images?.[0])
+            formData.append("createdBy", "seller");
 
         try {
             setAddLoading(true)
