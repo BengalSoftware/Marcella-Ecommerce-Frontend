@@ -31,7 +31,7 @@ const getFlashSaleOfferType = async () => {
 
 const getFlashSaleProduct = async (offer) => {
     try {
-        const res = await fetch(`${baseUrl}/product/flashProduct?&flashStatus=${offer}`)
+        const res = await fetch(`${baseUrl}/product/flashProduct/user?&flashStatus=${offer}`)
 
         if (!res.ok) {
             throw new Error('Failed to fetch data')

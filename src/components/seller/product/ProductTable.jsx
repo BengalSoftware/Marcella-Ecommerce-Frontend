@@ -81,6 +81,7 @@ const ProductTable = () => {
             <th className="border px-4 py-2 text-sm text-center">Status</th>
             <th className="border px-4 py-2 text-sm text-center">Qty</th>
             <th className="border px-4 py-2 text-sm text-center">Price</th>
+            <th className="border px-4 py-2 text-sm text-center">Approval Staus</th>
             <th className="border px-4 py-2 text-sm text-center">Actions</th>
           </tr>
         </thead>
@@ -102,6 +103,9 @@ const ProductTable = () => {
                 </td>
                 <td className="border px-4 py-2 text-sm text-center">
                   {product?.offerPrice ? product?.offerPrice : product?.price}
+                </td>
+                <td className="border px-4 py-2 text-sm text-center capitalize">
+                  {product?.approvalStatus}
                 </td>
                 <td className="border px-4 py-2 text-sm text-center">
                   <div className="flex items-center justify-center">
