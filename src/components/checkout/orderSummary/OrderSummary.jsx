@@ -26,6 +26,7 @@ const OrderSummary = ({ cartData }) => {
             const modifiedData = {
                 paymentType: payment,
                 totalAmount: total,
+                subTotal: subtotal,
                 shippingCharge: shippingCharge,
                 status: 'pending',
                 discountAmount: discountAmount,
