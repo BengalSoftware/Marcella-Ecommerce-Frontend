@@ -13,24 +13,23 @@ const CartPage = () => {
     const { user } = useContext(AuthContext)
     const { addressSuccess, cartSuccess, setCartSuccess, setAddressSuccess, setModalOpen, selectSuccess, checkoutSuccess, setCheckoutSuccess } = useContext(StateContext);
 
+    const fetchData = async () => {
+        try {
+            if (user?.data?.user?.email) {
+                const [cartResponse, addressResponse] = await Promise.all([
+                    getCartDataByEmail(user?.data?.user?.email),
+                    getActiveSingleAddress(user?.data?.user?.email)
+                ]);
+                setCartData(cartResponse?.data);
+                setActiveAddress(addressResponse?.data)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                if (user?.data?.user?.email) {
-                    const [cartResponse, addressResponse] = await Promise.all([
-                        getCartDataByEmail(user?.data?.user?.email),
-                        getActiveSingleAddress(user?.data?.user?.email)
-                    ]);
-                    setCartData(cartResponse?.data);
-                    setActiveAddress(addressResponse?.data)
-                }
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        fetchData()
-
+        fetchData();
         if (addressSuccess || selectSuccess || checkoutSuccess) {
             fetchData()
             setAddressSuccess(false)
@@ -53,7 +52,7 @@ const CartPage = () => {
                             cartData={cartData} />
                     </div>
                     <div className='md:col-span-1'>
-                        <OrderSummary cartData={cartData} />
+                        <OrderSummary cartData={cartData} fetchCartAndAdressData={fetchData} />
                     </div>
                 </div>
             </div>

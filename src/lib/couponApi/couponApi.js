@@ -10,11 +10,7 @@ const addCouponMutation = async (data) => {
                 },
                 body: JSON.stringify(data),
             })
-
-        if (!res.ok) {
-            throw new Error('Failed to fetch data')
-        }
-
+            
         return res.json();
     } catch (error) {
         console.error(error)

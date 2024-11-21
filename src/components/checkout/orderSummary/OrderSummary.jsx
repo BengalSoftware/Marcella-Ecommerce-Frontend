@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const OrderSummary = ({ cartData }) => {
+const OrderSummary = ({ cartData, fetchCartAndAdressData }) => {
     const [payment, setPayment] = useState('');
     const [coupon, setCoupon] = useState('');
     const { subtotal, total, shippingCharge, discountAmount } = cartData || {};
@@ -17,7 +17,7 @@ const OrderSummary = ({ cartData }) => {
     const [couponError, setCouponError] = useState(false);
     const [couponSuccess, setCouponSuccess] = useState(false);
     const router = useRouter()
-
+    console.log(cartData);
     const handlePayment = async () => {
         if (!payment) {
             toast.error('Please Select Payment Method')
@@ -57,8 +57,26 @@ const OrderSummary = ({ cartData }) => {
         e.preventDefault();
         try {
             const data = await addCouponMutation({ cartId: cartData?.cartData?._id, couponCode: coupon, email: user?.data?.user?.email })
-            if (data) {
+            console.log(data)
+            if(!data.success && data.alreadyUse)
+            {
+                toast.error("This coupon is already used!");
+                setCouponError(true);
+                setCouponSuccess(false)
+            }
+            else if(!data.success)
+            {
+                toast.error("Coupon is invalid!");
+                setCouponError(true)
+                setCouponSuccess(false)
+            }
+            else 
+            {
+                toast.success("Coupon applied successfully!");
+                fetchCartAndAdressData();
                 setCouponSuccess(true)
+                setCouponError(false)
+                setCoupon('')
             }
 
         } catch (error) {
