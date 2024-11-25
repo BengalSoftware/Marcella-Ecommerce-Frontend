@@ -18,7 +18,7 @@ import logo from '../../../public/assets/logo.png'
 const Header = () => {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const [openDrawer, setOpenDrawer] = useState(false);
-    const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout } = useContext(AuthContext);
+    const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout, handleGoogleLogout } = useContext(AuthContext);
     const [wishProducts, setWishProducts] = useState(null);
     const { wishlistSuccess, setWishlistSuccess } = useContext(StateContext);
 
@@ -69,7 +69,13 @@ const Header = () => {
                             }
                             {
                                 (user?.data?.user?.email || seller?.data?.user?.email || sellerLoginSuccess || userLoginSuccess) ?
-                                    <button onClick={handleLogout} className='flex items-center gap-2' >Logout</button> :
+                                    <button onClick={() => {
+                                        handleLogout();
+                                        if(user?.success)
+                                        {
+                                            handleGoogleLogout();
+                                        }
+                                    }} className='flex items-center gap-2' >Logout</button> :
                                     ''
                             }
                         </div>

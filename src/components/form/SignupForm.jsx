@@ -57,11 +57,11 @@ const SignupForm = () => {
     return (
         <form onSubmit={handleUserSignup}>
             <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
-                placeholder="Enter Name" name='name' type="text" />
+                placeholder="Enter Name" name='name' type="text" required />
             <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
-                placeholder="Enter Email or Phone" name='emailPhone' type="text" />
+                placeholder="Enter Email or Phone" name='emailPhone' type="text" required />
             <input className="placeholder:text-dark placeholder:text-sm outline-none border-b w-full p-2 mt-10"
-                placeholder="Password" name='password' type="password" />
+                placeholder="Password" name='password' type="password" required/>
             <div className="mt-5 flex gap-5">
                 <button className="px-6 md:px-8 py-2 bg-primary text-white rounded-full hover:opacity-90">{userLoading ? 'Creating..' : 'Create Account'}</button>
                 <Link href="/login"

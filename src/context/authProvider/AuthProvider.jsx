@@ -57,7 +57,9 @@ const AuthProvider = ({ children }) => {
         }
     }, [userLoginSuccess])
 
-
+    const handleGoogleLogout = () => {
+        window.open(baseUrl + "/auth/logout", "_self");
+    }
     const authInfo = {
         seller,
         user,
@@ -68,6 +70,7 @@ const AuthProvider = ({ children }) => {
         userLoginSuccess,
         setUserLoginSuccess,
         handleLogout,
+        handleGoogleLogout
     }
 
 

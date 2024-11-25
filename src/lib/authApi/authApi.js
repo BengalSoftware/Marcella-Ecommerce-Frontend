@@ -78,7 +78,7 @@ const userLoggedIn = async (data) => {
         }
 
         const responseData = await res.json();
-
+        console.log(responseData);
         if (responseData?.data?.user?.role === 'seller') {
             localStorage.setItem('sauth', JSON.stringify(responseData));
         }

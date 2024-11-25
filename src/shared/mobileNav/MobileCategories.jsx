@@ -6,7 +6,7 @@ import { AuthContext } from "@/context/authProvider/AuthProvider";
 import { FiUser } from "react-icons/fi";
 
 const MobileCategories = ({ categories, setOpen }) => {
-  const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout } =
+  const { user, seller, userLoginSuccess, sellerLoginSuccess, handleLogout, handleGoogleLogout } =
     useContext(AuthContext);
   const handleClose = () => {
     setOpen(false);
@@ -103,7 +103,13 @@ const MobileCategories = ({ categories, setOpen }) => {
         sellerLoginSuccess ||
         userLoginSuccess ? (
           <button
-            onClick={handleLogout}
+            onClick={() => {
+              handleLogout();
+              if(user?.success)
+              {
+                  handleGoogleLogout();
+              }
+          } }
             className="flex items-center gap-x-2 py-2 text-sm"
           >
             Logout
