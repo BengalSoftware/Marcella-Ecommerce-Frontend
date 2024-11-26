@@ -1,6 +1,7 @@
+
+import SignInWithGoogle from '@/components/form/SignInWithGoogle';
 import SignupForm from '@/components/form/SignupForm';
 import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
 
 const SignupPage = () => {
     return (
@@ -14,13 +15,7 @@ const SignupPage = () => {
                         <p>or</p>
                         <hr className="w-full border-b border-gray-200" />
                     </div>
-
-                    <span className='flex items-center justify-center gap-2 mt-6'>
-                        <button className='border flex items-center gap-2 rounded-md p-2 bg-white shadow' >
-                            Sign in with Google
-                            <FcGoogle className='text-3xl' />
-                        </button>
-                    </span>
+                    <SignInWithGoogle />
                 </div>
             </div>
         </div>
