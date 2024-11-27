@@ -29,7 +29,7 @@ const OrderListTable = () => {
     }, [seller?.data?.user?.email])
 
     const allProducts = allOrders?.filter(entry =>
-        entry.products.some(product => product.product.sellerId === sellerInfo?._id)
+        entry.products.some(product => product?.product?.sellerId === sellerInfo?._id)
     );
 
     console.log(allProducts);
