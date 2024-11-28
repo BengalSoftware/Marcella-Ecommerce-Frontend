@@ -29,7 +29,7 @@ const ReportTableList = () => {
     }, [seller?.data?.user?.email])
 
     const allProducts = allReports?.filter(entry =>
-        entry.products.some(product => product.product.sellerId === sellerInfo?._id)
+        entry.products.some(product => product?.product?.sellerId === sellerInfo?._id)
     );
 
     return (
