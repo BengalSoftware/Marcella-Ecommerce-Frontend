@@ -19,7 +19,7 @@ const RelatedProducts = ({ slug }) => {
         }
         fetchData()
     }, [slug])
-
+    console.log(rProduct);
     return (
         <div className='mt-10'>
             <h1 className='font-medium text-2xl'>Related Products</h1>
