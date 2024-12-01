@@ -19,7 +19,7 @@ export async function generateMetadata({ params }, parent) {
         description: description,
         openGraph: {
             title: name ? `${name}` : 'Veendeshi',
-            description: description,
+            description: name,
             url: `https://veendeshi.com/product/${slug}`,
             images: [...images, ...previousImages]
         },

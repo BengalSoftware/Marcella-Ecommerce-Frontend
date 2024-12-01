@@ -14,8 +14,8 @@ const DetailsNavTab = ({ product }) => {
         <div className='mt-10'>
             <div className='flex items-center justify-between lg:justify-start lg:gap-10'>
                 <button onClick={() => handleNavChange('description')} className={`lg:text-2xl font-medium ${navValue === 'description' ? 'text-primary pb-1 border-b-primary border-b-2' : 'text-gray-500 pb-1 border-b-white border-b-2'}`}>Description</button>
-                <button onClick={() => handleNavChange('reviews')} className={`lg:text-2xl font-medium ${navValue === 'reviews' ? 'text-primary pb-1 border-b-primary border-b-2' : 'text-gray-500 pb-1 border-b-white border-b-2'}`}>Reviews</button>
                 <button onClick={() => handleNavChange('speci')} className={`lg:text-2xl font-medium ${navValue === 'speci' ? 'text-primary pb-1 border-b-primary border-b-2' : 'text-gray-500 pb-1 border-b-white border-b-2'}`}>Specification</button>
+                <button onClick={() => handleNavChange('reviews')} className={`lg:text-2xl font-medium ${navValue === 'reviews' ? 'text-primary pb-1 border-b-primary border-b-2' : 'text-gray-500 pb-1 border-b-white border-b-2'}`}>Reviews</button>
             </div>
             {
                 navValue === 'description' && <div className='mt-5'>
